@@ -1,0 +1,21 @@
+%h1= @organization.name
+
+%p= @organization.github_account
+%p= @organization.description
+
+%p
+  %h3= "Public repositories: #{@organization.public_repos}" 
+
+%table
+  %thead
+    %th Repositorio
+    %th Forks count
+    %th Stargazers
+    %th Open Issues & Pull Requests
+  %tbody
+    - @repositories.each do |repository|
+      %tr
+        %td= repository.name
+        %td= repository.forks_count
+        %td= repository.stargazers
+        %td= repository.open_issues_and_pull_requests_count

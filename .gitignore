@@ -15,5 +15,5 @@
 /log/*
 !/log/.keep
 /tmp
-config/secrets.yml
 *.swp
+/config/database.yml

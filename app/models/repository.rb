@@ -4,6 +4,10 @@ class Repository
     @data = data
   end
 
+  def id
+    @data["id"]
+  end
+
   def name
     @data["name"]
   end

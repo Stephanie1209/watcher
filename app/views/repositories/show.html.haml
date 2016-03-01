@@ -1,0 +1,40 @@
+%h2= @repository.name
+= link_to "Go back", root_path
+%div
+  %h4
+    Open Issues:
+    = "#{@issues.count}"
+
+  %table
+    %thead
+      %th Title
+      %th Author
+      %th Created at
+      %th Labels
+    %tbody
+      - @issues.each do |issue|
+        %tr
+          %td= issue.title
+          %td= issue.author
+          %td= l issue.created_at, format: :default
+          %td= issue.labels
+
+
+%div
+  %h4
+    Open Pull Requests:
+    = "#{@pull_requests.count}"
+
+  %table
+    %thead
+      %th Title
+      %th Author
+      %th Created at
+      %th Labels
+    %tbody
+      - @pull_requests.each do |pull_request|
+        %tr
+          %td= pull_request.title
+          %td= pull_request.author
+          %td= l pull_request.created_at, format: :default
+          %td= pull_request.labels

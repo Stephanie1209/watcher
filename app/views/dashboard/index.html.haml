@@ -15,7 +15,7 @@
   %tbody
     - @repositories.each do |repository|
       %tr
-        %td= repository.name
+        %td= link_to repository.name, repository_path(name: repository.name)
         %td= repository.forks_count
         %td= repository.stargazers
         %td= repository.open_issues_and_pull_requests_count

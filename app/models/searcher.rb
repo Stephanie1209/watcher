@@ -15,13 +15,18 @@ class Searcher
     get_url("/orgs/#{@name}/repos", @options)
   end
 
-  def get_issues
-    get_url("/orgs/#{@name}/issues", @options)
+  def get_issues_and_pull_requests repo_name
+    data = get_url("/repos/#{@name}/#{repo_name}/issues", @options)
+    { issues: data.reject{|d| d["pull_request"]}, pull_requests: data.select{|d| d["pull_request"] } }
   end
 
   def get_pull_requests
     issues = get_issues
     issues.select{|i| i["pull_request"]}
+  end
+
+  def find_repository repository_id
+    get_url("/repos/#{@name}/#{repository_id}", @options)
   end
 
   private

@@ -14,9 +14,13 @@ class Mapper
     reps.map { |rep| Repository.new rep }
   end
 
-  def pull_requests
-    @searcher.get_pull_requests
+  def issues_and_pull_requests repo_name
+    info = @searcher.get_issues_and_pull_requests repo_name
+    {issues: info[:issues].map{|i| Issue.new i}, pull_requests: info[:pull_requests].map{|p| PullRequest.new p}}
   end
 
+  def find_repository repository_id
+    Repository.new (@searcher.find_repository repository_id)
+  end
 
 end

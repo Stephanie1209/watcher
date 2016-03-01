@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  get 'repositories/index'
-
   get 'dashboard/index'
   root 'dashboard#index'
+
+  get "repositories/:name" => "repositories#show", as: :repository, constraints: { name: /[^\/]+/ }
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

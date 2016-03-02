@@ -21,7 +21,15 @@
 </head>
 
 <body>
-  <%= yield %>
   <%= javascript_include_tag "application" %>
-</body>
+  <nav class="navigation-bar">
+    <ul class="brand-section">
+      <li class="brand-name"><%= link_to "Watcher", root_path, class: "menu-trigger" %></li>
+    </ul>
+  </nav>
+  <div class="contaner", style= "padding: 0 50px;">
+      <%= yield %>
+  </div>
+
+  </body>
 </html>

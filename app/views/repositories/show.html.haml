@@ -1,7 +1,7 @@
 %h2= @repository.name
-= link_to "Go back", root_path
+
 %div
-  %h4
+  %h3
     Open Issues:
     = "#{@issues.count}"
 
@@ -14,14 +14,13 @@
     %tbody
       - @issues.each do |issue|
         %tr
-          %td= issue.title
+          %td= link_to issue.title, issue_link(@repository.name, issue.number), target: "_blank"
           %td= issue.author
           %td= l issue.created_at, format: :default
           %td= issue.labels
 
-
 %div
-  %h4
+  %h3
     Open Pull Requests:
     = "#{@pull_requests.count}"
 
@@ -34,7 +33,7 @@
     %tbody
       - @pull_requests.each do |pull_request|
         %tr
-          %td= pull_request.title
+          %td= link_to pull_request.title, pull_request_link(@repository.name, pull_request.number), target: "_blank"
           %td= pull_request.author
           %td= l pull_request.created_at, format: :default
           %td= pull_request.labels

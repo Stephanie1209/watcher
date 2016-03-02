@@ -3,6 +3,14 @@ class Base
     @data = data
   end
 
+  def id
+    @data["id"]
+  end
+  
+  def number
+    @data["number"]
+  end
+
   def title
     @data["title"]
   end

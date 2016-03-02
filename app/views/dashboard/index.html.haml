@@ -1,14 +1,17 @@
-%h1= @organization.name
+%h1.text-center= @organization.name
 
-%p= @organization.github_account
-%p= @organization.description
+%div
+  %ul
+    %li= link_to "Github", "https://github.com/IcaliaLabs", class: "button", target: "_blank"
+    %li= link_to "Homepage", "http://www.icalialabs.com/", class: "button", target: "_blank"
+
 
 %p
-  %h3= "Public repositories: #{@organization.public_repos}" 
+  %h3= "# Repositories: #{@organization.public_repos}" 
 
 %table
   %thead
-    %th Repositorio
+    %th Name
     %th Forks count
     %th Stargazers
     %th Open Issues & Pull Requests

@@ -20,4 +20,8 @@ class Organization
     @data["description"]
   end
 
+  def total_repos
+    @data["total_private_repos"] + public_repos
+  end
+
 end

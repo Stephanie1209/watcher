@@ -11,7 +11,8 @@ class Mapper
 
   def repositories
     reps = @searcher.get_repositories
-    reps.map { |rep| Repository.new rep }
+    reps.map! { |rep| Repository.new rep }
+    reps.sort_by(&:open_issues_and_pull_requests_count).reverse
   end
 
   def issues_and_pull_requests repo_name

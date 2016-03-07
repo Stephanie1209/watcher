@@ -7,18 +7,19 @@
 
 
 %p
-  %h3= "# Repositories: #{@organization.public_repos}" 
+  %h3= "# Repositories: #{@organization.total_repos}" 
 
 %table
   %thead
     %th Name
+    %th Open Issues & Pull Requests
     %th Forks count
     %th Stargazers
-    %th Open Issues & Pull Requests
   %tbody
     - @repositories.each do |repository|
       %tr
         %td= link_to repository.name, repository_path(name: repository.name)
+        %td= repository.open_issues_and_pull_requests_count
         %td= repository.forks_count
         %td= repository.stargazers
-        %td= repository.open_issues_and_pull_requests_count
+        

@@ -18,3 +18,5 @@
 *.swp
 /config/database.yml
 /config/secrets.yml
+development.env
+coverage/

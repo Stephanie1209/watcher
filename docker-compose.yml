@@ -1,0 +1,35 @@
+version: "2"
+
+volumes:
+  gems:
+    driver: local
+  postgres-data:
+    driver: local
+services:
+  db:
+    image: postgres:9.5
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: 12341234
+  web:
+    image: ruby:2.3.0
+    command: rails server -b 0.0.0.0 -P /tmp/server.id
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/usr/src/watcher
+      - gems:/usr/local/bundle
+    working_dir: /usr/src/watcher
+    tty: true
+    stdin_open: true
+    links:
+      - db
+    environment:
+      DATABASE_URL: postgres://postgres:12341234@db:5432/watcher_db_development
+      REDIS_URL: redis://redis.local:6379
+      CODECLIMATE_REPO_TOKEN: 503ad021b0a003530381a2a971919335e5b84d57a32325b84278d550aa5a4d49
+    env_file:
+      - development.env

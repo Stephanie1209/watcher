@@ -1,7 +1,7 @@
 # Watcher
 
-[![Code Climate](https://codeclimate.com/repos/56ec62db0982010085003b82/badges/880cd08cac64a8f1ff63/gpa.svg)](https://codeclimate.com/repos/56ec62db0982010085003b82/feed)
-[![Issue Count](https://codeclimate.com/repos/56ec62db0982010085003b82/badges/880cd08cac64a8f1ff63/issue_count.svg)](https://codeclimate.com/repos/56ec62db0982010085003b82/feed)
+[![Code Climate](https://codeclimate.com/github/IcaliaLabs/watcher/badges/gpa.svg)](https://codeclimate.com/github/IcaliaLabs/watcher)
+[![Issue Count](https://codeclimate.com/github/IcaliaLabs/watcher/badges/issue_count.svg)](https://codeclimate.com/github/IcaliaLabs/watcher)
 
 Watcher uses [Github API](https://developer.github.com) to fetch information about the projects (issues, pull requests, members of your team and so on).
 

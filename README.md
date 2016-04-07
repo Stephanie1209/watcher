@@ -7,19 +7,15 @@ Watcher uses [Github API](https://developer.github.com) to fetch information abo
 
 ### Setup
 
-Doing anything interesting with Github API requires authentication, since unauthenticated clients can only make 60 requests per hour. To authenticate ourselves we need to generate an [access token](https://developer.github.com/v3/oauth_authorizations/#create-a-new-authorization) and set it in `secret.yml` file:
+Doing anything interesting with Github API requires authentication, since unauthenticated clients can only make 60 requests per hour. To authenticate ourselves we need to generate an [access token](https://developer.github.com/v3/oauth_authorizations/#create-a-new-authorization) and set it as an environment variable (this is configured in `secret.yml` file):
 
 ```bash
-cp config/secrets.yml.example config/secrets.yml
+export GITHUB_ACCESS_TOKEN = TOKEN_ID
 ```
-
-After that you can directly set the token in `github_access_token` or use an environment variable.
 
 ### Contributing
 
 Everyone is freely to collaborate and submit pull request if needed.
-
-**if you have commit access, you should wait not more than a week for the team to give feedback**.
 
 
 ### Credits

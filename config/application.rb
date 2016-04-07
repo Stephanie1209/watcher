@@ -25,5 +25,6 @@ module Watcher
     config.assets.paths.concat(
       Compass::Frameworks::ALL.map { |f| f.stylesheets_directory }
     )
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
   end
 end

@@ -14,7 +14,7 @@
     %tbody
       - @issues.each do |issue|
         %tr
-          %td= link_to issue.title, issue_link(@repository.name, issue.number), target: "_blank"
+          %td= link_to issue.title, sanitize(issue.github_url), target: "_blank"
           %td= issue.author
           %td= l issue.created_at, format: :default
           %td= issue.labels
@@ -33,7 +33,7 @@
     %tbody
       - @pull_requests.each do |pull_request|
         %tr
-          %td= link_to pull_request.title, pull_request_link(@repository.name, pull_request.number), target: "_blank"
+          %td= link_to pull_request.title, sanitize(pull_request.github_url), target: "_blank"
           %td= pull_request.author
           %td= l pull_request.created_at, format: :default
           %td= pull_request.labels

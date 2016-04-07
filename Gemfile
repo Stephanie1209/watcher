@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.2'
+gem 'rails', '4.2.6'
 gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2' 
@@ -26,6 +26,7 @@ gem "pry"
 gem "haml"
 gem 'compass-rails', '~> 2.0.0'
 gem 'furatto', '~> 1.3.7'
+gem "octokit", "~> 4.0"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

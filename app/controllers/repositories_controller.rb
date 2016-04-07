@@ -1,10 +1,18 @@
 class RepositoriesController < ApplicationController
   
   def show
-    mapper = Mapper.new
-    @repository = mapper.find_repository params[:name]
-    info = mapper.issues_and_pull_requests params[:name]
-    @issues = info[:issues]
-    @pull_requests = info[:pull_requests]
+    @repository = GithubRepository.new params[:name] 
+    @issues = repository_issues 
+    @pull_requests = repository_pull_requests
+  end
+
+  private
+
+  def repository_issues
+    @repository.issues.map { |issue| Issue.new issue }
+  end
+
+  def repository_pull_requests
+    @repository.pull_requests.map { |pr| PullRequest.new pr }
   end
 end

@@ -27,8 +27,4 @@ class Organization
   def avatar
     @data["avatar_url"]
   end
-
-  def description
-    @data["description"]
-  end
 end

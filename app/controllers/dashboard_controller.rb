@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
   before_action :retrieve_data_from_github
-  
+
   def index
     @organization = organization
     @repositories = repositories
@@ -21,4 +21,5 @@ class DashboardController < ApplicationController
     reps.map! { |rep| Repository.new rep }
     reps.sort_by(&:open_issues_and_pull_requests_count).reverse
   end
+
 end

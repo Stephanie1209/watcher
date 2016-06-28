@@ -6,9 +6,10 @@ module Api
         @github_organization = GithubOrganization.new
       end
 
-      def organization
-        Organization.new(@github_organization.current)
+      def organization(id)
+        Organization.new(@github_organization.find(id))
       end
+
     end
   end
 end

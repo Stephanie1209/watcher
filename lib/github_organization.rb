@@ -1,5 +1,9 @@
 class GithubOrganization < GithubData
 
+  def find(id)
+    @organization ||= @client.organization(id)
+  end
+  
   def current
     @organization ||= @client.organization(github_organization)
   end

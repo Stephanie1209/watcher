@@ -25,4 +25,3 @@ class RepositoriesController < ApplicationController
     @repository.pull_requests.map { |pr| PullRequest.new pr }
   end
 end
-

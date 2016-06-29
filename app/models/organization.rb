@@ -1,4 +1,4 @@
-class Organization  
+class Organization
 
   def initialize data
     @data = data
@@ -20,8 +20,12 @@ class Organization
     @data["description"]
   end
 
+  def private_repos
+      @data["total_private_repos"]
+  end
+
   def total_repos
-    @data["total_private_repos"] + public_repos
+    private_repos + public_repos
   end
 
 end

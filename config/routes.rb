@@ -6,7 +6,8 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do
-      resources :repositories, only: [:show, :index]
+      resources :repositories, only: [:show]
+      get "repositories/list/:id", to: "repositories#list"
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,4 +1,5 @@
 class Repository
+  attr_reader :data
 
   def initialize data
     @data = data
@@ -10,6 +11,10 @@ class Repository
 
   def name
     @data["name"]
+  end
+
+  def description
+    @data["description"]
   end
 
   def forks_count

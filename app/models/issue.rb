@@ -6,7 +6,7 @@ class Base
   def id
     @data["id"]
   end
-  
+
   def number
     @data["number"]
   end
@@ -42,7 +42,7 @@ end
 
 class Issue < Base
 
-  def github_url 
+  def github_url
     "https://github.com/#{organization_name}/#{repository_name}/issues/#{number}"
   end
 end

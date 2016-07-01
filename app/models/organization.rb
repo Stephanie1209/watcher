@@ -1,10 +1,18 @@
 class Organization < GithubData
     attr_reader :repositories
-    
-  def initialize
+
+  def initialize id = github_organization
     super
     @organization ||= @client.organization(github_organization)
     @repositories ||= @client.organization_repositories(github_organization, query_options)
+  end
+
+  def issues
+    @repositories.reject{|i| i["pull_request"]}
+  end
+
+  def pull_requests
+    @repositories.select{ |i| i["pull_request"] }
   end
 
   def github_account
@@ -29,11 +37,6 @@ class Organization < GithubData
 
   def avatar
     @organization["avatar_url"]
-  end
-
-  private
-  def find(id)
-    @organization ||= @client.organization(id)
   end
 
 end

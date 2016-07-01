@@ -2,17 +2,9 @@ class Repository < GithubData
   def initialize name
     super
     @name = name
-    @information = @client.list_issues(github_repository)
+    @repositories = @client.list_issues(github_repository)
+    @information = @client.repo(github_repository)
   end
-
-  def issues
-    @information.reject{|i| i["pull_request"]}
-  end
-
-  def pull_requests
-    @information.select{ |i| i["pull_request"] }
-  end
-
 
   def id
     @information["id"]
@@ -32,6 +24,14 @@ class Repository < GithubData
 
   def open_issues_and_pull_requests_count
     @information["open_issues"]
+  end
+
+  def issues
+    @repositories.reject{|i| i["pull_request"]}
+  end
+
+  def pull_requests
+    @repositories.select{ |i| i["pull_request"] }
   end
 
   private

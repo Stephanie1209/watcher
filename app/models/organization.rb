@@ -39,4 +39,6 @@ class Organization < GithubData
     @organization["avatar_url"]
   end
 
+  
+
 end

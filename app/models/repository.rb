@@ -2,7 +2,6 @@ class Repository < GithubData
   def initialize name
     super
     @name = name
-    @repositories = @client.list_issues(github_repository)
     @information = @client.repository(github_repository)
   end
 

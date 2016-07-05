@@ -19,8 +19,6 @@ class DashboardController < ApplicationController
     reps.sort_by(&:open_issues_and_pull_requests_count).reverse
   end
 
-  private
-  
   def github_organization
     Rails.application.secrets.github_organization
   end

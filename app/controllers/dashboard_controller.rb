@@ -10,7 +10,6 @@ class DashboardController < ApplicationController
 
   def organization
     @github_organization = Organization.new github_organization
-
   end
 
   def repositories

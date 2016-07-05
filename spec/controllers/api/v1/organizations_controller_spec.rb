@@ -1,7 +1,6 @@
 require 'spec_helper'
 
-describe Api::V1::OrganizationsController do
-
+RSpec.describe Api::V1::OrganizationsController, vcr: true do
   describe "GET #show", :type => :controller do
 
     let(:id) { "icalialabs" }

@@ -1,10 +1,10 @@
 class Organization < GithubData
-    attr_reader :repositories
+  attr_reader :repositories
 
-  def initialize id = github_organization
+  def initialize id
     super
-    @organization ||= @client.organization(github_organization)
-    @repositories ||= @client.organization_repositories(github_organization, query_options)
+    @organization ||= @client.organization(id)
+    @repositories ||= @client.organization_repositories(id, query_options)
   end
 
   def issues
@@ -38,7 +38,4 @@ class Organization < GithubData
   def avatar
     @organization["avatar_url"]
   end
-
-  
-
 end

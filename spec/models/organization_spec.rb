@@ -1,7 +1,6 @@
 require 'rails_helper'
 
-describe Organization do
-
+RSpec.describe Organization, vcr: true do
   before(:each) do
     VCR.use_cassette  "organization/icalialabs" do
       @organization = Organization.new('icalialabs')

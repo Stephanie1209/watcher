@@ -50,6 +50,8 @@ group :test do
   gem 'codeclimate-test-reporter', git: 'https://github.com/codeclimate/ruby-test-reporter.git', branch: 'master', require: nil
   gem 'shoulda', '~> 3.5'
   gem 'shoulda-matchers', '~> 2.0'
+  gem 'vcr', '~> 3.0', '>= 3.0.3'
+  gem 'webmock', '~> 2.1'
 end
 
 group :development do

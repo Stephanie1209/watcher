@@ -1,10 +1,11 @@
 require 'rails_helper'
-require 'octokit'
 
 describe Organization do
 
   before(:each) do
-    @organization = Organization.new('icalialabs')
+    VCR.use_cassette  "organization/icalialabs" do
+      @organization = Organization.new('icalialabs')
+    end
   end
 
   it "verifies organization is not empty" do

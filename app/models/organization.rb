@@ -1,27 +1,41 @@
-class Organization  
+class Organization < GithubData
+  attr_reader :repositories
 
-  def initialize data
-    @data = data
+  def initialize id
+    super
+    @organization ||= @client.organization(id)
+    @repositories ||= @client.organization_repositories(id, query_options)
+  end
+
+  def issues
+    @repositories.reject{|i| i["pull_request"]}
+  end
+
+  def pull_requests
+    @repositories.select{ |i| i["pull_request"] }
   end
 
   def github_account
-    @data["html_url"]
+    @organization["html_url"]
   end
 
   def name
-    @data["login"]
+    @organization["login"]
   end
 
   def public_repos
-    @data["public_repos"]
+    @organization["public_repos"]
   end
 
   def description
-    @data["description"]
+    @organization["description"]
   end
 
   def total_repos
-    @data["total_private_repos"] + public_repos
+    @organization["total_private_repos"] + public_repos
   end
 
+  def avatar
+    @organization["avatar_url"]
+  end
 end

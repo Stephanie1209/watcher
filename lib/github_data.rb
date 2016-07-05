@@ -3,7 +3,7 @@ require 'octokit'
 class GithubData
   attr_reader :client
 
-  def initialize
+  def initialize (*)
     @client = Octokit::Client.new(access_token: github_token)
   end
 

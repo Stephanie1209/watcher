@@ -16,15 +16,12 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
-require 'codeclimate-test-reporter'
 require 'rails/all'
-CodeClimate::TestReporter.configuration.git_dir = "."
-CodeClimate::TestReporter.start
 
-ENV["RAILS_ENV"] ||= 'test'                                        
+ENV["RAILS_ENV"] ||= 'test'
 
-require File.expand_path("../../config/environment", __FILE__)     
-require 'rspec/rails'  
+require File.expand_path("../../config/environment", __FILE__)
+require 'rspec/rails'
 require 'shoulda-matchers'
 
 RSpec.configure do |config|

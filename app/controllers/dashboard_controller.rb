@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
-  before_action :retrieve_data_from_github
-  
+  before_action :organization
+
   def index
     @organization = organization
     @repositories = repositories
@@ -8,17 +8,19 @@ class DashboardController < ApplicationController
 
   private
 
-  def retrieve_data_from_github
-    @github_organization = GithubOrganization.new
-  end
-
   def organization
-    Organization.new(@github_organization.current)
+    @github_organization = Organization.new github_organization
+
   end
 
   def repositories
-    reps = @github_organization.repositories
-    reps.map! { |rep| Repository.new rep }
+    reps = organization.repositories
+    reps.map! { |rep| Repository.new rep.name }
     reps.sort_by(&:open_issues_and_pull_requests_count).reverse
   end
+
+  def github_organization
+    Rails.application.secrets.github_organization
+  end
+
 end

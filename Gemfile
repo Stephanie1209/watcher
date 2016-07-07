@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.6'
 gem 'pg'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.2' 
+gem 'sass-rails', '~> 4.0.2'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -50,6 +50,8 @@ group :test do
   gem 'codeclimate-test-reporter', git: 'https://github.com/codeclimate/ruby-test-reporter.git', branch: 'master', require: nil
   gem 'shoulda', '~> 3.5'
   gem 'shoulda-matchers', '~> 2.0'
+  gem 'vcr', '~> 3.0', '>= 3.0.3'
+  gem 'webmock', '~> 2.1'
 end
 
 group :development do

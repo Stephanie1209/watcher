@@ -1,6 +1,6 @@
-class Repository
-  attr_reader :data
+class Repository < GithubData
   def initialize data
+    super
     @data = data
   end
 
@@ -26,6 +26,12 @@ class Repository
 
   def open_issues_and_pull_requests_count
     @data["open_issues"]
+  end
+
+  private
+
+  def github_repository
+    @data["full_name"]
   end
 
 end

@@ -1,6 +1,6 @@
 class RepositoriesController < ApplicationController
   def show
-    @repository = GithubRepository.new params[:name]
+    @repository = Repository.new params[:name]
     @issues = repository_issues
     @pull_requests = repository_pull_requests
     @open_issues_count = count_open_repository_issues

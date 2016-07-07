@@ -16,10 +16,19 @@
         @repositories
       end
 
+      def issues
+        @issues = []
+        issues_list = client.list_issues
+        issues_list.each do |issue|
+          @issues << Issue.new(issue)
+        end
+        @issues
+      end
+
       private
 
       def client
-        @client = GithubData.new.client
+        GithubData.new.client
       end
     end
   end

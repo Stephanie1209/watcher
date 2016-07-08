@@ -6,13 +6,7 @@ class Organization < GithubData
     @organization ||= @client.organization(id)
   end
 
-  def issues
-    @repositories.reject{|i| i["pull_request"]}
-  end
 
-  def pull_requests
-    @repositories.select{ |i| i["pull_request"] }
-  end
 
   def github_account
     @organization["html_url"]

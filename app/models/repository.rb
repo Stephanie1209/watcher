@@ -1,7 +1,9 @@
 class Repository < GithubData
+  attr_accessor :issues
   def initialize data
     super
     @data = data
+    @issues = []
   end
 
   def id
@@ -22,6 +24,18 @@ class Repository < GithubData
 
   def stargazers
     @data["stargazers_count"]
+  end
+
+  def issues
+    @issues
+  end
+
+  def open_issues
+    @issues.select{|i| !i.pull_request && i.state == "open"}
+  end
+
+  def open_pull_requests
+    @issues.select{ |i| i.pull_request || i.state == "open" }
   end
 
   def open_issues_and_pull_requests_count

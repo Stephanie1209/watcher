@@ -1,4 +1,5 @@
 class Base
+  attr_reader :data
   def initialize data
     @data = data
   end
@@ -23,6 +24,10 @@ class Base
     @data["state"]
   end
 
+  def pull_request
+    @data["pull_request"] != nil
+  end
+
   def labels
     @data["labels"].map{|label| label["name"]}.join(",")
   end
@@ -33,6 +38,10 @@ class Base
 
   def repository_name
     @data["repository_url"].split("/").last
+  end
+
+  def repository_id
+    @data["repository"]["id"]
   end
 
   def organization_name

@@ -1,23 +1,19 @@
-require 'spec_helper'
+require 'rails_helper'
 
-RSpec.describe Api::V1::OrganizationsController, vcr: true do
-  describe "GET #show", :type => :controller do
-
-    let(:id) { "icalialabs" }
+RSpec.describe Api::V1::OrganizationsController do
+  
+  describe "GET #show", type: :controller do 
     before(:each) do
-      VCR.use_cassette  "organization/icalialabs" do
-        @organization = Organization.new('icalialabs')
-        get :show, id: id, format: :json
-      end
+      get :show, id: 'icalialabs', format: :json
     end
 
-    it "returns login, avatar and description of the organization on a hash" do
-      assigns(:organization).name.should eq(@organization.name)
-      assigns(:organization).avatar.should eq(@organization.avatar)
-      assigns(:organization).description.should eq(@organization.description)
+    it "returns login, avatar and description of the organization", :vcr do
+      expect(assigns(:organization).name).to eq("IcaliaLabs")
+      expect(assigns(:organization).avatar).to eq("https://avatars.githubusercontent.com/u/2523244?v=3")
+      expect(assigns(:organization).description).to eq("We guide our clients through an agile process, staying ahead of their competition and leveraging opportunities with digital products.")
     end
 
-    it "should be succesful" do
+    it "should be succesful", :vcr do
       expect(response).to be_success
     end
   end

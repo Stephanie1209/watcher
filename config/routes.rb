@@ -6,7 +6,10 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do
-      resources :organizations, only: :show
+      resources :organizations, only: :show do
+        get :repositories_info, on: :member
+        resources :repositories, only: :index
+      end
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

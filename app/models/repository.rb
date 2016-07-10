@@ -1,42 +1,45 @@
-class Repository < GithubData
-  def initialize name
-    super
-    @name = name
-    @information = @client.repository(github_repository)
+class Repository 
+  attr_reader :data, :issues
+
+  def initialize data, issues = []
+    @data = data
+    @issues = issues
   end
 
   def id
-    @information["id"]
+    @data["id"]
   end
 
   def name
-    @information["name"]
+    @data["name"]
+  end
+
+  def description
+    @data["description"]
   end
 
   def forks_count
-    @information["forks_count"]
+    @data["forks_count"]
   end
 
   def stargazers
-    @information["stargazers_count"]
+    @data["stargazers_count"]
+  end
+
+  def open_issues
+    @issues.select{ |i| !i.pull_request? && i.state == "open"}
+  end
+
+  def open_pull_requests
+    @issues.select{ |i| i.pull_request? && i.state == "open" }
   end
 
   def open_issues_and_pull_requests_count
-    @information["open_issues"]
+    @data["open_issues"]
   end
-
-  def issues
-    @repositories.reject{|i| i["pull_request"]}
-  end
-
-  def pull_requests
-    @repositories.select{ |i| i["pull_request"] }
-  end
-
-  private
 
   def github_repository
-    "#{github_organization}/#{@name}"
+    @data["full_name"]
   end
 
 end

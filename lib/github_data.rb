@@ -4,6 +4,7 @@ class GithubData
   attr_reader :client
 
   def initialize (*)
+    ::Octokit.auto_paginate = true
     @client = Octokit::Client.new(access_token: github_token)
   end
 

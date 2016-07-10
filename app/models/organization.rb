@@ -1,31 +1,29 @@
 
-class Organization < GithubData
+class Organization 
   attr_reader :repositories
-  def initialize id
-    super
-    @organization ||= @client.organization(id)
+
+  def initialize data
+    @info = data 
   end
 
-
-
   def github_account
-    @organization["html_url"]
+    @info["html_url"]
   end
 
   def name
-    @organization["login"]
+    @info["login"]
   end
 
   def public_repos
-    @organization["public_repos"]
+    @info["public_repos"]
   end
 
   def description
-    @organization["description"]
+    @info["description"]
   end
 
   def private_repos
-    @organization["total_private_repos"]
+    @info["total_private_repos"]
   end
 
   def total_repos
@@ -33,6 +31,6 @@ class Organization < GithubData
   end
 
   def avatar
-    @organization["avatar_url"]
+    @info["avatar_url"]
   end
 end

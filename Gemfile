@@ -40,18 +40,17 @@ gem "octokit", "~> 4.0"
 group :development, :test do
   gem 'byebug'
   gem 'rspec-rails'
-  gem 'debugger2', :git => "git://github.com/ko1/debugger2.git"
   gem 'awesome_print'
-  gem 'pry-rails'
-  gem 'ffaker'
+  gem 'pry'
 end
 
 group :test do
   gem 'codeclimate-test-reporter', git: 'https://github.com/codeclimate/ruby-test-reporter.git', branch: 'master', require: nil
-  gem 'shoulda', '~> 3.5'
   gem 'shoulda-matchers', '~> 2.0'
   gem 'vcr', '~> 3.0', '>= 3.0.3'
   gem 'webmock', '~> 2.1'
+  gem 'ffaker'
+  gem 'rspec-collection_matchers'
 end
 
 group :development do

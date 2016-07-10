@@ -1,5 +1,6 @@
 class Base
   attr_reader :data
+
   def initialize data
     @data = data
   end
@@ -24,7 +25,7 @@ class Base
     @data["state"]
   end
 
-  def pull_request
+  def pull_request?
     @data["pull_request"] != nil
   end
 

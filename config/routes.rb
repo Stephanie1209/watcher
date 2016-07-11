@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :organizations, only: :show do
         get :repositories_info, on: :member
-        resources :repositories, only: :index
+        resources :repositories, only: [:index, :show]
       end
     end
   end

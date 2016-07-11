@@ -4,7 +4,11 @@ module Api
 
       def index
         @organization = find_github_organization(params[:organization_id])
-        search_repositories_for_organization 
+        search_repositories_for_organization
+      end
+
+      def show
+        @repository = obtains_repository(params[:organization_id], params[:id])
       end
 
       private
@@ -17,6 +21,12 @@ module Api
           issues = issues_and_pull_requests.select { |ipr| ipr[:repository_url] == repo[:url] }
           @repositories << Repository.new(repo, issues)
         end
+      end
+
+      def obtains_repository(organization, repository)
+        full_name = "#{organization}/#{repository}"
+        data = @client.repo(full_name)
+        @repository = Repository.new(data)
       end
 
       def issues_query_options

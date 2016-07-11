@@ -3,7 +3,9 @@ require 'rails_helper'
 RSpec.describe Organization, vcr: true do
   before(:each) do
     VCR.use_cassette  "organization/icalialabs" do
-      @organization = Organization.new('icalialabs')
+      @client = GithubData.new.client
+      organization_data = @client.organization("icalialabs")
+      @organization = Organization.new organization_data
     end
   end
 
@@ -14,7 +16,7 @@ RSpec.describe Organization, vcr: true do
   it 'verifies public repos count' do
     @organization.public_repos == '47'
   end
-
+ 
   it 'verifies public and private repos count' do
     @organization.total_repos == '66'
   end

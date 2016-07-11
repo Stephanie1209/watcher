@@ -27,5 +27,15 @@ RSpec.describe Repository, vcr: true do
     @repository.open_issues_and_pull_requests_count == 10
   end
 
+  it "verifies open issues" do
+    @repository.open_issues.count == 6
+  end
 
+  it "verifies open pull requests" do
+    @repository.open_pull_requests.count == 4
+  end
+
+  it "verifies github_repository" do
+    @repository.github_repository == "icalialabs/furatto"
+  end
 end

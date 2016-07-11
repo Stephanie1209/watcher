@@ -26,6 +26,10 @@ class Repository
     @data["stargazers_count"]
   end
 
+  def issues
+    @issues.select{ |i| !i.pull_request? }
+  end
+
   def open_issues
     @issues.select{ |i| !i.pull_request? && i.state == "open"}
   end

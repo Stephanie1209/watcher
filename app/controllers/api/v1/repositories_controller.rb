@@ -4,7 +4,15 @@ module Api
 
       def index
         @organization = find_github_organization(params[:organization_id])
-        search_repositories_for_organization 
+        search_repositories_for_organization
+      end
+
+      def all_issues
+        @organization = find_github_organization(params[:organization_id])
+        search_repositories_for_organization
+        repository = @repositories.select { |repo| params[:repository_id] == repo.name }
+        @repository = repository.first
+        @issues = @repository.issues.map { |issue| Issue.new issue }
       end
 
       private

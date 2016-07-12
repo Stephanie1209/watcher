@@ -3,28 +3,30 @@ require 'rails_helper'
 RSpec.describe Organization, vcr: true do
   before(:each) do
     VCR.use_cassette  "organization/icalialabs" do
-      @organization = Organization.new('icalialabs')
+      @client = GithubData.new.client
+      organization_data = @client.organization("icalialabs")
+      @organization = Organization.new organization_data
     end
   end
 
   it "verifies organization is not empty" do
-    @organization.name ==  'icalialabs'
+    expect(@organization.name).to eql('IcaliaLabs')
   end
 
   it 'verifies public repos count' do
-    @organization.public_repos == '47'
+    expect(@organization.public_repos).to eql(51)
   end
 
   it 'verifies public and private repos count' do
-    @organization.total_repos == '66'
+    expect(@organization.total_repos).to eq(70)
   end
 
   it 'verifies github html_url' do
-    @organization.github_account == 'https://github.com/IcaliaLabs'
+    expect(@organization.github_account).to eq('https://github.com/IcaliaLabs')
   end
 
   it 'verifies avatar url' do
-    @organization.avatar == "https://avatars.githubusercontent.com/u/2523244?v=3"
+    expect(@organization.avatar).to eq("https://avatars.githubusercontent.com/u/2523244?v=3")
   end
 
 end

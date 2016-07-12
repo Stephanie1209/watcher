@@ -1,9 +1,9 @@
 
-class Organization 
+class Organization
   attr_reader :repositories
 
   def initialize data
-    @info = data 
+    @info = data
   end
 
   def github_account

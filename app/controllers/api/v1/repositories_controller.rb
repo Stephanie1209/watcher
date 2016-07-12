@@ -8,11 +8,18 @@ module Api
       end
 
       def all_issues
-        @organization = find_github_organization(params[:organization_id])
-        search_repositories_for_organization
-        repository = @repositories.select { |repo| params[:repository_id] == repo.name }
-        @repository = repository.first
+        search_for_specific_repository
         @issues = @repository.issues.map { |issue| Issue.new issue }
+      end
+
+      def open_issues
+        search_for_specific_repository
+        @open_issues = @repository.open_issues.map { |issue| Issue.new issue }
+      end
+
+      def closed_issues
+        search_for_specific_repository
+        @closed_issues = @repository.closed_issues.map { |issue| Issue.new issue }
       end
 
       private
@@ -27,8 +34,15 @@ module Api
         end
       end
 
+      def search_for_specific_repository
+        @organization = find_github_organization(params[:organization_id])
+        search_repositories_for_organization
+        repository = @repositories.select { |repo| params[:repository_id] == repo.name }
+        @repository = repository.first
+      end
+
       def issues_query_options
-        {filter: "all"}
+        {filter: "all", state: "all"}
       end
     end
   end

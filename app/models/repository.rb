@@ -34,6 +34,10 @@ class Repository
     @issues.select{ |i| !i.pull_request? && i.state == "open"}
   end
 
+  def closed_issues
+    @issues.select{ |i| !i.pull_request? && i.state == "closed"}
+  end
+
   def open_pull_requests
     @issues.select{ |i| i.pull_request? && i.state == "open" }
   end

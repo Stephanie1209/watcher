@@ -26,7 +26,9 @@ class Base
   end
 
   def assignee
-    @data["assignee"]["login"] if @data["assignee"] != nil
+    if @data["assignee"] != nil
+      @data["assignee"]["login"]
+    end
   end
 
   def state

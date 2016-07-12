@@ -3,11 +3,11 @@ module Api
     class OrganizationsController < ApiController
 
       def show
-        @organization = find_github_organization(params[:organization_id])
+        @organization = find_github_organization(params[:id])
       end
 
       def repositories_info
-        @organization = find_github_organization(params[:organization_id])
+        @organization = find_github_organization(params[:id])
       end
 
       def issues_info

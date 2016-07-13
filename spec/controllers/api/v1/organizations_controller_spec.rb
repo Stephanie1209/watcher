@@ -13,7 +13,7 @@ RSpec.describe Api::V1::OrganizationsController, :vcr do
       expect(assigns(:organization).description).to eq("We guide our clients through an agile process, staying ahead of their competition and leveraging opportunities with digital products.")
     end
 
-    it "should be succesful", :vcr do
+    it "should be succesful" do
       expect(response).to be_success
     end
   end

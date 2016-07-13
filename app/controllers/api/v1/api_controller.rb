@@ -8,6 +8,12 @@ module Api
         Organization.new organization_data
       end
 
+      def find_specific_commit org, repo, sha
+        full_name = "#{org}/#{repo}"
+        commit_data = @client.commit(full_name, sha)
+        Commit.new(commit_data)
+      end
+
       private
 
       def initialize_github_client

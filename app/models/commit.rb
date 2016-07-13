@@ -7,8 +7,8 @@ class Commit
     @info["sha"]
   end
 
-  def author
-    @info["author"]
+  def author_name
+    @info["author"]["login"]
   end
 
   def message

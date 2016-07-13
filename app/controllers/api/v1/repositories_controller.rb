@@ -37,8 +37,8 @@ module Api
       def search_for_specific_repository
         @organization = find_github_organization(params[:organization_id])
         search_repositories_for_organization
-        repository = @repositories.select { |repo| params[:repository_id] == repo.name }
-        @repository = repository.first
+        repository_index = @repositories.index { |repo| params[:repository_id] == repo.name }
+        @repository = @repositories[repository_index]
       end
 
       def issues_query_options

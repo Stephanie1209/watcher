@@ -11,9 +11,9 @@ module Api
       end
 
       def issues_info
-        @organization = find_github_organization(params[:organization_id])
+        @organization = find_github_organization(params[:id])
 
-        all_issues_and_prs = @client.org_issues(params[:organization_id], { filter: "all", state: "all" }).map { |issue| Issue.new issue }
+        all_issues_and_prs = @client.org_issues(params[:id], { filter: "all", state: "all" }).map { |issue| Issue.new issue }
         issues = all_issues_and_prs.select { |issue| !issue.pull_request? }
         @issues_count = issues.count
         @open_issues_count = issues.count { |issue| issue.state == "open" }

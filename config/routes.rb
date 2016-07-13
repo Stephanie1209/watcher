@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do
-      get ':commits/:organization_id/:repo_id/:sha', to: 'commits#show', as: :commits
+      get 'commits/:organization_id/:repo_id/:sha', to: 'commits#show'
       resources :organizations, only: :show do
         get :repositories_info, on: :member
         resources :repositories, only: :index

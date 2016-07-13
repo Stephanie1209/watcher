@@ -1,4 +1,3 @@
-
 class Organization
   attr_reader :repositories
 

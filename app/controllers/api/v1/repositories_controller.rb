@@ -4,7 +4,7 @@ module Api
 
       def index
         @organization = find_github_organization(params[:organization_id])
-        search_repositories_for_organization 
+        search_repositories_for_organization
       end
 
       private

@@ -2,11 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Organization, vcr: true do
   before(:each) do
-    VCR.use_cassette  "organization/icalialabs" do
-      @client = GithubData.new.client
-      organization_data = @client.organization("icalialabs")
-      @organization = Organization.new organization_data
-    end
+    @client = GithubData.new.client
+    organization_data = @client.organization("icalialabs")
+    @organization = Organization.new organization_data
   end
 
   it "verifies organization is not empty" do

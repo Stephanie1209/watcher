@@ -35,7 +35,7 @@ RSpec.describe Api::V1::RepositoriesController, :vcr do
       get :closed_issues, organization_id: 'icalialabs', repository_id: 'watcher', format: :json
     end
 
-    it "returns the correct number of open issues in watcher(9)" do
+    it "returns the correct number of closed issues in watcher(9)" do
       expect(assigns(:closed_issues).count).to eq(9)
     end
 

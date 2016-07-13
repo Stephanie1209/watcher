@@ -1,4 +1,4 @@
-class Repository 
+class Repository
   attr_reader :data, :issues
 
   def initialize data, issues = []
@@ -24,6 +24,22 @@ class Repository
 
   def stargazers
     @data["stargazers_count"]
+  end
+
+  def created_at
+    @data["created_at"]
+  end
+
+  def updated_at
+    @data["update_at"]
+  end
+
+  def pushed_at
+    @data["pushed_at"]
+  end
+
+  def language
+    @data["language"]
   end
 
   def open_issues

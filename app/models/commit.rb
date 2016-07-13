@@ -11,6 +11,18 @@ class Commit
     @info["author"]["login"]
   end
 
+  def committer_name
+    @info["commit"]["author"]["name"]
+  end
+
+  def message
+    @info["commit"]["message"]
+  end
+
+  def date
+    @info["commit"]["author"]["date"]
+  end
+
   def message
     @info["message"]
   end

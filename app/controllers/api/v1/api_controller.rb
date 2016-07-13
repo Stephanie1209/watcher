@@ -8,13 +8,34 @@ module Api
         Organization.new organization_data
       end
 
-      def find_specific_commit org, repo, sha
-        full_name = "#{org}/#{repo}"
+      def find_specific_commit sha
         commit_data = @client.commit(full_name, sha)
         Commit.new(commit_data)
       end
 
+      def find_all_commits
+        @commits = []
+        commits_data = @client.commits(full_name)
+        commits_data.each do |commit|
+          @commits << Commit.new(commit)
+        end
+        @commits
+      end
+
+      def find_all_commits_between start_date, end_date
+        @commits = []
+        commits_data = @client.commits_between(full_name, start_date, end_date)
+        commits_data.each do |commit|
+          @commits << Commit.new(commit)
+        end
+        @commits
+      end
+
       private
+
+      def full_name
+        "#{params[:organization_id]}/#{params[:repo_id]}"
+      end
 
       def initialize_github_client
         @client = GithubData.new.client

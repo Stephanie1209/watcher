@@ -6,9 +6,10 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do
-      get "/repos/:organization_id/:repository_id/issues" => "repositories#all_issues"
-      get "/repos/:organization_id/:repository_id/open_issues" => "repositories#open_issues"
-      get "/repos/:organization_id/:repository_id/closed_issues" => "repositories#closed_issues"
+      get "/repos/:id/:repository_id/issues" => "repos#all_issues"
+      get "/repos/:id/:repository_id/open_issues" => "repos#open_issues"
+      get "/repos/:id/:repository_id/closed_issues" => "repos#closed_issues"
+
       resources :organizations, only: [:show, :issues_info] do
         get "/issues_info" => "organizations#issues_info"
         get :repositories_info, on: :member

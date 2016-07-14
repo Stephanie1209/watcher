@@ -1,6 +1,7 @@
 class Commit
   def initialize data
     @info = data
+
   end
 
   def sha
@@ -15,16 +16,12 @@ class Commit
     @info["commit"]["author"]["name"]
   end
 
-  def message
-    @info["commit"]["message"]
-  end
-
   def date
     @info["commit"]["author"]["date"]
   end
 
   def message
-    @info["message"]
+    @info["commit"]["message"]
   end
 
   def stats_additions

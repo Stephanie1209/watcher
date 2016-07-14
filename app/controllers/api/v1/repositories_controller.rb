@@ -8,7 +8,7 @@ module Api
       end
 
       def show
-        @repository = obtains_repository(params[:organization_id], params[:id])
+        @repository = obtains_repository
       end
 
       private
@@ -23,8 +23,7 @@ module Api
         end
       end
 
-      def obtains_repository(organization, repository)
-        full_name = "#{organization}/#{repository}"
+      def obtains_repository
         data = @client.repo(full_name)
         @repository = Repository.new(data)
       end

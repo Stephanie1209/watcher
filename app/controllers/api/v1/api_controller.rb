@@ -10,6 +10,14 @@ module Api
 
       private
 
+      def full_name
+        "#{params[:organization_id]}/#{repo_id_selector}"
+      end
+
+      def repo_id_selector
+        params[:repo_id] || params[:id]
+      end
+
       def initialize_github_client
         @client = GithubData.new.client
       end

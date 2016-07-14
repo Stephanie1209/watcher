@@ -85,4 +85,22 @@ RSpec.describe Api::V1::ReposController, :vcr do
       expect(response).to be_success
     end
   end
+
+  describe "GET#branches", type: :controller do
+    before(:each) do
+      get :branches, id: 'icalialabs', repository_id: 'watcher', format: :json
+    end
+
+    it "returns the correct number of branches in watcher(2)" do
+      expect(assigns(:branches).count).to eq(2)
+    end
+
+    it "returns the name of the first branch(\"feat/sortable\")" do
+      expect(assigns(:branches).first.name).to eq("feat/sortable")
+    end
+
+    it "should be succesful" do
+      expect(response).to be_success
+    end
+  end
 end

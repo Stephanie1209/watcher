@@ -14,6 +14,12 @@ module Api
       end
 
       private
+
+      def find_specific_commit sha
+        commit_data = @client.commit(full_name, sha)
+        Commit.new(commit_data)
+      end
+      
       def find_all_commits
         @commits = []
         commits_data = @client.commits(full_name)

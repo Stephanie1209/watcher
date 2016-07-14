@@ -8,11 +8,6 @@ module Api
         Organization.new organization_data
       end
 
-      def find_specific_commit sha
-        commit_data = @client.commit(full_name, sha)
-        Commit.new(commit_data)
-      end
-
       private
 
       def full_name

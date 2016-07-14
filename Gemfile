@@ -40,7 +40,7 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails'
   gem 'awesome_print'
-  gem 'pry'
+  gem "pry"
 end
 
 group :test do

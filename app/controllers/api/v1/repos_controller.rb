@@ -31,6 +31,12 @@ module Api
         @closed_pull_requests = @repository.closed_pull_requests.map { |pr| PullRequest.new pr }
       end
 
+      def branches
+        @organization = find_github_organization(params[:id])
+        branches_data = @client.branches("#{params[:id]}/#{params[:repository_id]}")
+        @branches = branches_data.map { |data| Branch.new data }
+      end
+
       private
 
       def search_for_specific_repository

@@ -16,6 +16,21 @@ module Api
         @closed_issues = @repository.closed_issues.map { |issue| Issue.new issue }
       end
 
+      def all_pull_requests
+        search_for_specific_repository
+        @pull_requests = @repository.pull_requests.map { |pr| PullRequest.new pr }
+      end
+
+      def open_pull_requests
+        search_for_specific_repository
+        @open_pull_requests = @repository.open_pull_requests.map { |pr| PullRequest.new pr }
+      end
+
+      def closed_pull_requests
+        search_for_specific_repository
+        @closed_pull_requests = @repository.closed_pull_requests.map { |pr| PullRequest.new pr }
+      end
+
       private
 
       def search_for_specific_repository

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'dashboard/index'
   root 'dashboard#index'
-
+  resources :users
   get "repositories/:name" => "repositories#show", as: :repository, constraints: { name: /[^\/]+/ }
 
   namespace :api, defaults: { format: 'json' } do

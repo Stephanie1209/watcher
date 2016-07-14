@@ -13,7 +13,7 @@ Rails.application.routes.draw do
       resources :organizations, only: [:show, :issues_info] do
         get :issues_info, on: :member
         get :repositories_info, on: :member
-        resources :repositories, only: :index
+        resources :repositories, only: [:index, :show]
       end
     end
   end

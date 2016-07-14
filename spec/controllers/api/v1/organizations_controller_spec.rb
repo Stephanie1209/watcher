@@ -18,6 +18,28 @@ RSpec.describe Api::V1::OrganizationsController, :vcr do
     end
   end
 
+  describe "GET #repositories_info", type: :controller do
+    before(:each) do
+      get :repositories_info, id: 'icalialabs', format: :json
+    end
+
+    it "returns total_repos" do
+      expect(assigns(:organization).total_repos).to eq(70)
+    end
+
+    it "returns public repos" do
+      expect(assigns(:organization).public_repos).to eq(51)
+    end
+
+    it "returns private repos" do
+      expect(assigns(:organization).private_repos).to eq(19)
+    end
+
+    it "should be succesful" do
+      expect(response).to be_success
+    end
+  end
+
   describe "GET#issues_info", type: :controller do
     before(:each) do
       get :issues_info, organization_id: 'icalialabs', format: :json

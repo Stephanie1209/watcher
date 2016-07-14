@@ -20,4 +20,4 @@
 /config/secrets.yml
 development.env
 coverage/
-spec/fixtures/vcr_cassets/
+spec/fixtures/vcr_cassettes/

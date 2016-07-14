@@ -21,6 +21,14 @@ class Base
     @data["user"]["login"]
   end
 
+  def body
+    @data["body"]
+  end
+
+  def assignee
+    @data["assignee"]["login"] unless @data["assignee"].nil?
+  end
+
   def state
     @data["state"]
   end

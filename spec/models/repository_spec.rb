@@ -21,7 +21,7 @@ RSpec.describe Repository, vcr: true do
   end
 
   it "verifies stargazers count" do
-    expect(@repository.stargazers).to eq(863)
+    expect(@repository.stargazers).to eq(862)
   end
 
   it "verifies open issues and pull requests count" do

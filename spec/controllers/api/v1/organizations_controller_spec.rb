@@ -47,8 +47,24 @@ RSpec.describe Api::V1::OrganizationsController, :vcr do
 
     it "returns all issues count, open issues count, and closed issues count" do
       expect(assigns(:issues_count)).to eq(327)
-      expect(assigns(:open_issues_count)).to eq(79)
-      expect(assigns(:closed_issues_count)).to eq(248)
+      expect(assigns(:open_issues_count)).to eq(77)
+      expect(assigns(:closed_issues_count)).to eq(250)
+    end
+
+    it "should be succesful" do
+      expect(response).to be_success
+    end
+  end
+
+  describe "GET#pull_requests_info", type: :controller do
+    before(:each) do
+      get :pull_requests_info, id: 'icalialabs', format: :json
+    end
+
+    it "returns all pull requests count, open pull requests count, and closed pull requests count" do
+      expect(assigns(:pull_requests_count)).to eq(640)
+      expect(assigns(:open_pull_requests_count)).to eq(40)
+      expect(assigns(:closed_pull_requests_count)).to eq(600)
     end
 
     it "should be succesful" do

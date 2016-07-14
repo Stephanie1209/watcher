@@ -8,9 +8,13 @@ Rails.application.routes.draw do
     namespace :v1 do
       get 'commits/:organization_id/:repo_id/:sha', to: 'commits#show'
       get 'commits/:organization_id/:repo_id', to: 'commits#index'
-      resources :organizations, only: :show do
+      get "/repos/:id/:repository_id/issues" => "repos#all_issues"
+      get "/repos/:id/:repository_id/open_issues" => "repos#open_issues"
+      get "/repos/:id/:repository_id/closed_issues" => "repos#closed_issues"
+      resources :organizations, only: [:show, :issues_info] do
+        get :issues_info, on: :member
         get :repositories_info, on: :member
-        resources :repositories, only: :index
+        resources :repositories, only: [:index, :show]
       end
     end
   end

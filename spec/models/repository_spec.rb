@@ -2,12 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Repository, vcr: true do
   before(:each) do
-    VCR.use_cassette  "repository/icalialabs" do
-      @client = GithubData.new.client
-      repo_data = @client.repo("icalialabs/furatto")
-      issues = @client.list_issues("icalialabs/furatto")
-      @repository = Repository.new(repo_data, issues)
-    end
+    @client = GithubData.new.client
+    repo_data = @client.repo("icalialabs/furatto")
+    issues = @client.list_issues("icalialabs/furatto")
+    @repository = Repository.new(repo_data, issues)
   end
 
   it "verifies repository is not empty" do
@@ -23,7 +21,7 @@ RSpec.describe Repository, vcr: true do
   end
 
   it "verifies stargazers count" do
-    expect(@repository.stargazers).to eq(863)
+    expect(@repository.stargazers).to eq(862)
   end
 
   it "verifies open issues and pull requests count" do

@@ -16,7 +16,7 @@ module Api
       private
 
       def full_name
-        "#{params[:organization_id]}/#{params[:repo_id]}"
+        "#{params[:organization_id]}/#{params[:repo_id] || params[:id]}"
       end
 
       def initialize_github_client

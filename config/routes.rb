@@ -9,6 +9,9 @@ Rails.application.routes.draw do
       get "/repos/:id/:repository_id/issues" => "repos#all_issues"
       get "/repos/:id/:repository_id/open_issues" => "repos#open_issues"
       get "/repos/:id/:repository_id/closed_issues" => "repos#closed_issues"
+      get "/repos/:id/:repository_id/pull_requests" => "repos#all_pull_requests"
+      get "/repos/:id/:repository_id/open_pull_requests" => "repos#open_pull_requests"
+      get "/repos/:id/:repository_id/closed_pull_requests" => "repos#closed_pull_requests"
 
       resources :organizations, only: [:show, :issues_info] do
         get :issues_info, on: :member

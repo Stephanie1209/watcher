@@ -1,0 +1,3 @@
+json.total_pull_requests @pull_requests_count
+json.open_pull_requests @open_pull_requests_count
+json.closed_pull_requests @closed_pull_requests_count

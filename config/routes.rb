@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       get "/repos/:id/:repository_id/closed_issues" => "repos#closed_issues"
 
       resources :organizations, only: [:show, :issues_info] do
-        get "/issues_info" => "organizations#issues_info"
+        get :issues_info, on: :member
         get :repositories_info, on: :member
         resources :repositories, only: :index
       end

@@ -12,6 +12,23 @@ module Api
           @commits = find_all_commits
         end
       end
+
+      private
+      def find_all_commits
+        @commits = []
+        commits_data = @client.commits(full_name)
+        commits_data.each do |commit|
+          @commits << Commit.new(commit)
+        end
+      end
+
+      def find_all_commits_between start_date, end_date
+        @commits = []
+        commits_data = @client.commits_between(full_name, start_date, end_date)
+        commits_data.each do |commit|
+          @commits << Commit.new(commit)
+        end
+      end
     end
   end
 end

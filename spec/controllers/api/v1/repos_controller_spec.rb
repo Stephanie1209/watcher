@@ -8,7 +8,7 @@ RSpec.describe Api::V1::ReposController, :vcr do
     end
 
     it "returns the correct number of open and closed issues in watcher(13)" do
-      expect(assigns(:issues).count).to eq(13)
+      expect(assigns(:issues).count).to eq(17)
     end
 
     it "should be succesful" do
@@ -22,7 +22,7 @@ RSpec.describe Api::V1::ReposController, :vcr do
     end
 
     it "returns the correct number of open issues in watcher(3)" do
-      expect(assigns(:open_issues).count).to eq(3)
+      expect(assigns(:open_issues).count).to eq(7)
     end
 
     it "should be succesful" do

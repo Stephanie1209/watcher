@@ -42,13 +42,13 @@ RSpec.describe Api::V1::OrganizationsController, :vcr do
 
   describe "GET#issues_info", type: :controller do
     before(:each) do
-      get :issues_info, organization_id: 'icalialabs', format: :json
+      get :issues_info, id: 'icalialabs', format: :json
     end
 
     it "returns all issues count, open issues count, and closed issues count" do
-      expect(assigns(:issues_count)).to eq(321)
-      expect(assigns(:open_issues_count)).to eq(78)
-      expect(assigns(:closed_issues_count)).to eq(243)
+      expect(assigns(:issues_count)).to eq(327)
+      expect(assigns(:open_issues_count)).to eq(79)
+      expect(assigns(:closed_issues_count)).to eq(248)
     end
 
     it "should be succesful" do

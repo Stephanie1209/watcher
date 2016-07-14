@@ -28,7 +28,7 @@ RSpec.describe Issue, vcr: true do
   end
 
   it "verifies the state of the issue" do
-    expect(@issue.state).to eq("open")
+    expect(@issue.state).to eq("closed")
   end
 
   it "verifies the repository name" do

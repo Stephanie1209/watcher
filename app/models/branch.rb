@@ -12,14 +12,6 @@ class Branch
   end
 
   def url
-    @data["commit"]["sha"]
-  end
-
-  def protected
-    @data["protected"]
-  end
-
-  def protection_url
-    @data["protection_url"]
+    @data["commit"]["url"]
   end
 end

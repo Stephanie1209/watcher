@@ -48,6 +48,7 @@ group :test do
   gem 'shoulda-matchers', '~> 2.0'
   gem 'vcr', '~> 3.0', '>= 3.0.3'
   gem 'webmock', '~> 2.1'
+  gem 'factory_girl_rails'
   gem 'ffaker'
   gem 'rspec-collection_matchers'
 end

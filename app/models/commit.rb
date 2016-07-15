@@ -1,7 +1,6 @@
 class Commit
   def initialize data
     @info = data
-
   end
 
   def sha

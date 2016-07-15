@@ -30,7 +30,6 @@ module Api
             @commits << Commit.new(branched)
           end
         end
-        @commits
       end
 
       def find_specific_commit

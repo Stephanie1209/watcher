@@ -1,4 +1,5 @@
 class Organization
+  alias :read_attribute_for_serialization :send
   attr_reader :repositories
 
   def initialize data

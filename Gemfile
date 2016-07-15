@@ -26,7 +26,8 @@ gem "haml"
 gem 'compass-rails', '~> 2.0.0'
 gem 'furatto', '~> 1.3.7'
 gem "octokit", "~> 4.0"
-
+gem "figaro"
+gem "active_model_serializers", github: "rails-api/active_model_serializers"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -1,14 +1,4 @@
 GIT
-  remote: git://github.com/rails-api/active_model_serializers.git
-  revision: 9a206a1f5d097436e398b29c4477d202af65864a
-  specs:
-    active_model_serializers (0.10.2)
-      actionpack (>= 4.1, < 6)
-      activemodel (>= 4.1, < 6)
-      jsonapi (~> 0.1.1.beta2)
-      railties (>= 4.1, < 6)
-
-GIT
   remote: https://github.com/codeclimate/ruby-test-reporter.git
   revision: c1cbaee8273006e1793da58599ab4bde32006e76
   branch: master
@@ -38,6 +28,11 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    active_model_serializers (0.10.2)
+      actionpack (>= 4.1, < 6)
+      activemodel (>= 4.1, < 6)
+      jsonapi (~> 0.1.1.beta2)
+      railties (>= 4.1, < 6)
     activejob (4.2.6)
       activesupport (= 4.2.6)
       globalid (>= 0.3.0)
@@ -253,7 +248,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_model_serializers!
+  active_model_serializers
   awesome_print
   better_errors
   byebug

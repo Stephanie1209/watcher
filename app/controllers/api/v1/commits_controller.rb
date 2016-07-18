@@ -2,7 +2,7 @@ module Api
   module V1
     class CommitsController < ApiController
       def show
-        find_specific_commit params[:sha]
+        find_specific_commit
       end
 
       def index

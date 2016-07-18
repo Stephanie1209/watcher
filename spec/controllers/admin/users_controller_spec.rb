@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe UsersController, type: :controller do
+RSpec.describe Admin::UsersController, type: :controller do
   before(:each) do
     @user = FactoryGirl.create :user
     @user2 = FactoryGirl.create :user
@@ -52,7 +52,7 @@ RSpec.describe UsersController, type: :controller do
 
       it "redirects to users#show" do
         post :create, user: FactoryGirl.attributes_for(:user)
-        expect(response).to redirect_to user_path(assigns(:user))
+        expect(response).to redirect_to admin_user_path(assigns(:user))
       end
     end
 
@@ -86,7 +86,7 @@ RSpec.describe UsersController, type: :controller do
 
       it "redirects to the updated user" do
         put :update, id: @user, user: FactoryGirl.attributes_for(:user)
-        expect(response).to redirect_to @user
+        expect(response).to redirect_to [:admin, @user]
       end
     end
 
@@ -116,7 +116,7 @@ RSpec.describe UsersController, type: :controller do
 
     it "redirects to users#index" do
       delete :destroy, id: @user
-      expect(response).to redirect_to users_path
+      expect(response).to redirect_to admin_users_path
     end
   end
 end

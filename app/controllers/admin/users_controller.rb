@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Admin::UsersController < ApplicationController
   def index
     @users = User.all
   end
@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to @user
+      redirect_to [:admin, @user]
     else
       render 'new'
     end
@@ -26,9 +26,11 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    params[:user].delete(:password) if params[:user][:password].blank?
+    params[:user].delete(:password_confirmation) if params[:user][:password_confirmation].blank?
 
     if @user.update(user_params)
-      redirect_to @user
+      redirect_to [:admin, @user]
     else
       render 'edit'
     end
@@ -37,7 +39,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    redirect_to users_path
+    redirect_to admin_users_path
   end
 
   private

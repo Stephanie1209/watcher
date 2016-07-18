@@ -5,6 +5,7 @@ json.issues issues do |issue|
   json.title issue.title
   json.body issue.body
   json.author issue.author
+  json.state issue.state
   json.labels issue.labels
   json.assignee issue.assignee if issue.assignee != nil
   json.created_at issue.created_at

@@ -31,7 +31,7 @@ class Repository
   end
 
   def updated_at
-    @data["update_at"]
+    @data["updated_at"]
   end
 
   def pushed_at

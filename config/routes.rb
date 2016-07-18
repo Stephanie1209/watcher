@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'dashboard/index'
   root 'dashboard#index'
+  resources :organizations, only: [:index]
 
   get "repositories/:name" => "repositories#show", as: :repository, constraints: { name: /[^\/]+/ }
 

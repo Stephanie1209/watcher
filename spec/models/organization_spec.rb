@@ -21,4 +21,6 @@ RSpec.describe Organization, vcr: true do
     expect(@organization.avatar).to eq("https://avatars.githubusercontent.com/u/2523244?v=3")
   end
 
+  it 'verifies public and private repos count'
+  it 'verifies github html_url' 
 end

@@ -5,6 +5,7 @@ json.pull_requests pull_requests do |pr|
   json.title pr.title
   json.body pr.body
   json.author pr.author
+  json.state pr.state
   json.labels pr.labels
   json.assignee pr.assignee if pr.assignee != nil
   json.created_at pr.created_at

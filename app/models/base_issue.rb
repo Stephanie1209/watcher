@@ -22,7 +22,7 @@ class BaseIssue
   end
 
   def body
-    @data["body"]
+    @data["body"].gsub(/\s+/, ' ')
   end
 
   def assignee

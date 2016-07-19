@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160719200914) do
+ActiveRecord::Schema.define(version: 20160719204859) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,20 @@ ActiveRecord::Schema.define(version: 20160719200914) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "pull_requests", force: :cascade do |t|
+    t.string   "github_account"
+    t.string   "title"
+    t.string   "string"
+    t.string   "description"
+    t.string   "labels"
+    t.string   "status"
+    t.integer  "repository_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "pull_requests", ["repository_id"], name: "index_pull_requests_on_repository_id", using: :btree
+
   create_table "repositories", force: :cascade do |t|
     t.string   "name"
     t.integer  "stars"
@@ -93,5 +107,6 @@ ActiveRecord::Schema.define(version: 20160719200914) do
   add_foreign_key "branches", "repositories"
   add_foreign_key "commits", "branches"
   add_foreign_key "issues", "repositories"
+  add_foreign_key "pull_requests", "repositories"
   add_foreign_key "repositories", "organizations"
 end

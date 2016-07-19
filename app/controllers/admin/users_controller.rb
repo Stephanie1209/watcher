@@ -26,8 +26,6 @@ class Admin::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    params[:user].delete(:password) if params[:user][:password].blank?
-    params[:user].delete(:password_confirmation) if params[:user][:password_confirmation].blank?
 
     if @user.update(user_params)
       redirect_to [:admin, @user]

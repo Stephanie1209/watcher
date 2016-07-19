@@ -6,7 +6,6 @@ RSpec.describe Branch, vcr: true do
     branches_data = client.branches("IcaliaLabs/watcher")
     branches = branches_data.map { |data| Branch.new data }
     @branch = branches.first
-    binding.pry
   end
 
   it "verifies de name of the branch" do

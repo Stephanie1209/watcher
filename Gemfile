@@ -12,6 +12,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
+gem 'devise'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -49,6 +50,7 @@ group :test do
   gem 'shoulda-matchers', '~> 2.0'
   gem 'vcr', '~> 3.0', '>= 3.0.3'
   gem 'webmock', '~> 2.1'
+  gem 'factory_girl_rails'
   gem 'ffaker'
   gem 'rspec-collection_matchers'
 end

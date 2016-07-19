@@ -5,6 +5,10 @@ Rails.application.routes.draw do
 
   get "repositories/:name" => "repositories#show", as: :repository, constraints: { name: /[^\/]+/ }
 
+  namespace :admin do
+    resources :users
+  end
+
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do
       get 'commits/:organization_id/:repo_id/:sha', to: 'commits#show'

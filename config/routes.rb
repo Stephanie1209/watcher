@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users
   get 'dashboard/index'
   root 'dashboard#index'
+  resources :organizations, only: [:index]
+
   get "repositories/:name" => "repositories#show", as: :repository, constraints: { name: /[^\/]+/ }
 
   namespace :admin do

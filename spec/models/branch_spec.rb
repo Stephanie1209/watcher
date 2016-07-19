@@ -9,6 +9,8 @@ RSpec.describe Branch, vcr: true do
 
   it { should belong_to :repository }
 
+  it { should have_many :commits }
+
   describe "specific branch" do
     before(:each) do
       @branch = FactoryGirl.create :dev

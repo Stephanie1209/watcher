@@ -1,6 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Commit, vcr: true do
+  it "has a valid factory" do
+    commit = FactoryGirl.build(:commit)
+    expect(commit).to be_valid
+  end
+
+  it { should belong_to :branch }
+
   describe "specific commit" do
     before(:each) do
       @commit =  FactoryGirl.create :specific_commit

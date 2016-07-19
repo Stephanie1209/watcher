@@ -1,7 +1,3 @@
-class Issue < BaseIssue
-  def github_url
-    "https://github.com/#{organization_name}/#{repository_name}/issues/#{number}"
-  end
+class Issue < ActiveRecord::Base
+  belongs_to :repository
 end
-
-

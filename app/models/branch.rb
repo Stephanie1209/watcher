@@ -1,4 +1,4 @@
 class Branch < ActiveRecord::Base
-  has_many :issues
+  has_many :commits
   belongs_to :repository
 end

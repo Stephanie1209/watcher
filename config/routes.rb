@@ -7,6 +7,13 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users
+    resources :issues, only: :index
+    resources :organizations, only: :index
+    resources :pull_requests, only: :index
+    resources :repositories, only: :index
+    resources :branches, only: :index do
+      resources :commits, only: :index
+    end
   end
 
   namespace :api, defaults: { format: 'json' } do

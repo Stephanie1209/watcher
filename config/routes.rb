@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   get 'dashboard/index'
-  root 'dashboard#index'
+  devise_scope :user do
+    root to: "devise/sessions#new"
+  end
   resources :organizations, only: [:index]
   devise_for :users
+
   resources :code, only: :index
   resources :issues, only: :index
   resources :pull_requests, only: :index

@@ -25,6 +25,7 @@
   <nav class="navigation-bar">
     <ul class="brand-section">
       <li class="brand-name"><%= link_to "Watcher", root_path, class: "menu-trigger" %></li>
+      <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
     </ul>
   </nav>
   <div class="contaner", style= "padding: 0 50px;">

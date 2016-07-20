@@ -4,31 +4,22 @@ class OrganizationService
   attr_reader :client
 
   def initialize organization_name
+    @github_name = organization_name
     ::Octokit.auto_paginate = true
-    client = Octokit::Client.new(access_token: ENV["GITHUB_ACCESS_TOKEN"])
+    @client = Octokit::Client.new(access_token: ENV["GITHUB_ACCESS_TOKEN"])
   end
 
   def set_organization
-    @organization = client.organization organization_name
+    @organization = @client.organization @github_name
   end
 
   def creates_or_updates_organization
-    organization = Organization.find_by_github_name(organization_name) ||
+    organization = Organization.find_by_github_name(@organization["login"]) ||
                   Organization.new
-    organization.update(github_name: github_name,
-                        description: description,
-                        avatar: avatar)
-  end
-
-  def github_name
-    set_organization["login"]
-  end
-
-  def description
-    set_organization["description"]
-  end
-
-  def avatar
-    set_organization["avatar_url"]
+    organization.update(
+                        github_name: @organization["login"],
+                        description: @organization["description"],
+                        avatar:      @organization["avatar_url"]
+                        )
   end
 end

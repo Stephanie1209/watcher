@@ -1,12 +1,26 @@
 Rails.application.routes.draw do
   get 'dashboard/index'
-  root 'dashboard#index'
+  devise_scope :user do
+    root to: "devise/sessions#new"
+  end
   resources :organizations, only: [:index]
+  devise_for :users
 
+  resources :code, only: :index
+  resources :issues, only: :index
+  resources :pull_requests, only: :index
   get "repositories/:name" => "repositories#show", as: :repository, constraints: { name: /[^\/]+/ }
 
   namespace :admin do
     resources :users
+    resources :repositories, only: :index do
+      resources :issues, only: :index
+      resources :pull_requests, only: :index
+      resources :branches, only: :index do
+        resources :commits, only: :index
+      end
+    end
+    resources :organizations, only: :index
   end
 
   namespace :api, defaults: { format: 'json' } do

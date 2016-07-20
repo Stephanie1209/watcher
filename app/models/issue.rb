@@ -1,5 +1,5 @@
 class Issue < ActiveRecord::Base
   belongs_to :repository
-  scope :status_closed, -> { where(status: 'closed') }
-  scope :status_open, -> { where(status: 'open') }
+  scope :closed, -> { where(status: 'closed') }
+  scope :open, -> { where(status: 'open') }
 end

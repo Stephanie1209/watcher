@@ -1,5 +1,5 @@
-class PullRequest < BaseIssue
-  def github_url
-    "https://github.com/#{organization_name}/#{repository_name}/pull/#{number}"
-  end
+class PullRequest < ActiveRecord::Base
+  belongs_to :repository
+  scope :closed, -> { where(status: 'closed') }
+  scope :open, -> { where(status: 'open') }
 end

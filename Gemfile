@@ -27,7 +27,6 @@ gem "haml"
 gem 'compass-rails', '~> 2.0.0'
 gem 'furatto', '~> 1.3.7'
 gem "octokit", "~> 4.0"
-gem "figaro"
 gem "active_model_serializers"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -39,6 +38,7 @@ gem "active_model_serializers"
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  gem "figaro"
   gem 'byebug'
   gem 'rspec-rails'
   gem 'awesome_print'
@@ -51,7 +51,7 @@ group :test do
   gem 'vcr', '~> 3.0', '>= 3.0.3'
   gem 'webmock', '~> 2.1'
   gem 'factory_girl_rails'
-  gem 'ffaker'
+  gem 'faker'
   gem 'rspec-collection_matchers'
 end
 

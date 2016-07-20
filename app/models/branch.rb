@@ -1,17 +1,4 @@
-class Branch
-  def initialize data
-    @data = data
-  end
-
-  def name
-    @data["name"]
-  end
-
-  def sha
-    @data["commit"]["sha"]
-  end
-
-  def url
-    @data["commit"]["url"]
-  end
+class Branch < ActiveRecord::Base
+  has_many :commits
+  belongs_to :repository
 end

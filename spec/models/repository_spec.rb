@@ -1,42 +1,45 @@
 require 'rails_helper'
 
-RSpec.describe Repository, vcr: true do
-  before(:each) do
-    @client = GithubData.new.client
-    repo_data = @client.repo("icalialabs/furatto")
-    issues = @client.list_issues("icalialabs/furatto")
-    @repository = Repository.new(repo_data, issues)
+RSpec.describe Repository, :type => :model, vcr: true do
+
+  it "has a valid factory" do
+    repository = FactoryGirl.build(:repository)
+    expect(repository).to be_valid
   end
 
-  it "verifies repository is not empty" do
-    expect(@repository.name).to  eq('furatto')
-  end
+  it { should belong_to :organization }
+  
+  it { should have_many :issues }
 
-  it "verifires repository id is " do
-    expect(@repository.id).to eq(11378510)
-  end
+  describe "specific repository" do
+    before(:each) do
+      @repository = FactoryGirl.create :furatto
+    end
 
-  it "verifires forks count" do
-    expect(@repository.forks_count).to eq(136)
-  end
+    it "verifies repository is not empty" do
+      expect(@repository.name).to  eq('Furatto')
+    end
 
-  it "verifies stargazers count" do
-    expect(@repository.stargazers).to eq(862)
-  end
+    it "verifires forks count" do
+      expect(@repository.forks_count).to eq(136)
+    end
 
-  it "verifies open issues and pull requests count" do
-    expect(@repository.open_issues_and_pull_requests_count).to eq(10)
-  end
+    it "verifies stargazers count" do
+      expect(@repository.stars).to eq(862)
+    end
 
-  it "verifies open issues" do
-    expect(@repository.open_issues.count).to eql(6)
-  end
+    it "verifies creation date" do
+      expect(@repository.started_at).to eq("2011-01-26 19:01:12.000000000 +0000")
+    end
 
-  it "verifies open pull requests" do
-    expect(@repository.open_pull_requests.count).to eql(4)
-  end
+    it "verifires repository id is "
 
-  it "verifies github_repository" do
-    expect(@repository.github_repository).to eql("IcaliaLabs/furatto")
+    it "verifies open issues and pull requests count"
+
+    it "verifies open issues"
+
+    it "verifies open pull requests"
+
+    it "verifies github_repository"
   end
 end

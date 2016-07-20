@@ -14,6 +14,7 @@ class OrganizationService
   end
 
   def creates_or_updates_organization
+    set_organization
     organization = Organization.find_by_github_name(@organization["login"]) ||
                   Organization.new
     organization.update(

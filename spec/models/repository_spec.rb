@@ -8,6 +8,8 @@ RSpec.describe Repository, :type => :model, vcr: true do
   end
 
   it { should belong_to :organization }
+  
+  it { should have_many :issues }
 
   describe "specific repository" do
     before(:each) do

@@ -1,5 +1,4 @@
-class IssuesController < ApplicationController
-  layout "frontend"
+class IssuesController < FrontendController
   def index
   end
 end

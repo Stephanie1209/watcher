@@ -1,5 +1,4 @@
-class CodeController < ApplicationController
-  layout "frontend"
+class CodeController < FrontendController
   def index
   end
 end

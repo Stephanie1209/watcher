@@ -1,4 +1,4 @@
-class Admin::OrganizationsController < ApplicationController
+class Admin::OrganizationsController < AdminController
   def index
   end
 end

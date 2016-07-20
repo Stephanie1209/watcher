@@ -1,4 +1,4 @@
-class DashboardController < ApplicationController
+class DashboardController < FrontendController
   before_action :organization
 
   def index

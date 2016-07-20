@@ -1,5 +1,4 @@
-class PullRequestsController < ApplicationController
-  layout "frontend"
+class PullRequestsController < FrontendController
   def index
   end
 end

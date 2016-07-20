@@ -1,4 +1,4 @@
-class Admin::BranchesController < ApplicationController
+class Admin::BranchesController < AdminController
   def index
   end
 end

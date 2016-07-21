@@ -1,7 +1,7 @@
 require 'octokit'
 
 class RepositoryService
-  attr_reader :updated_repository
+  attr_reader :repository
 
   def initialize organization_id, repository_id
     @repo_id = repository_id
@@ -16,8 +16,8 @@ class RepositoryService
 
   def creates_or_updates_repository
     obtains_repository_data
-    @updated_repository = @organization.repositories.find_by_name(@repo_id) || @organization.repositories.new
-    updated_repository.update(
+    @repository = @organization.repositories.find_by_name(@repo_id) || @organization.repositories.new
+    repository.update(
                       name: @repo_id,
                       stars: @data["stargazers_count"],
                       forks_count: @data["forks_count"],

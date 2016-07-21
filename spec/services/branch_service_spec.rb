@@ -16,6 +16,12 @@ RSpec.describe BranchService, vcr: true do
           expect(Branch.last.name).to eq("dev")
       }.to change(Branch, :count).by(1)
     end
+
+    it 'verifies branch-repository association' do
+      service = BranchService.new "watcher", "dev"
+      service.creates_or_updates_branch
+      expect(service.branch.repository).to eq(@repository)
+    end
   end
 
   describe "when branch exists" do

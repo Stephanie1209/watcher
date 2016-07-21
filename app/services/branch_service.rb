@@ -20,7 +20,7 @@ class BranchService
   def creates_or_updates_branch
     obtains_branch_data
     unless @repository.branches.find_by_name(@data["name"])
-      @repository.branches.create(name: @data["name"])
+     @branch = @repository.branches.create(name: @data["name"])
     end
   end
 end

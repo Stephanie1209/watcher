@@ -6,14 +6,14 @@ FactoryGirl.define do
     labels { Faker::Hipster.word  }
     status { Faker::Hipster.word  }
     repository
-  end
 
-  factory :specific_issue, class: Issue do
-    github_account 'IcaliaLabs'
-    title 'Add method to search an specific repository'
-    description 'Create the following models'
-    labels  nil
-    status 'closed'
-    repository
+    factory :specific_issue do
+      github_account 'IcaliaLabs'
+      title 'Add method to search an specific repository'
+      description 'Create the following models'
+      labels  nil
+      status 'closed'
+      repository
+    end
   end
 end

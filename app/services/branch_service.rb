@@ -3,10 +3,11 @@ require 'octokit'
 class BranchService
   attr_reader :branch
 
-  def initialize(organization_id, repository_id, branch_id)
-    @banch = nil
-    @repository_id = repository_id
-    @fullname = "#{organization_id}/#{repository_id}"
+  def initialize(repository_id, branch_id)
+    @branch = nil
+    @repository = Repository.find_by_name(repository_id)
+    @organization = @repository.organization
+    @fullname = "#{@organization.github_name}/#{@repository.name}"
     @branch_id = branch_id
     @client = Octokit::Client.new(access_token: ENV["GITHUB_ACCESS_TOKEN"])
   end
@@ -17,13 +18,8 @@ class BranchService
 
   def creates_or_updates_branch
     obtains_branch_data
-    @repository = Repository.find_by_name(@repository_id)
-    @branch = Branch.find_by_name(@data["name"]) ||
-                  Branch.new
-                  binding.pry
-    @organization.update(
-                        name: @data["name"],
-                        repository_id: @repository
-                        )
+    unless @repository.branches.find_by_name(@data["name"])
+      @repository.branches.create(name: @data["name"])
+    end
   end
 end

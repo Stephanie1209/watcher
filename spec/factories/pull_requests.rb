@@ -6,14 +6,14 @@ FactoryGirl.define do
     labels { Faker::Hipster.word  }
     status { Faker::Hipster.word  }
     repository
-  end
 
-  factory :specific_pull, class: PullRequest do
-    github_account 'IcaliaLabs'
-    title 'Commits api'
-    description 'Create the following models'
-    labels  nil
-    status 'closed'
-    repository
+    factory :specific_pull do
+      github_account 'IcaliaLabs'
+      title 'Commits api'
+      description 'Create the following models'
+      labels  nil
+      status 'closed'
+      repository
+    end
   end
 end

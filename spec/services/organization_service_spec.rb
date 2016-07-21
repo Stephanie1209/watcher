@@ -13,12 +13,11 @@ RSpec.describe OrganizationService, vcr: true do
 
   describe "when organization exists" do
     it "updates an organization" do
-      expect {
-        FactoryGirl.build(:organization)
-        service = OrganizationService.new "IcaliaLabs"
-        service.creates_or_updates_organization
-        expect(Organization.first.description).to eq("We guide our clients through an agile process, staying ahead of their competition and leveraging opportunities with digital products.")
-      }.to change(Organization, :count).by(1)
+      new_org = FactoryGirl.create(:icalialabs, description: "old description")
+      service = OrganizationService.new "IcaliaLabs"
+      service.creates_or_updates_organization
+      expect(Organization.first.description).to eq("We guide our clients through an agile process, staying ahead of their competition and leveraging opportunities with digital products.")
+      expect(service.organization).to eq(new_org)
     end
   end
 end

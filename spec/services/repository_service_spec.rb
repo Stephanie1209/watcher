@@ -8,8 +8,8 @@ RSpec.describe RepositoryService, vcr: true do
   describe "when a repository doesn't exist" do
     it "should create a new repository" do
       expect  {
-          service = RepositoryService.new "IcaliaLabs", "watcher"
-          service.creates_or_updates_repository
+        service = RepositoryService.new @organization.github_name, "watcher"
+        service.creates_or_updates_repository
       }.to change(Repository, :count).by(1)
     end
   end

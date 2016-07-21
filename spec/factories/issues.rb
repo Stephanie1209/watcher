@@ -6,6 +6,8 @@ FactoryGirl.define do
     labels { Faker::Hipster.word  }
     status { Faker::Hipster.word  }
     repository
+    github_number 1
+    github_id 1
   end
 
   factory :specific_issue, class: Issue do
@@ -15,5 +17,7 @@ FactoryGirl.define do
     labels  nil
     status 'closed'
     repository
+    github_number 1
+    github_id 1
   end
 end

@@ -28,8 +28,8 @@ RSpec.describe RepositoryService, vcr: true do
 
     it "updates the requested repository" do
       service = RepositoryService.new @organization.github_name, @repository.name
-      updated_repository = service.creates_or_updates_repository
-      expect(updated_repository.id).to eq(@repository.id)
+      service.creates_or_updates_repository
+      expect(service.updated_repository.id).to eq(@repository.id)
     end
   end
 end

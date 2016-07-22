@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(version: 20160722164039) do
     t.integer  "repository_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.string   "github_number"
+    t.string   "github_id"
   end
 
   add_index "issues", ["repository_id"], name: "index_issues_on_repository_id", using: :btree
@@ -63,13 +65,14 @@ ActiveRecord::Schema.define(version: 20160722164039) do
   create_table "pull_requests", force: :cascade do |t|
     t.string   "github_account"
     t.string   "title"
-    t.string   "string"
     t.string   "description"
     t.string   "labels"
     t.string   "status"
     t.integer  "repository_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.string   "github_number"
+    t.string   "github_id"
   end
 
   add_index "pull_requests", ["repository_id"], name: "index_pull_requests_on_repository_id", using: :btree

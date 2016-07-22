@@ -19,11 +19,7 @@ class PullRequestService
     @pull_request = @repository.pull_requests.find_by_github_number(@pull_request_number) || @repository.pull_requests.new
 
     if !@data["labels"].empty?
-      array_of_labels = []
-      @data["labels"].each do |label|
-        array_of_labels << label["name"]
-      end
-      string_of_labels = array_of_labels.join(", ")
+      string_of_labels = @data["labels"].map { |label| label[:name] }.join(", ")
       @pull_request.update(labels: string_of_labels)
     end
 
@@ -32,7 +28,6 @@ class PullRequestService
                          title: @data["title"],
                          description: @data["body"],
                          status: @data["state"],
-                         repository_id: @repository.id,
                          github_number: @data["number"],
                          github_id: @data["id"]
                         )

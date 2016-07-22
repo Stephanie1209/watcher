@@ -6,8 +6,8 @@ FactoryGirl.define do
     labels { Faker::Hipster.word  }
     status { Faker::Hipster.word  }
     repository
-    github_number 1
-    github_id 1
+    github_number { Faker::Number.number(3) }
+    github_id { Faker::Number.number(2) }
   end
 
   factory :specific_issue, class: Issue do

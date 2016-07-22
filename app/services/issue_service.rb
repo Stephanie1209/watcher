@@ -19,7 +19,12 @@ class IssueService
     @issue = @repository.issues.find_by_github_number(@issue_number) || @repository.issues.new
 
     if !@data["labels"].empty?
-      @issue.update(labels: @data["labels"]["name"])
+      array_of_labels = []
+      @data["labels"].each do |label|
+        array_of_labels << label["name"]
+      end
+      string_of_labels = array_of_labels.join(", ")
+      @issue.update(labels: string_of_labels)
     end
 
     @issue.update(

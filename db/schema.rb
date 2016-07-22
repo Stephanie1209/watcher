@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160721194853) do
+ActiveRecord::Schema.define(version: 20160721223755) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,7 +64,6 @@ ActiveRecord::Schema.define(version: 20160721194853) do
   create_table "pull_requests", force: :cascade do |t|
     t.string   "github_account"
     t.string   "title"
-    t.string   "string"
     t.string   "description"
     t.string   "labels"
     t.string   "status"

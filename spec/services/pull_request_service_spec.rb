@@ -9,7 +9,7 @@ RSpec.describe PullRequestService, vcr: true do
   describe "when a pull request doesn't exist" do
     it "creates a pull request" do
       expect {
-        service = PullRequestService.new @repository.name, 64
+        service = PullRequestService.new @repository.name, 107
         service.creates_or_updates_pull_request
       }.to change(PullRequest, :count).by(1)
     end

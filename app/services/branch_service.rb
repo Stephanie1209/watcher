@@ -6,7 +6,6 @@ class BranchService
   def initialize(repository_id, branch_id)
     @branch = nil
     @repository = Repository.find_by_name(repository_id)
-    organization = @repository.organization
     @branch_id = branch_id
     @client = Octokit::Client.new(access_token: ENV["GITHUB_ACCESS_TOKEN"])
   end

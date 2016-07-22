@@ -40,7 +40,7 @@ RSpec.describe CommitService, vcr: true do
 
       it "verifies commit-branch association" do
         @service.creates_or_updates_commit
-        expect(Commit.last.branch.name).to eq("master")
+        expect(@service.commit.branch.name).to eq("master")
       end
     end
   end

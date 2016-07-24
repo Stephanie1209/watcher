@@ -5,6 +5,7 @@ volumes:
     driver: local
   postgres-data:
     driver: local
+
 services:
   db:
     image: postgres:9.5
@@ -14,22 +15,34 @@ services:
       - postgres-data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: 12341234
-  web:
-    image: ruby:2.3.0
-    command: rails server -b 0.0.0.0 -P /tmp/server.id
+        
+  web: &web
+    image: ruby:2.3
+    working_dir: /usr/src/app
+    volumes:
+      - .:/usr/src/app
+      - gems:/usr/local/bundle
+    stdin_open: true
+    tty: true
+    depends_on:
+      - db
+    command: rails server -b 0.0.0.0 -p 3000 -P /tmp/rails.pid
     ports:
       - 3000:3000
-    volumes:
-      - .:/usr/src/watcher
-      - gems:/usr/local/bundle
-    working_dir: /usr/src/watcher
-    tty: true
-    stdin_open: true
+    entrypoint: /usr/src/app/dev-entrypoint.sh
     links:
       - db
     environment:
-      DATABASE_URL: postgres://postgres:12341234@db:5432/watcher_db_development
-      REDIS_URL: redis://redis.local:6379
-      CODECLIMATE_REPO_TOKEN: 503ad021b0a003530381a2a971919335e5b84d57a32325b84278d550aa5a4d49
+      DATABASE_URL: "postgres://postgres:12341234@db:5432/watcher_dev?pool=25&encoding=unicode&schema_search_path=public,partitioning" 
+      RAILS_ENV: development
+      RACK_ENV: development
     env_file:
-      - development.env
+      - dev.env
+
+  test:
+    <<: *web
+    environment:
+      DATABASE_URL: "postgres://postgres:12341234@db:5432/watcher_test?pool=25&encoding=unicode&schema_search_path=public,partitioning" 
+      RAILS_ENV: test
+      RACK_ENV: test
+   

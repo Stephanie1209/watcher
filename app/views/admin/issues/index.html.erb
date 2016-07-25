@@ -1,0 +1,21 @@
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Título</th>
+    <th>Autor</th>
+    <th>Asignados</th>
+    <th>Creado en</th>
+    <th>Etiquetas</th>
+  </tr>
+
+  <% @issues.each do |issue| %>
+    <tr>
+      <td><%= link_to "#{issue.github_id}", admin_repository_issue_path(@repository, issue) %></td>
+      <td><%= issue.title %></td>
+      <td><%= issue.github_account %></td>
+      <td><%= issue.assignee %></td>
+      <td><%= issue.started_at %></td>
+      <td><%= issue.labels %></td>
+    </tr>
+  <% end %>
+</table>

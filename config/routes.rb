@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users
     resources :repositories, only: :index do
-      resources :issues, only: :index
+      resources :issues, only: [:index, :show]
       resources :pull_requests, only: :index
       resources :branches, only: :index do
         resources :commits, only: :index

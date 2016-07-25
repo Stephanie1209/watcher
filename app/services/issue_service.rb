@@ -23,13 +23,18 @@ class IssueService
       @issue.update(labels: string_of_labels)
     end
 
+    if @data["assignee"] != nil
+      @issue.update(assignee: @data["assignee"]["login"])
+    end
+
     @issue.update(
                    github_account: @data["user"]["login"],
                    title: @data["title"],
                    description: @data["body"],
                    status: @data["state"],
                    github_number: @data["number"],
-                   github_id: @data["id"]
+                   github_id: @data["id"],
+                   started_at: @data["created_at"]
                   )
   end
 end

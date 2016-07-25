@@ -1,0 +1,18 @@
+<%= button_to 'Update', admin_repositories_update_repositories_path %>
+
+<table>
+  <tr>
+    <th>Repositories</th>
+    <th># Issues</th>
+    <th># Pull Requests</th>
+    <th># Commits</th>
+  </tr>
+  <% @repositories.each do |repo|%>
+    <tr>
+      <th><%= repo.name %></th>
+      <th><%= repo.issues.count %></th>
+      <th><%= repo.pull_requests.count %></th>
+      <th><%= repo.commits.count %></th>
+    </tr>
+  <%end%>
+</table>

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users
+    post 'repositories/update_repositories' => 'repositories#update_repositories'
     resources :repositories, only: :index do
       resources :issues, only: :index
       resources :pull_requests, only: :index

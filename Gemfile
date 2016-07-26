@@ -48,6 +48,7 @@ end
 group :test do
   gem 'codeclimate-test-reporter', git: 'https://github.com/codeclimate/ruby-test-reporter.git', branch: 'master', require: nil
   gem 'shoulda-matchers', '~> 2.0'
+  gem 'capybara'
   gem 'vcr', '~> 3.0', '>= 3.0.3'
   gem 'webmock', '~> 2.1'
   gem 'factory_girl_rails'

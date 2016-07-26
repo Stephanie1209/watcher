@@ -5,7 +5,7 @@ FactoryGirl.define do
     forks_count { Faker::Number.number(3) }
     started_at { Faker::Time.between(DateTime.now - 1, DateTime.now) }
     organization
-    
+
     factory :furatto do
       name "Furatto"
       stars 862

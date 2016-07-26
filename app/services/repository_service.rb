@@ -16,9 +16,9 @@ class RepositoryService
 
   def creates_or_updates_repository
     obtains_repository_data
-    @repository = @organization.repositories.find_by_name(@repo_id) || @organization.repositories.new
+    @repository = @organization.repositories.find_by_name(@data["name"]) || @organization.repositories.new
     @repository.update(
-                      name: @repo_id,
+                      name: @data["name"],
                       stars: @data["stargazers_count"],
                       forks_count: @data["forks_count"],
                       started_at: @data["created_at"]

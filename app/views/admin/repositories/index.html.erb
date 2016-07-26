@@ -9,7 +9,7 @@
   </tr>
   <% @repositories.each do |repo|%>
     <tr>
-      <th><%= repo.name %></th>
+      <th><%= link_to repo.name, admin_repository_path(repo) %></th>
       <th><%= repo.issues.count %></th>
       <th><%= repo.pull_requests.count %></th>
       <th><%= repo.commits.count %></th>

@@ -1,0 +1,13 @@
+$(".open").click(function() {
+  $(".issues_section").html("<%= escape_javascript(render 'issues_section', issues: @issues.where(status: "closed")) %>")
+});
+
+$(".closed").click(function() {
+  $(".issues_section").html("<%= escape_javascript(render 'issues_section', issues: @issues.where(status: "open")) %>")
+});
+
+$(".all").click(function() {
+  $(".issues_section").html("<%= escape_javascript(render 'issues_section', issues: @issues) %>")
+});
+
+

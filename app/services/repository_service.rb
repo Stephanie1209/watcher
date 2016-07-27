@@ -11,28 +11,31 @@ class RepositoryService
 
   def obtains_repository_data
     if @repo_id == nil
-      @data = @client.org_repos(@organization.github_name,
+      @repo_data = @client.org_repos(@organization.github_name,
                               { query: { per_page: 100, page: 1 } })
     else
-      @data = @client.repository("#{@organization.github_name}/#{@repo_id}")
+      @repo_data = @client.repository("#{@organization.github_name}/#{@repo_id}")
+      @branches_data = @client.branches("#{@organization.github_name}/#{@repo_id}")
     end
   end
 
   def creates_or_updates_specific_repository
     obtains_repository_data
-    @repository = @organization.repositories.find_by_name(@data["name"]) || @organization.repositories.new
+    @repository = @organization.repositories.find_by_name(@repo_data["name"]) || @organization.repositories.new
     @repository.update(
-                      name: @data["name"],
-                      stars: @data["stargazers_count"],
-                      forks_count: @data["forks_count"],
-                      started_at: @data["created_at"]
+                      name: @repo_data["name"],
+                      stars: @repo_data["stargazers_count"],
+                      forks_count: @repo_data["forks_count"],
+                      started_at: @repo_data["created_at"]
                      )
+    branch = BranchService.new @repository.name
+    branch.creates_or_updates_branches
   end
 
 
   def creates_or_updates_repositories
     obtains_repository_data
-    @data.each do |repo|
+    @repo_data.each do |repo|
       @repository = @organization.repositories.find_by_name(repo["name"]) || @organization.repositories.new
       @repository.update(
                         name: repo["name"],

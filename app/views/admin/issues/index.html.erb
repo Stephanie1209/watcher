@@ -2,6 +2,8 @@
 <%= link_to "Todos", admin_repository_issues_path(@repository.name), remote: true, class: "all" %>
 <%= link_to "Cerrados", admin_repository_issues_path(@repository.name, status: "closed"), remote: true, class: "closed" %>
 
+<%= button_to "Actualizar", update_all_admin_repository_issues_path(@repository.name), method: :put %>
+
 <table>
   <tr>
     <th>ID</th>

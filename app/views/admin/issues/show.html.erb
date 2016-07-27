@@ -1,3 +1,5 @@
+<%= button_to "Actualizar", admin_repository_issue_path(@repository.id, @issue.id), method: :put %>
+
 <p><%= @issue.title %></p>
 <p><%= @issue.github_account %></p>
 <p><%= @issue.description %></p>

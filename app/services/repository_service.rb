@@ -43,6 +43,9 @@ class RepositoryService
                         forks_count: repo["forks_count"],
                         started_at: repo["created_at"]
                         )
+      branch = BranchService.new repo["name"]
+      branch.creates_or_updates_branches
     end
+
   end
 end

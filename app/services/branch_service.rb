@@ -34,5 +34,14 @@ class BranchService
        @branch = @repository.branches.create(name: branch_data["name"])
       end
     end
+    deletes_non_existing_branches @data
+  end
+
+  def deletes_non_existing_branches data
+    branch_names = []
+    data.each { |branch| branch_names << branch["name"] }
+    @repository.branches.each do |branch|
+      branch.destroy unless branch_names.include?(branch.name)
+    end
   end
 end

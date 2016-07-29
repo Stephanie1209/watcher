@@ -1,0 +1,10 @@
+<%= form_tag(admin_repository_commits_path, method: "post") do %>
+  <b>Branch: </b>
+  <%= select_tag :branch_id, options_from_collection_for_select(
+    @repository.branches, :id, :name,
+    @repository.branches.find_by_name("master").id), id: "find_by_branch" %>
+<% end %>
+
+<div id="commits">
+  <%= render 'commits' %>
+</div>

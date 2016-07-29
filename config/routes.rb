@@ -16,11 +16,11 @@ Rails.application.routes.draw do
     post 'repositories/update_repositories' => 'repositories#update_repositories'
     post 'repositories/update_specific_repository' => 'repositories#update_specific_repository'
     resources :repositories, only: [:index, :show] do
+      get 'commits/by_branch' => 'commits#find_by_branch'
       resources :issues, only: :index
       resources :pull_requests, only: :index
-      resources :branches, only: :index do
-        resources :commits, only: :index
-      end
+      resources :commits, only: :index
+      resources :branches, only: :index
     end
     resources :organizations, only: :index
   end

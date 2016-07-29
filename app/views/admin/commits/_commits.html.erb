@@ -1,0 +1,20 @@
+<table>
+  <tr>
+    <th>SHA</th>
+    <th>Author</th>
+    <th>Message</th>
+    <th>Date</th>
+    <th>Added Lines</th>
+    <th>Deleted Lines</th>
+  </tr>
+  <% @commits.each do |commit| %>
+  <tr>
+    <td><%= commit.sha %></td>
+    <td><%= commit.author %></td>
+    <td><%= commit.message %></td>
+    <td><%= commit.committed_at %></td>
+    <td><%= commit.additions.to_i %></td>
+    <td><%= commit.deletions.to_i %></td>
+  </tr>
+  <% end %>
+</table>

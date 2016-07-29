@@ -12,7 +12,7 @@
     <td><%= commit.sha %></td>
     <td><%= commit.author %></td>
     <td><%= commit.message %></td>
-    <td><%= commit.committed_at %></td>
+    <td><%= commit.committed_at.strftime("%d/%B/%Y") %></td>
     <td><%= commit.additions.to_i %></td>
     <td><%= commit.deletions.to_i %></td>
   </tr>

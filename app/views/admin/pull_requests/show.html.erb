@@ -1,0 +1,12 @@
+<%= button_to "Actualizar", admin_repository_pull_request_path(@repository.id, @pull_request.id), method: :put %>
+
+<p><%= @pull_request.title %></p>
+<p><%= @pull_request.github_account %></p>
+<p><%= @pull_request.description %></p>
+<p><%= @pull_request.assignee %></p>
+<p><%= @pull_request.started_at %></p>
+<p><%= @pull_request.labels %></p>
+<p><%= @pull_request.status %></p>
+<p><%= @pull_request.started_at %></p>
+<p><%= @pull_request.github_number %></p>
+<p><%= @pull_request.github_id %></p>

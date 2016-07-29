@@ -26,9 +26,12 @@ class IssueService
 
     @data.each do |data|
       @issue = @repository.issues.find_by_github_number(data["number"]) || @repository.issues.new
+
       if !data["labels"].empty?
         string_of_labels = data["labels"].map { |label| label[:name] }.join(", ")
         @issue.update(labels: string_of_labels)
+      else
+        @issue.update(labels: "")
       end
 
       if data["assignee"] != nil

@@ -15,7 +15,7 @@ class Admin::IssuesController < AdminController
 
   def update
     @repository = Repository.find(params[:repository_id])
-    issue = Issue.find(params[:id])
+    issue = @repository.issues.find(params[:id])
     service = IssueService.new(@repository.name, issue.github_number)
     service.creates_or_updates_issue
     redirect_to admin_repository_issue_path(params[:repository_id], params[:id])

@@ -15,7 +15,7 @@ class Admin::PullRequestsController < AdminController
 
   def update
     @repository = Repository.find(params[:repository_id])
-    pull_request = PullRequest.find(params[:id])
+    pull_request = @repository.pull_requests.find(params[:id])
     service = PullRequestService.new(@repository.name, pull_request.github_number)
     service.creates_or_updates_pull_request
     redirect_to admin_repository_pull_request_path(params[:repository_id], params[:id])

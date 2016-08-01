@@ -4,11 +4,10 @@
     @repository.branches, :id, :name,
     @repository.branches.find_by_name("master").id), id: "find_by_branch" %>
   <b> Since: </b>
-  <%= date_field_tag :since, as: :date_picker %>
+  <%= date_field_tag :since, params[:since], as: :date_picker %>
   <b> Until: </b>
-  <%= date_field_tag :until, as: :date_picker %>
+  <%= date_field_tag :until, params[:until], as: :date_picker %>
   <%= submit_tag 'search' %>
-  <%= button_tag 'Reset', type: 'reset' %>
 <% end %>
 
 <div id="commits">

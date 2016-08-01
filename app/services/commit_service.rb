@@ -25,9 +25,10 @@ class CommitService
   def creates_or_updates_commits
     obtains_commit_data
     @data.each do |commit_data|
-      @commit = @branch.commits.find_by_sha(@sha) || @branch.commits.new
+      @commit = @branch.commits.find_by_sha(commit_data[:sha]) || @branch.commits.new
       @commit.update(
                       sha: commit_data["sha"],
+                      author: commit_data["commit"]["author"]["name"],
                       message: commit_data["commit"]["message"],
                       committed_at: commit_data["commit"]["committer"]["date"]
                       )

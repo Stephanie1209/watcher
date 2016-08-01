@@ -9,7 +9,7 @@
   </tr>
   <% @commits.each do |commit| %>
   <tr>
-    <td><%= commit.sha %></td>
+    <td><%= link_to commit.sha, "https://github.com/#{ENV["github_organization"]}/#{@repository.name}/commit/#{commit.sha}", :target => "_blank" %></td>
     <td><%= commit.author %></td>
     <td><%= commit.message %></td>
     <td><%= commit.committed_at.strftime("%d/%B/%Y") %></td>

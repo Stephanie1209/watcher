@@ -1,6 +1,7 @@
 class Admin::IssuesController < AdminController
+  before_action :find_repository
+
   def index
-    get_organization_and_repository
     @issues = @repository.issues.all
     respond_to do |format|
       format.html
@@ -10,11 +11,9 @@ class Admin::IssuesController < AdminController
 
   def show
     @issue = Issue.find(params[:id])
-    @repository = Repository.find(params[:repository_id])
   end
 
   def update
-    @repository = Repository.find(params[:repository_id])
     issue = @repository.issues.find(params[:id])
     service = IssueService.new(@repository.name, issue.github_number)
     service.creates_or_updates_issue
@@ -22,7 +21,6 @@ class Admin::IssuesController < AdminController
   end
 
   def update_all
-    get_organization_and_repository
     service = IssueService.new(@repository.name)
     service.creates_or_updates_issue
     redirect_to admin_repository_issues_path(params[:repository_id])
@@ -30,8 +28,7 @@ class Admin::IssuesController < AdminController
 
   private
 
-  def get_organization_and_repository
-    @organization = Organization.find_by_github_name(Rails.application.secrets.github_organization)
-    @repository = @organization.repositories.find_by_name(params[:repository_id])
+  def find_repository
+    @repository = Repository.find_by_name(params[:repository_id])
   end
 end

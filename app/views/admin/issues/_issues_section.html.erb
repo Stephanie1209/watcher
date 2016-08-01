@@ -1,6 +1,6 @@
 <% issues.each do |issue| %>
   <tr>
-    <td><%= link_to "#{issue.github_id}", admin_repository_issue_path(@repository, issue) %></td>
+    <td><%= link_to "#{issue.github_id}", admin_repository_issue_path(@repository.name, issue) %></td>
     <td><%= issue.title %></td>
     <td><%= issue.github_account %></td>
     <td><%= issue.assignee %></td>

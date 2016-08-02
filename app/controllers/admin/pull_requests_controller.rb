@@ -1,8 +1,8 @@
 class Admin::PullRequestsController < AdminController
   before_action :find_repository
+  before_action :find_by_status, only: :index
 
   def index
-    @pull_requests = @repository.pull_requests.all
     respond_to do |format|
       format.html
       format.js
@@ -30,5 +30,10 @@ class Admin::PullRequestsController < AdminController
 
   def find_repository
     @repository = Repository.find_by_name(params[:repository_id])
+  end
+
+  def find_by_status
+    status = params[:status]
+    @pull_requests = status.blank? ? @repository.pull_requests : @repository.pull_requests.where(status: status)
   end
 end

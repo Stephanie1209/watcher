@@ -1,8 +1,8 @@
 class Admin::IssuesController < AdminController
   before_action :find_repository
+  before_action :find_by_status, only: :index
 
   def index
-    @issues = @repository.issues.all
     respond_to do |format|
       format.html
       format.js
@@ -30,5 +30,10 @@ class Admin::IssuesController < AdminController
 
   def find_repository
     @repository = Repository.find_by_name(params[:repository_id])
+  end
+
+  def find_by_status
+      status = params[:status]
+      @issues = status.blank? ? @repository.issues : @repository.issues.where(status: status)
   end
 end

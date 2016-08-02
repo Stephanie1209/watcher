@@ -1,12 +1,11 @@
-<%= button_to "Actualizar", admin_repository_issue_path(@repository.id, @issue.id), method: :put %>
+<%= button_to "Actualizar", admin_repository_issue_path(@repository.name, @issue.id), method: :put %>
 
-<p><%= @issue.title %></p>
-<p><%= @issue.github_account %></p>
-<p><%= @issue.description %></p>
-<p><%= @issue.assignee %></p>
-<p><%= @issue.started_at %></p>
-<p><%= @issue.labels %></p>
-<p><%= @issue.status %></p>
-<p><%= @issue.started_at %></p>
-<p><%= @issue.github_number %></p>
-<p><%= @issue.github_id %></p>
+<p><strong>Title:</strong><%= @issue.title %></p>
+<p><strong>Account:</strong> <%= @issue.github_account %></p>
+<p><strong>Description:</strong> <%= @issue.description %></p>
+<p><strong>Assignee:</strong> <%= @issue.assignee %></p>
+<p><strong>Created at:</strong> <%= @issue.started_at %></p>
+<p><strong>Labels:</strong> <%= @issue.labels %></p>
+<p><strong>Status:</strong> <%= @issue.status %></p>
+<p><strong>GitHub Number:</strong> <%= @issue.github_number %></p>
+<p><strong>GitHub ID:</strong> <%= @issue.github_id %></p>

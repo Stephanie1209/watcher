@@ -29,13 +29,10 @@ class IssueService
 
       if !data["labels"].empty?
         string_of_labels = data["labels"].map { |label| label[:name] }.join(", ")
-        @issue.update(labels: string_of_labels)
-      else
-        @issue.update(labels: "")
       end
 
       if data["assignee"] != nil
-        @issue.update(assignee: data["assignee"]["login"])
+        assignee = data["assignee"]["login"]
       end
 
       @issue.update(
@@ -45,7 +42,9 @@ class IssueService
                      status: data["state"],
                      github_number: data["number"],
                      github_id: data["id"],
-                     started_at: data["created_at"]
+                     started_at: data["created_at"],
+                     labels: string_of_labels,
+                     assignee: assignee
                     )
     end
   end

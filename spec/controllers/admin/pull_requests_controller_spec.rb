@@ -10,13 +10,12 @@ RSpec.describe Admin::PullRequestsController, type: :controller, vcr: true do
 
   describe "GET #index" do
     before :each do
+      @pull_requests = FactoryGirl.create_list(:pull_request, rand(1..10), repository: @repository)
       get :index, :repository_id => @repository.name
-      service = PullRequestService.new(@repository.name)
-      service.creates_or_updates_pull_request
     end
 
     it "should render all repository issues" do
-      expect(assigns(:pull_requests).count).to eq(36)
+      expect(assigns(:pull_requests).reverse).to eq(@pull_requests)
     end
 
     it "renders the :index view" do
@@ -26,9 +25,8 @@ RSpec.describe Admin::PullRequestsController, type: :controller, vcr: true do
 
   describe "GET #show" do
     it "renders the :show view" do
-      service = PullRequestService.new(@repository.name)
-      service.creates_or_updates_pull_request
-      get :show, :repository_id => @repository.id, :id => @repository.pull_requests.first.id
+      pull_request = FactoryGirl.create :pull_request, repository: @repository
+      get :show, :repository_id => @repository.id, :id => pull_request.id
       expect(response).to render_template :show
     end
   end
@@ -55,7 +53,7 @@ RSpec.describe Admin::PullRequestsController, type: :controller, vcr: true do
     end
 
     it "is equal to the online issue after updating" do
-      put :update, :repository_id => @repository.id, :id => @pull_request.id
+      put :update, :repository_id => @repository.name, :id => @pull_request.id
       expect(@pull_request.reload.title).to eq("WIP Issues/PullRequest Dashboard")
     end
   end

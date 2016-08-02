@@ -29,13 +29,10 @@ class PullRequestService
 
       if !data["labels"].empty?
         string_of_labels = data["labels"].map { |label| label[:name] }.join(", ")
-        @pull_request.update(labels: string_of_labels)
-      else
-        @pull_request.update(labels: "")
       end
 
       if data["assignee"] != nil
-        @pull_request.update(assignee: data["assignee"]["login"])
+        assignee = data["assignee"]["login"]
       end
 
       @pull_request.update(
@@ -45,7 +42,9 @@ class PullRequestService
                            status: data["state"],
                            github_number: data["number"],
                            github_id: data["id"],
-                           started_at: data["created_at"]
+                           started_at: data["created_at"],
+                           labels: string_of_labels,
+                           assignee: assignee
                           )
     end
   end

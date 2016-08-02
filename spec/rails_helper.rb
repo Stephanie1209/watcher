@@ -6,6 +6,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 require 'rspec/collection_matchers'
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Checks for pending migration and applies them before tests are run.
@@ -18,8 +19,8 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
-
-  # Filter lines from Rails gems in backtraces.
+  config.include Devise::Test::ControllerHelpers, :type => :controller
+  #  Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
@@ -27,8 +28,8 @@ end
 
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
-  c.default_cassette_options = { :record => :new_episodes }	
-  c.hook_into :webmock 
+  c.default_cassette_options = { :record => :new_episodes }
+  c.hook_into :webmock
   c.allow_http_connections_when_no_cassette = true
   c.configure_rspec_metadata!
 end

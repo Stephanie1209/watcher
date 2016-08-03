@@ -1,4 +1,4 @@
-<%= button_to 'Update', admin_repositories_update_specific_repository_path(params: {repo_name: @repository.name}) %>
+<%= button_to 'Update', admin_repositories_update_repositories_path(params: {repo_name: @repository.name}) %>
 
 <h1> <%= @repository.name %> </h1>
 <p> <b> stars: </b> <%= @repository.stars %> </p>

@@ -7,14 +7,8 @@ class Admin::RepositoriesController < AdminController
     @repository = Repository.find(params[:id])
   end
 
-  def update_specific_repository
-    repo = RepositoryService.new(params[:repo_name])
-    repo.creates_or_updates_specific_repository
-    redirect_to :back
-  end
-
   def update_repositories
-    repo = RepositoryService.new
+    repo = RepositoryService.new(params[:repo_name] || nil)
     repo.creates_or_updates_repositories
     redirect_to :back
   end

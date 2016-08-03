@@ -15,8 +15,9 @@ class CommitService
   def obtains_commit_data
     organization = @repository.organization
     fullname = "#{organization.github_name}/#{@repository.name}"
+    @data = []
     if @sha
-      @data = @client.commit(fullname, @sha)
+      @data << @client.commit(fullname, @sha)
     else
       @data = @client.commits(fullname, @branch_id)
     end
@@ -32,20 +33,14 @@ class CommitService
                       message: commit_data["commit"]["message"],
                       committed_at: commit_data["commit"]["committer"]["date"]
                       )
-    end
-  end
+      if @sha
+        @commit.update(
+                      total: commit_data["stats"]["total"],
+                      additions: commit_data["stats"]["additions"],
+                      deletions: commit_data["stats"]["deletions"]
+                      )
 
-  def creates_or_updates_commit
-    obtains_commit_data
-    @commit = @branch.commits.find_by_sha(@sha) || @branch.commits.new
-    @commit.update(
-                    sha: @data["sha"],
-                    author: @data["commit"]["author"]["name"],
-                    total: @data["stats"]["total"],
-                    message: @data["commit"]["message"],
-                    additions: @data["stats"]["additions"],
-                    deletions: @data["stats"]["deletions"],
-                    committed_at: @data["commit"]["committer"]["date"]
-                    )
+      end
+    end
   end
 end

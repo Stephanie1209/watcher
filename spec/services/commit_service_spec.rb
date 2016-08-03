@@ -27,8 +27,8 @@ RSpec.describe CommitService, vcr: true do
 
     describe "doesnt receive a branch name" do
       before(:each) do
-        branch = FactoryGirl.create :branch, name: "master", repository: @repository
-        @service = CommitService.new "watcher", "0adae263ce441c4033f23a6d9286ba883c1110da"
+        FactoryGirl.create :branch, name: "master", repository: @repository
+        @service = CommitService.new "watcher", nil, "0adae263ce441c4033f23a6d9286ba883c1110da"
       end
 
       it "should create a new commit" do
@@ -65,7 +65,7 @@ RSpec.describe CommitService, vcr: true do
       before(:each) do
         branch = FactoryGirl.create :branch, name: "master", repository: @repository
         @new_commit = FactoryGirl.create :commit, sha: "0adae263ce441c4033f23a6d9286ba883c1110da"
-        @service = CommitService.new "watcher", "0adae263ce441c4033f23a6d9286ba883c1110da"
+        @service = CommitService.new "watcher", nil, "0adae263ce441c4033f23a6d9286ba883c1110da"
       end
 
       it "should update existing commit" do

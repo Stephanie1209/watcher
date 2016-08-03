@@ -10,13 +10,13 @@ services:
   db:
     image: postgres:9.5
     ports:
-      - 5432:5432
+      - 5433:5432
     volumes:
       - postgres-data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: 12341234
-        
-  web: &web
+
+  app: &app
     image: ruby:2.3
     working_dir: /usr/src/app
     volumes:
@@ -26,23 +26,27 @@ services:
     tty: true
     depends_on:
       - db
+    entrypoint: /usr/src/app/dev-entrypoint.sh
+
+  web:
+    <<: *app
     command: rails server -b 0.0.0.0 -p 3000 -P /tmp/rails.pid
     ports:
       - 3000:3000
-    entrypoint: /usr/src/app/dev-entrypoint.sh
     links:
       - db
     environment:
-      DATABASE_URL: "postgres://postgres:12341234@db:5432/watcher_dev?pool=25&encoding=unicode&schema_search_path=public,partitioning" 
+      DATABASE_URL: "postgres://postgres:12341234@db:5432/watcher_dev?pool=25&encoding=unicode&schema_search_path=public,partitioning"
       RAILS_ENV: development
       RACK_ENV: development
     env_file:
       - dev.env
 
   test:
-    <<: *web
+    <<: *app
     environment:
-      DATABASE_URL: "postgres://postgres:12341234@db:5432/watcher_test?pool=25&encoding=unicode&schema_search_path=public,partitioning" 
+      DATABASE_URL: "postgres://postgres:12341234@db:5432/watcher_test?pool=25&encoding=unicode&schema_search_path=public,partitioning"
       RAILS_ENV: test
       RACK_ENV: test
-   
+    env_file:
+      - test.env

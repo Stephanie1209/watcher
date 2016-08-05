@@ -1,0 +1,20 @@
+<%= link_to "Abiertos", admin_repository_issues_path(@repository.name, status: "open"), remote: true, class: "open" %>
+<%= link_to "Todos", admin_repository_issues_path(@repository.name), remote: true, class: "all" %>
+<%= link_to "Cerrados", admin_repository_issues_path(@repository.name, status: "closed"), remote: true, class: "closed" %>
+
+<%= button_to "Actualizar", update_all_admin_repository_issues_path(@repository.name), method: :put %>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Título</th>
+    <th>Autor</th>
+    <th>Asignados</th>
+    <th>Creado en</th>
+    <th>Etiquetas</th>
+    <th>Status</th>
+  </tr>
+  <tbody class="issues_section">
+    <%= render 'issues_section', issues: @issues %>
+  </tbody>
+</table>

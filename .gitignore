@@ -25,4 +25,4 @@ spec/fixtures/vcr_cassets/
 
 # Ignore application configuration
 /config/application.yml
-dev.env
+*.env

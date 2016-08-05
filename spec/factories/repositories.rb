@@ -13,5 +13,13 @@ FactoryGirl.define do
       started_at "2011-01-26T19:01:12Z"
       organization
     end
+
+    factory :watcher do
+      name "watcher"
+      stars 7
+      forks_count 0
+      started_at "2011-01-26T19:01:12Z"
+      organization
+    end
   end
 end

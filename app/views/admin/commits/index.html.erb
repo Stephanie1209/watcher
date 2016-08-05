@@ -1,0 +1,13 @@
+<%= form_tag(admin_repository_commits_path, method: "GET") do %>
+  <b>Branch: </b>
+  <%= select_tag :branch_id, options_for_select(branches_combo(@repository.branches), "master"), id: "find_by_branch" %>
+  <b> Since: </b>
+  <%= date_field_tag :since, params[:since], as: :date_picker %>
+  <b> Until: </b>
+  <%= date_field_tag :until, params[:until], as: :date_picker %>
+  <%= submit_tag 'search' %>
+<% end %>
+
+<div id="commits">
+  <%= render 'commits' %>
+</div>

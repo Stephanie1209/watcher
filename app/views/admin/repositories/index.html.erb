@@ -1,0 +1,18 @@
+<%= link_to 'Update', update_all_admin_repositories_path, method: :put %>
+
+<table>
+  <tr>
+    <th>Repositories</th>
+    <th># Issues</th>
+    <th># Pull Requests</th>
+    <th># Commits</th>
+  </tr>
+  <% @repositories.each do |repo|%>
+    <tr>
+      <th><%= link_to repo.name, admin_repository_path(repo) %></th>
+      <th><%= repo.issues.count %></th>
+      <th><%= repo.pull_requests.count %></th>
+      <th><%= link_to repo.commits.count, admin_repository_commits_path(repo) %></th>
+    </tr>
+  <%end%>
+</table>

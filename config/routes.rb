@@ -10,19 +10,19 @@ Rails.application.routes.draw do
   resources :issues, only: :index
   resources :pull_requests, only: :index
   get "repositories/:name" => "repositories#show", as: :repository, constraints: { name: /[^\/]+/ }
-
   namespace :admin do
     resources :users
-    resources :repositories, only: :index do
+    resources :repositories, only: [:index, :show, :update] do
+      put 'update_all', on: :collection
+      get 'commits/by_branch' => 'commits#find_by_branch'
       resources :issues, only: [:index, :show, :update] do
         put :update_all, on: :collection
       end
       resources :pull_requests, only: [:index, :show, :update] do
         put :update_all, on: :collection
       end
-      resources :branches, only: :index do
-        resources :commits, only: :index
-      end
+      resources :commits, only: :index
+      resources :branches, only: :index
     end
     resources :organizations, only: :index
   end

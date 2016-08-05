@@ -9,6 +9,7 @@ class CommitService
     @branch_id = branch_id
     @repository = Repository.find_by_name(repository_id)
     @branch = @repository.branches.find_by_name(branch_id || "master")
+    ::Octokit.auto_paginate = true
     @client = Octokit::Client.new(access_token: ENV["GITHUB_ACCESS_TOKEN"])
   end
 

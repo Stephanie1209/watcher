@@ -14,7 +14,7 @@ describe "how to get commits from db", :type => :feature, vcr: true do
   it 'creates repositories succesfully' do
     visit '/admin/repositories'
     click_link "furatto"
-    click_button "Update"
+    click_link "Update"
     commit = CommitService.new("furatto", "master")
     commit.creates_or_updates_commits
     click_link "Repositorios"

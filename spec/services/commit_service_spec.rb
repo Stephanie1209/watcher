@@ -15,13 +15,13 @@ RSpec.describe CommitService, vcr: true do
       it "should create a new commit associated to branch name" do
         expect  {
           @service.creates_or_updates_commits
-          expect(@service.commit.sha).to eq("6e521ddfc81cb5855cb3cf205af26ab437a14901")
+          expect(@service.commits.first.sha).to eq("6e521ddfc81cb5855cb3cf205af26ab437a14901")
         }.to change(Commit, :count).by(1)
       end
 
       it "verifies commit-branch association" do
         @service.creates_or_updates_commits
-        expect(@service.commit.branch.name).to eq("dev")
+        expect(@service.commits.first.branch.name).to eq("dev")
       end
     end
 
@@ -34,13 +34,13 @@ RSpec.describe CommitService, vcr: true do
       it "should create a new commit" do
         expect  {
           @service.creates_or_updates_commits
-          expect(@service.commit.sha).to eq("0adae263ce441c4033f23a6d9286ba883c1110da")
+          expect(@service.commits.first.sha).to eq("0adae263ce441c4033f23a6d9286ba883c1110da")
         }.to change(Commit, :count).by(1)
       end
 
       it "verifies commit-branch association" do
         @service.creates_or_updates_commits
-        expect(@service.commit.branch.name).to eq("master")
+        expect(@service.commits.first.branch.name).to eq("master")
       end
     end
   end
@@ -56,7 +56,7 @@ RSpec.describe CommitService, vcr: true do
       it "should update existing commit" do
         expect  {
           @service.creates_or_updates_commits
-          expect(@new_commit.sha).to eq(@service.commit.sha)
+          expect(@new_commit.sha).to eq(@service.commits.first.sha)
         }.to change(Commit, :count).by(0)
       end
     end
@@ -71,7 +71,7 @@ RSpec.describe CommitService, vcr: true do
       it "should update existing commit" do
         expect  {
           @service.creates_or_updates_commits
-          expect(@new_commit.sha).to eq(@service.commit.sha)
+          expect(@new_commit.sha).to eq(@service.commits.first.sha)
         }.to change(Commit, :count).by(1)
       end
     end

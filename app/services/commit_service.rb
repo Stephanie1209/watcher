@@ -1,10 +1,10 @@
 require 'octokit'
 
 class CommitService
-  attr_reader :commit
+  attr_reader :commits
 
   def initialize(repository_id, branch_id = nil, sha = nil)
-    @commit = nil
+    @commits = []
     @sha = sha
     @branch_id = branch_id
     @repository = Repository.find_by_name(repository_id)
@@ -27,21 +27,22 @@ class CommitService
   def creates_or_updates_commits
     obtains_commit_data
     @data.each do |commit_data|
-      @commit = @branch.commits.find_by_sha(commit_data[:sha]) || @branch.commits.new
-      @commit.update(
+      commit = @branch.commits.find_by_sha(commit_data[:sha]) || @branch.commits.new
+      commit.update(
                       sha: commit_data["sha"],
                       author: commit_data["commit"]["author"]["name"],
                       message: commit_data["commit"]["message"],
                       committed_at: commit_data["commit"]["committer"]["date"]
                       )
       if @sha
-        @commit.update(
+        commit.update(
                       total: commit_data["stats"]["total"],
                       additions: commit_data["stats"]["additions"],
                       deletions: commit_data["stats"]["deletions"]
                       )
 
       end
+      @commits << commit
     end
   end
 end

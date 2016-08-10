@@ -1,11 +1,12 @@
-json.pull_requests pull_requests do |pr|
-  json.id pr.id
-  json.github_url pr.github_url
-  json.number pr.number
-  json.title pr.title
-  json.body pr.body
-  json.author pr.author
-  json.labels pr.labels
-  json.assignee pr.assignee if pr.assignee != nil
-  json.created_at pr.created_at
+json.pull_requests pull_requests do |pull_request|
+  json.id pull_request.id
+  json.github_id pull_request.github_id
+  json.number pull_request.github_number
+  json.title pull_request.title
+  json.body pull_request.description.squish
+  json.author pull_request.github_account
+  json.labels pull_request.labels unless pull_request.labels.nil?
+  json.assignee pull_request.assignee unless pull_request.assignee.nil?
+  json.created_at pull_request.started_at
+  json.status pull_request.status
 end

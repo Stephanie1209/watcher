@@ -1,38 +1,28 @@
-module Api
-  module V1
-    class OrganizationsController < ApiController
+class Api::V1::OrganizationsController < Api::V1::ApiController
+  before_action :find_organization
 
-      def show
-        @organization = find_github_organization(params[:id])
-      end
+  def show
+  end
 
-      def repositories_info
-        @organization = find_github_organization(params[:id])
-      end
+  def repositories_info
+  end
 
-      def issues_info
-        @organization = find_github_organization(params[:id])
-        all_issues_and_prs = @client.org_issues(params[:id], issues_query_options).map { |issue| Issue.new issue }
-        issues = all_issues_and_prs.select { |issue| !issue.pull_request? }
-        @issues_count = issues.count
-        @open_issues_count = issues.count { |issue| issue.state == "open" }
-        @closed_issues_count = issues.count { |issue| issue.state == "closed" }
-      end
+  def issues_info
+    @issues_count = Issue.joins(:repository).where("repositories.organization_id = ?", 1).count
+    @open_issues_count = Issue.open.joins(:repository).where("repositories.organization_id = ?", 1).count
+    @closed_issues_count = Issue.closed.joins(:repository).where("repositories.organization_id = ?", 1).count
+  end
 
-      def pull_requests_info
-        @organization = find_github_organization(params[:id])
-        all_issues_and_prs = @client.org_issues(params[:id], issues_query_options).map { |pr| PullRequest.new pr }
-        pull_requests = all_issues_and_prs.select { |pr| pr.pull_request? }
-        @pull_requests_count = pull_requests.count
-        @open_pull_requests_count = pull_requests.count { |pr| pr.state == "open" }
-        @closed_pull_requests_count = pull_requests.count { |pr| pr.state == "closed" }
-      end
+  def pull_requests_info
+    @pull_requests_count = PullRequest.joins(:repository).where("repositories.organization_id = ?", 1).count
+    @open_pull_requests_count = PullRequest.open.joins(:repository).where("repositories.organization_id = ?", 1).count
+    @closed_pull_requests_count = PullRequest.closed.joins(:repository).where("repositories.organization_id = ?", 1).count
+  end
 
-      private
+  private
 
-      def issues_query_options
-        { filter: "all", state: "all" }
-      end
-    end
+  def find_organization
+    @organization = Organization.where("github_name ilike ?", params[:id]).first
   end
 end
+

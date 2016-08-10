@@ -21,7 +21,8 @@ class RepositoryService
                       name: @repo_id,
                       stars: @data["stargazers_count"],
                       forks_count: @data["forks_count"],
-                      started_at: @data["created_at"]
+                      started_at: @data["created_at"],
+                      private: @data["private"]
                      )
   end
 end

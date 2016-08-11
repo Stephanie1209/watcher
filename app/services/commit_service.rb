@@ -26,7 +26,8 @@ class CommitService
                     message: @data["commit"]["message"],
                     additions: @data["stats"]["additions"],
                     deletions: @data["stats"]["deletions"],
-                    committed_at: @data["commit"]["committer"]["date"]
+                    committed_at: @data["commit"]["committer"]["date"],
+                    author: @data["commit"]["committer"]["name"]
                     )
   end
 end

@@ -1,6 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::CommitsController, :vcr do
+  before(:each) do
+    @organization = FactoryGirl.create :icalialabs
+    @watcher = FactoryGirl.create :watcher, organization: @organization
+    @branch = FactoryGirl.create :dev, repository: @watcher
+    @commit = FactoryGirl.create :specific_commit, branch: @branch
+    FactoryGirl.create_list :commit, rand(10..25), branch: @branch
+  end
 
   describe "GET 'show'", type: :controller do
     before(:each) do
@@ -8,13 +15,24 @@ RSpec.describe Api::V1::CommitsController, :vcr do
             sha: "73862f61dce37853755aabfcd6b819c7e7b70f9e", format: :json
     end
 
-    it "verifies that sha, author, message, additions, deletions and total is recieved" do
+    it "verifies that sha" do
       expect(assigns(:commit).sha).to eq("73862f61dce37853755aabfcd6b819c7e7b70f9e")
-      expect(assigns(:commit).author_name).to eq("mayra-cabrera")
-      expect(assigns(:commit).message).to eq("Merge pull request #22 from IcaliaLabs/spec_coverage\n\nadds organization and repositories tests. Closes #20")
-      expect(assigns(:commit).stats_additions).to eq(74)
-      expect(assigns(:commit).stats_deletions).to eq(19)
-      expect(assigns(:commit).stats_total).to eq(93)
+    end
+
+    it "verifies the author" do
+      expect(assigns(:commit).author).to eq("mayra-cabrera")
+    end
+
+    it "verifies the additions" do
+      expect(assigns(:commit).additions).to eq(74)
+    end
+
+    it "verifies the deletions" do
+      expect(assigns(:commit).deletions).to eq(19)
+    end
+
+    it "verifies the total" do
+      expect(assigns(:commit).total).to eq(93)
     end
 
     it "should be succesful" do
@@ -26,13 +44,15 @@ RSpec.describe Api::V1::CommitsController, :vcr do
 
     it "verifies that all commits are recieved for the specified repo" do
       get  'index', organization_id: 'icalialabs', repo_id: 'watcher', format: :json
-      expect(assigns(:commits).count).to eq(49)
+      expect(assigns(:commits).count).to eq(@branch.commits.count)
     end
 
     it "verifies that all commits are recieved for the specified repo in a range of time" do
       get  'index', organization_id: 'icalialabs', repo_id: 'watcher',
         since: "2016-01-30", until: "2016-06-30", format: :json
-      expect(assigns(:commits).count).to eq(22)
+      since = Date.parse("2016-01-30")
+      to = Date.parse("2016-06-30")
+      expect(assigns(:commits)).to eq(@watcher.commits.select { |commit| (commit.committed_at <=> since) != -1 && (commit.committed_at <=> to) != 1 })
     end
 
     it "should be succesful" do

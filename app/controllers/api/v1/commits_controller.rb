@@ -20,7 +20,7 @@ class Api::V1::CommitsController < Api::V1::ApiController
       since = Date.parse(params[:since])
       to = Date.parse(params[:until])
       branch = @repository.branches.find_by_name(params[:branch])
-      @commits = branch.commits.select { |commit| (commit.committed_at <=> since) != -1 && (commit.committed_at <=> to) != 1 }
+      @commits = branch.commits.between_dates(since, to)
     else
       branch = @repository.branches.find_by_name(params[:branch])
       @commits = branch.commits
@@ -41,7 +41,7 @@ class Api::V1::CommitsController < Api::V1::ApiController
     else
       since = Date.parse(params[:since])
       to = Date.parse(params[:until])
-      @commits = @repository.commits.select { |commit| (commit.committed_at <=> since) != -1 && (commit.committed_at <=> to) != 1 }
+      @commits = @repository.commits.between_dates(since, to)
     end
   end
 

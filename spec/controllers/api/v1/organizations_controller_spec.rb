@@ -44,7 +44,6 @@ RSpec.describe Api::V1::OrganizationsController, :vcr do
 
     it "returns private repos" do
       expect(assigns(:organization).repositories.is_private.count).to eq(Repository.is_private.count)
-      binding.pry
     end
 
     it "should be succesful" do
@@ -57,16 +56,16 @@ RSpec.describe Api::V1::OrganizationsController, :vcr do
       get :issues_info, id: 'icalialabs', format: :json
     end
 
-    it "returns all issues count, open issues count, and closed issues count" do
-      expect(assigns(:issues_count)).to eq(Issue.joins(:repository).where("repositories.organization_id = ?", 1).count)
+    it "returns all issues count" do
+      expect(assigns(:issues_count)).to eq(@organization.issues.count)
     end
 
     it "returns open issues count" do
-      expect(assigns(:open_issues_count)).to eq(Issue.open.joins(:repository).where("repositories.organization_id = ?", 1).count)
+      expect(assigns(:open_issues_count)).to eq(@organization.issues.open.count)
     end
 
     it "returns closed issues count" do
-      expect(assigns(:closed_issues_count)).to eq(Issue.closed.joins(:repository).where("repositories.organization_id = ?", 1).count)
+      expect(assigns(:closed_issues_count)).to eq(@organization.issues.closed.count)
     end
 
     it "should be succesful" do
@@ -79,16 +78,16 @@ RSpec.describe Api::V1::OrganizationsController, :vcr do
       get :pull_requests_info, id: 'icalialabs', format: :json
     end
 
-    it "returns all pull requests count, open pull requests count, and closed pull requests count" do
-      expect(assigns(:pull_requests_count)).to eq(PullRequest.joins(:repository).where("repositories.organization_id = ?", 1).count)
+    it "returns all pull requests count" do
+      expect(assigns(:pull_requests_count)).to eq(@organization.pull_requests.count)
     end
 
     it "returns open pull requests count" do
-      expect(assigns(:open_pull_requests_count)).to eq(PullRequest.open.joins(:repository).where("repositories.organization_id = ?", 1).count)
+      expect(assigns(:open_pull_requests_count)).to eq(@organization.pull_requests.open.count)
     end
 
     it "returns closed pull requests count" do
-      expect(assigns(:closed_pull_requests_count)).to eq(PullRequest.closed.joins(:repository).where("repositories.organization_id = ?", 1).count)
+      expect(assigns(:closed_pull_requests_count)).to eq(@organization.pull_requests.closed.count)
     end
 
     it "should be succesful" do

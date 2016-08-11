@@ -8,15 +8,15 @@ class Api::V1::OrganizationsController < Api::V1::ApiController
   end
 
   def issues_info
-    @issues_count = Issue.joins(:repository).where("repositories.organization_id = ?", 1).count
-    @open_issues_count = Issue.open.joins(:repository).where("repositories.organization_id = ?", 1).count
-    @closed_issues_count = Issue.closed.joins(:repository).where("repositories.organization_id = ?", 1).count
+    @issues_count = @organization.issues.count
+    @open_issues_count = @organization.issues.open.count
+    @closed_issues_count = @organization.issues.closed.count
   end
 
   def pull_requests_info
-    @pull_requests_count = PullRequest.joins(:repository).where("repositories.organization_id = ?", 1).count
-    @open_pull_requests_count = PullRequest.open.joins(:repository).where("repositories.organization_id = ?", 1).count
-    @closed_pull_requests_count = PullRequest.closed.joins(:repository).where("repositories.organization_id = ?", 1).count
+    @pull_requests_count = @organization.pull_requests.count
+    @open_pull_requests_count = @organization.pull_requests.open.count
+    @closed_pull_requests_count = @organization.pull_requests.closed.count
   end
 
   private

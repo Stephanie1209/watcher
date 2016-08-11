@@ -6,7 +6,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 require 'rspec/collection_matchers'
-
+require 'capybara/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Checks for pending migration and applies them before tests are run.

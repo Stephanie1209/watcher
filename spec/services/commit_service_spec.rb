@@ -14,33 +14,33 @@ RSpec.describe CommitService, vcr: true do
       end
       it "should create a new commit associated to branch name" do
         expect  {
-          @service.creates_or_updates_commit
-          expect(@service.commit.sha).to eq("6e521ddfc81cb5855cb3cf205af26ab437a14901")
+          @service.creates_or_updates_commits
+          expect(@service.commits.first.sha).to eq("6e521ddfc81cb5855cb3cf205af26ab437a14901")
         }.to change(Commit, :count).by(1)
       end
 
       it "verifies commit-branch association" do
-        @service.creates_or_updates_commit
-        expect(@service.commit.branch.name).to eq("dev")
+        @service.creates_or_updates_commits
+        expect(@service.commits.first.branch.name).to eq("dev")
       end
     end
 
     describe "doesnt receive a branch name" do
       before(:each) do
-        branch = FactoryGirl.create :branch, name: "master", repository: @repository
-        @service = CommitService.new "watcher", "0adae263ce441c4033f23a6d9286ba883c1110da"
+        FactoryGirl.create :branch, name: "master", repository: @repository
+        @service = CommitService.new "watcher", nil, "0adae263ce441c4033f23a6d9286ba883c1110da"
       end
 
       it "should create a new commit" do
         expect  {
-          @service.creates_or_updates_commit
-          expect(@service.commit.sha).to eq("0adae263ce441c4033f23a6d9286ba883c1110da")
+          @service.creates_or_updates_commits
+          expect(@service.commits.first.sha).to eq("0adae263ce441c4033f23a6d9286ba883c1110da")
         }.to change(Commit, :count).by(1)
       end
 
       it "verifies commit-branch association" do
-        @service.creates_or_updates_commit
-        expect(@service.commit.branch.name).to eq("master")
+        @service.creates_or_updates_commits
+        expect(@service.commits.first.branch.name).to eq("master")
       end
     end
   end
@@ -55,8 +55,8 @@ RSpec.describe CommitService, vcr: true do
 
       it "should update existing commit" do
         expect  {
-          @service.creates_or_updates_commit
-          expect(@new_commit.sha).to eq(@service.commit.sha)
+          @service.creates_or_updates_commits
+          expect(@new_commit.sha).to eq(@service.commits.first.sha)
         }.to change(Commit, :count).by(0)
       end
     end
@@ -65,13 +65,13 @@ RSpec.describe CommitService, vcr: true do
       before(:each) do
         branch = FactoryGirl.create :branch, name: "master", repository: @repository
         @new_commit = FactoryGirl.create :commit, sha: "0adae263ce441c4033f23a6d9286ba883c1110da"
-        @service = CommitService.new "watcher", "0adae263ce441c4033f23a6d9286ba883c1110da"
+        @service = CommitService.new "watcher", nil, "0adae263ce441c4033f23a6d9286ba883c1110da"
       end
 
       it "should update existing commit" do
         expect  {
-          @service.creates_or_updates_commit
-          expect(@new_commit.sha).to eq(@service.commit.sha)
+          @service.creates_or_updates_commits
+          expect(@new_commit.sha).to eq(@service.commits.first.sha)
         }.to change(Commit, :count).by(1)
       end
     end

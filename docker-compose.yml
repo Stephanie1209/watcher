@@ -50,3 +50,4 @@ services:
       RACK_ENV: test
     env_file:
       - test.env
+

@@ -46,7 +46,8 @@ class Api::V1::CommitsController < Api::V1::ApiController
   end
 
   def find_repository
-    @repository = Repository.find_by_name(params[:repo_id])
+    @organization = Organization.where("github_name ilike ?", params[:organization_id]).first
+    @repository = @organization.repositories.where("name ilike ?", params[:id]).first
   end
 end
 

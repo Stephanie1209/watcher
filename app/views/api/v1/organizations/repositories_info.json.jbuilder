@@ -1,3 +1,3 @@
-json.total_repos @organization.total_repos
-json.public_repos @organization.public_repos
-json.private_repos @organization.private_repos
+json.total_repos @organization.repositories.count
+json.public_repos @organization.repositories.is_public.count
+json.private_repos @organization.repositories.is_private.count

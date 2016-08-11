@@ -1,11 +1,12 @@
 json.issues issues do |issue|
   json.id issue.id
-  json.github_url issue.github_url
-  json.number issue.number
+  json.github_id issue.github_id
+  json.number issue.github_number
   json.title issue.title
-  json.body issue.body
-  json.author issue.author
-  json.labels issue.labels
-  json.assignee issue.assignee if issue.assignee != nil
-  json.created_at issue.created_at
+  json.body issue.description.squish
+  json.author issue.github_account
+  json.labels issue.labels unless issue.labels.nil?
+  json.assignee issue.assignee unless issue.assignee.nil?
+  json.created_at issue.started_at
+  json.status issue.status
 end

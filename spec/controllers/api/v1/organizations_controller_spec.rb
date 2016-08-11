@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::OrganizationsController, :vcr do
+  before(:each) do
+    @organization = FactoryGirl.create :icalialabs
+    @repositories = FactoryGirl.create_list :repository, rand(1..10), organization: @organization
+    @issues = FactoryGirl.create_list :issue, rand(25..50), repository: @repositories[rand(0..@repositories.length-1)]
+  end
 
   describe "GET #show", type: :controller do
     before(:each) do
@@ -8,9 +13,15 @@ RSpec.describe Api::V1::OrganizationsController, :vcr do
     end
 
     it "returns login, avatar and description of the organization" do
-      expect(assigns(:organization).name).to eq("IcaliaLabs")
-      expect(assigns(:organization).avatar).to eq("https://avatars.githubusercontent.com/u/2523244?v=3")
-      expect(assigns(:organization).description).to eq("We guide our clients through an agile process, staying ahead of their competition and leveraging opportunities with digital products.")
+      expect(assigns(:organization).github_name).to eq(@organization.github_name)
+    end
+
+    it "returns the avatar of the organization" do
+      expect(assigns(:organization).avatar).to eq(@organization.avatar)
+    end
+
+    it "returns the description of the organization" do
+      expect(assigns(:organization).description).to eq(@organization.description)
     end
 
     it "should be succesful" do
@@ -23,16 +34,16 @@ RSpec.describe Api::V1::OrganizationsController, :vcr do
       get :repositories_info, id: 'icalialabs', format: :json
     end
 
-    it "returns total_repos" do
-      expect(assigns(:organization).total_repos).to eq(70)
+    it "returns all repos" do
+      expect(assigns(:organization).repositories.count).to eq(Repository.count)
     end
 
     it "returns public repos" do
-      expect(assigns(:organization).public_repos).to eq(51)
+      expect(assigns(:organization).repositories.is_public.count).to eq(Repository.is_public.count)
     end
 
     it "returns private repos" do
-      expect(assigns(:organization).private_repos).to eq(19)
+      expect(assigns(:organization).repositories.is_private.count).to eq(Repository.is_private.count)
     end
 
     it "should be succesful" do
@@ -45,10 +56,16 @@ RSpec.describe Api::V1::OrganizationsController, :vcr do
       get :issues_info, id: 'icalialabs', format: :json
     end
 
-    it "returns all issues count, open issues count, and closed issues count" do
-      expect(assigns(:issues_count)).to eq(327)
-      expect(assigns(:open_issues_count)).to eq(77)
-      expect(assigns(:closed_issues_count)).to eq(250)
+    it "returns all issues count" do
+      expect(assigns(:issues_count)).to eq(@organization.issues.count)
+    end
+
+    it "returns open issues count" do
+      expect(assigns(:open_issues_count)).to eq(@organization.issues.open.count)
+    end
+
+    it "returns closed issues count" do
+      expect(assigns(:closed_issues_count)).to eq(@organization.issues.closed.count)
     end
 
     it "should be succesful" do
@@ -61,10 +78,16 @@ RSpec.describe Api::V1::OrganizationsController, :vcr do
       get :pull_requests_info, id: 'icalialabs', format: :json
     end
 
-    it "returns all pull requests count, open pull requests count, and closed pull requests count" do
-      expect(assigns(:pull_requests_count)).to eq(640)
-      expect(assigns(:open_pull_requests_count)).to eq(40)
-      expect(assigns(:closed_pull_requests_count)).to eq(600)
+    it "returns all pull requests count" do
+      expect(assigns(:pull_requests_count)).to eq(@organization.pull_requests.count)
+    end
+
+    it "returns open pull requests count" do
+      expect(assigns(:open_pull_requests_count)).to eq(@organization.pull_requests.open.count)
+    end
+
+    it "returns closed pull requests count" do
+      expect(assigns(:closed_pull_requests_count)).to eq(@organization.pull_requests.closed.count)
     end
 
     it "should be succesful" do

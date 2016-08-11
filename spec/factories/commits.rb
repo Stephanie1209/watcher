@@ -8,6 +8,7 @@ FactoryGirl.define do
     branch
 
     factory :specific_commit do
+      author "mayra-cabrera"
       sha '73862f61dce37853755aabfcd6b819c7e7b70f9e'
       total 93
       additions 74

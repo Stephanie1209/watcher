@@ -23,34 +23,39 @@
 
 <body>
   <%= javascript_include_tag "application" %>
-  <nav class="navigation-bar">
-    <ul class="brand-section">
-      <li class="brand-name"><%= link_to "Watcher", root_path, class: "menu-trigger" %></li>
-    </ul>
-
-    <ul class="pull-right">
-      <% if current_user %>
-        <li><%= current_user.email %></li>
-        <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-      <% else %>
-        <%= link_to "Log in", new_user_session_path %>
+  <nav class="admin-nav">
+    <div class="container">
+      <%= link_to root_path do %>
+        <%= image_tag("logo-admin.png", class: "logo-admin") %>
       <% end %>
-    </ul>
+      <ul class="pull-right pad">
+      <% if current_user %>
+        <li class="with-dropdown menu" id= "with-dropdown">
+            <%= image_tag "menu-icon.png", class: "admin-icon first" %>
+            <ul class="dropdown">
+              <li><a href="">Dashboard</a></li>
+              <li><%= link_to "Repositorios", admin_repositories_path %></li>
+              <li><%= link_to "Usuarios", admin_users_path %></li>
+              <li><%= link_to "Settings", edit_admin_user_path(current_user) %></li>
+            </ul>
+      </li>
+      <% end %>
+      <% if current_user %>
+        <li class="with-dropdown user">
+          <%= image_tag "user-icon.png", class: "admin-icon" %>
+            <ul class="dropdown user">
+              <li><%= current_user.name.titleize %></li>
+              <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
+              <% else %>
+              <li><%= link_to "Log in", new_user_session_path %></li>
+            <% end %>
+            </ul>
+        </li>
+      </ul>
+    </div>
   </nav>
-
-  <% if current_user %>
-    <ul class="navigation">
-      <%= link_to "Repositorios", admin_repositories_path %>
-      <li class="divider"></li>
-      <%= link_to "Usuarios", admin_users_path %>
-      <li class="divider"></li>
-      <%= link_to "Settings", edit_admin_user_path(current_user) %>
-    </ul>
-  <% end %>
-
-  <div class="contaner", style= "padding: 0 50px;">
-      <%= yield %>
-  </div>
+  <%= yield %>
+  <%= javascript_include_tag :application %>
 
   </body>
 </html>

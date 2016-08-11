@@ -1,4 +1,5 @@
 .title-admin {
+	@extend %clearfix;
 	color: $admin-primary-color;
 	font-size: 3em;
 	font-weight: 100;
@@ -60,18 +61,28 @@
 
 	a {
 		color: $admin-primary-color;
+		text-decoration: none;
 	}
 }
 
 .data-first{
 	padding: .4em 0 .4em 1em;
+
+	a {
+		color: $admin-primary-color;
+	}
+
+	a:hover {
+		color: $light-gray;
+		text-decoration: none;
+	}
 }
 
 .refresh-icon {
+	height: 3em;
 	img {
 		height: 2em;
 		margin-bottom: 1em;
-		margin-left: 70em;
 		width: 2em;
 	}
 }

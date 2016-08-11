@@ -20,6 +20,7 @@ p {
 	}
 }
 .container {
+	@extend %clearfix;
 	margin: 0 auto;
 	width: 90vw;
 }
@@ -106,7 +107,7 @@ ul {
 		position: absolute;
 		width: 10em;
 		padding: .5em;
-		top: 2.7em;
+		top: 3.2em;
 		right: 0;
 		display: none;
 		transition: all 0.5s ease-in-out;
@@ -114,14 +115,23 @@ ul {
 
 		a {
 			color: $light-gray;
+			text-decoration: none;
 		}
 
 		li {
 			display: block;
 			padding: .3em;
 
+
 			a:hover {
 				color: $admin-primary-color;
+				text-decoration: none;
+			}
+		}
+
+		&.user {
+			li:first-child {
+				border-bottom: .1em solid rgba(0,0,0,0.2);
 			}
 		}
 	}

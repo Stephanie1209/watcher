@@ -1,0 +1,77 @@
+.title-admin {
+	color: $admin-primary-color;
+	font-size: 3em;
+	font-weight: 100;
+	line-height: 1.3;
+	margin: 1em 0 0 0;
+	text-align: left;
+}
+
+.table-admin {
+	@extend %clearfix;
+	background: white;
+	box-shadow: .2em .2em 2em rgba(0,0,0,0.3);
+	color: $admin-primary-color;
+	font-size: 1em;
+	font-weight: 300;
+	margin: 0 auto;
+	padding: .7em;
+	width: 100%;
+
+	.row + .row {
+  margin-top: 0;
+}
+
+[class*="col-"] {
+ 	padding: 8px 0 8px 0;
+}
+}
+
+.list-admin {
+	border-right: 2px solid rgba(0,0,0,0.2);
+	list-style: none;
+	margin: 0;
+	padding: 8px 0;
+	text-align: center;
+
+	&:last-child {
+	border-right: 0;
+	}
+
+	&:first-child {
+	text-align: left;
+	}
+}
+
+.table-admin-title {
+	border-bottom: 2px solid rgba(0,0,0,0.2);
+	display: inline-block;
+	padding: .2em 1em;
+	text-align: center;
+}
+
+.data-admin {
+	padding: .4em 0 .4em 0;
+	text-align: center;
+
+	&:hover {
+		background-color: rgba(0,0,0,0.1);
+	}
+
+	a {
+		color: $admin-primary-color;
+	}
+}
+
+.data-first{
+	padding: .4em 0 .4em 1em;
+}
+
+.refresh-icon {
+	img {
+		height: 2em;
+		margin-bottom: 1em;
+		margin-left: 70em;
+		width: 2em;
+	}
+}

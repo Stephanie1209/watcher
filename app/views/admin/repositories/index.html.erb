@@ -1,18 +1,30 @@
-<%= link_to 'Update', update_all_admin_repositories_path, method: :put %>
-
-<table>
-  <tr>
-    <th>Repositories</th>
-    <th># Issues</th>
-    <th># Pull Requests</th>
-    <th># Commits</th>
-  </tr>
-  <% @repositories.each do |repo|%>
-    <tr>
-      <th><%= link_to repo.name, admin_repository_path(repo) %></th>
-      <th><%= repo.issues.count %></th>
-      <th><%= repo.pull_requests.count %></th>
-      <th><%= link_to repo.commits.count, admin_repository_commits_path(repo) %></th>
-    </tr>
-  <%end%>
-</table>
+<div class="container">
+  <h1 class="title-admin">Repositories</h1>
+  <div>
+  <%= link_to image_tag("refresh-icon.png"), update_all_admin_repositories_path, class: "refresh-icon", method: :put %>
+  </div>
+  <div class="table-admin">
+    <div class="table-header row">
+      <p class="table-admin-title col-6">Repositories</p>
+      <p class="table-admin-title col-2">Issues</p>
+      <p class="table-admin-title col-2">Pull Requests</p>
+      <p class="table-admin-title col-2">Commits</p>
+    </div>
+    <% @repositories.each do |repo|%>
+      <div class="row">
+        <ul class="col-6 list-admin">
+          <li class="data-first"><%= link_to repo.name, admin_repository_path(repo) %></li>
+        </ul>
+        <ul class="col-2 list-admin"> 
+          <li class="data-admin"><%= repo.issues.count %></li>
+        </ul>
+        <ul class="col-2 list-admin"> 
+          <li class="data-admin"><%= repo.pull_requests.count %></li>
+        </ul>
+        <ul class="col-2 list-admin">  
+          <li class="data-admin"><%= link_to repo.commits.count, admin_repository_commits_path(repo) %></li>
+        </ul>
+      </div>
+    <%end%>
+  </div>
+</div>

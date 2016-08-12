@@ -22,3 +22,7 @@ development.env
 coverage/
 spec/fixtures
 spec/fixtures/vcr_cassets/
+
+# Ignore application configuration
+/config/application.yml
+*.env

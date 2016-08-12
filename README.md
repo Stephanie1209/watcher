@@ -13,11 +13,13 @@ To authenticate ourselves we need to generate an [access token](https://develope
 - `repo:status`
 - `notifications`
 
-After that, we just need to set our token as an environment variable (this is configured in [secret.yml](https://github.com/IcaliaLabs/watcher/blob/master/config/secrets.yml#L7) file):
+After that, we just need to create `dev.env` file:
 
 ```bash
-export GITHUB_ACCESS_TOKEN = TOKEN_ID
+$ cp dev.env.example dev.env
 ```
+
+And set our token along with the secret key base. Finally run `docker-compose up` and you're ready to go
 
 ## Usage 
 

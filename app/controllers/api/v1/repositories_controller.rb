@@ -1,36 +1,17 @@
-module Api
-  module V1
-    class RepositoriesController < ApiController
+class Api::V1::RepositoriesController < Api::V1::ApiController
+  before_action :find_organization
 
-      def index
-        @organization = find_github_organization(params[:organization_id])
-        search_repositories_for_organization
-      end
+  def index
+    @repositories = @organization.repositories
+  end
 
-      def show
-        @repository = obtains_repository
-      end
+  def show
+    @repository = @organization.repositories.where("name ilike ?", params[:id]).first
+  end
 
-      private
+  private
 
-      def search_repositories_for_organization
-        @repositories = []
-        repos = @client.org_repos(params[:organization_id], query_options)
-        issues_and_pull_requests = @client.org_issues(params[:organization_id], issues_query_options)
-        repos.each do |repo|
-          issues = issues_and_pull_requests.select { |ipr| ipr[:repository_url] == repo[:url] }
-          @repositories << Repository.new(repo, issues)
-        end
-      end
-
-      def obtains_repository
-        data = @client.repo(full_name)
-        @repository = Repository.new(data)
-      end
-
-      def issues_query_options
-        {filter: "all"}
-      end
-    end
+  def find_organization
+    @organization = Organization.where("github_name ilike ?", params[:organization_id]).first
   end
 end

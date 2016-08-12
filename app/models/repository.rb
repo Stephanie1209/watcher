@@ -1,77 +1,10 @@
-class Repository
-  attr_reader :data, :issues
+class Repository < ActiveRecord::Base
+  belongs_to :organization
+  has_many :branches
+  has_many :issues
+  has_many :pull_requests
+  has_many :commits, through: :branches
 
-  def initialize data, issues = []
-    @data = data
-    @issues = issues
-  end
-
-  def id
-    @data["id"]
-  end
-
-  def name
-    @data["name"]
-  end
-
-  def description
-    @data["description"]
-  end
-
-  def forks_count
-    @data["forks_count"]
-  end
-
-  def stargazers
-    @data["stargazers_count"]
-  end
-
-  def created_at
-    @data["created_at"]
-  end
-
-  def updated_at
-    @data["updated_at"]
-  end
-
-  def pushed_at
-    @data["pushed_at"]
-  end
-
-  def language
-    @data["language"]
-  end
-
-  def issues
-    @issues.select{ |i| !i.pull_request? }
-  end
-
-  def open_issues
-    @issues.select{ |i| !i.pull_request? && i.state == "open"}
-  end
-
-  def closed_issues
-    @issues.select{ |i| !i.pull_request? && i.state == "closed"}
-  end
-
-  def pull_requests
-    @issues.select{ |i| i.pull_request?  }
-  end
-
-  def open_pull_requests
-    @issues.select{ |i| i.pull_request? && i.state == "open" }
-  end
-
-  def closed_pull_requests
-    @issues.select{ |i| i.pull_request? && i.state == "closed" }
-  end
-
-  def open_issues_and_pull_requests_count
-    @data["open_issues"]
-  end
-
-  def github_repository
-    @data["full_name"]
-  end
-
+  scope :is_private, -> { where(is_private: true) }
+  scope :is_public, -> { where(is_private: false) }
 end

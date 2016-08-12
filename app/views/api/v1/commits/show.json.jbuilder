@@ -1,8 +1,8 @@
 json.sha @commit.sha
-json.author @commit.author_name
+json.author @commit.author
 json.message @commit.message
 json.stats do
-  json.additions @commit.stats_additions
-  json.deletions @commit.stats_deletions
-  json.total @commit.stats_total
+  json.additions @commit.additions
+  json.deletions @commit.deletions
+  json.total @commit.total
 end

@@ -12,6 +12,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
+gem 'devise'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -26,7 +27,7 @@ gem "haml"
 gem 'compass-rails', '~> 2.0.0'
 gem 'furatto', '~> 1.3.7'
 gem "octokit", "~> 4.0"
-
+gem "active_model_serializers"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -37,6 +38,7 @@ gem "octokit", "~> 4.0"
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  gem "figaro"
   gem 'byebug'
   gem 'rspec-rails'
   gem 'awesome_print'
@@ -46,9 +48,11 @@ end
 group :test do
   gem 'codeclimate-test-reporter', git: 'https://github.com/codeclimate/ruby-test-reporter.git', branch: 'master', require: nil
   gem 'shoulda-matchers', '~> 2.0'
+  gem 'capybara'
   gem 'vcr', '~> 3.0', '>= 3.0.3'
   gem 'webmock', '~> 2.1'
-  gem 'ffaker'
+  gem 'factory_girl_rails'
+  gem 'faker'
   gem 'rspec-collection_matchers'
 end
 

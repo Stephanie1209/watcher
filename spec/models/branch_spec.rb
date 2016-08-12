@@ -1,23 +1,27 @@
 require 'rails_helper'
 
 RSpec.describe Branch, vcr: true do
-  before(:each) do
-    client = GithubData.new.client
-    branches_data = client.branches("IcaliaLabs/watcher")
-    branches = branches_data.map { |data| Branch.new data }
-    @branch = branches.first
-    binding.pry
+
+  it "has a valid factory" do
+    branch = FactoryGirl.build(:branch)
+    expect(branch).to be_valid
   end
 
-  it "verifies de name of the branch" do
-    expect(@branch.name).to eq("feat/sortable")
-  end
+  it { should belong_to :repository }
 
-  it "verifies the sha of the commit" do
-    expect(@branch.sha).to eq("57a0bcdef17dfc48af8d85976134af9e281ef80c")
-  end
+  it { should have_many :commits }
 
-  it "verifies the url of the commit" do
-    expect(@branch.url).to eq("https://api.github.com/repos/IcaliaLabs/watcher/commits/57a0bcdef17dfc48af8d85976134af9e281ef80c")
+  describe "specific branch" do
+    before(:each) do
+      @branch = FactoryGirl.create :dev
+    end
+
+    it "verifies de name of the branch" do
+      expect(@branch.name).to eq("dev")
+    end
+
+    it "verifies the sha of the commit"
+
+    it "verifies the url of the commit"
   end
 end

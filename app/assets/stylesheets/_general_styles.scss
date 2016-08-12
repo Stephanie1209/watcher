@@ -1,0 +1,142 @@
+*, html, body {
+	box-sizing: border-box;
+	font-family: $font;
+	font-weight: 300;
+}
+
+p {
+	margin: 0;
+}
+
+.issues {
+	.row + .row {
+		margin-top: 0;
+	}
+}
+
+.pull-requests {
+	.row + .row {
+		margin-top: 0;
+	}
+}
+.container {
+	@extend %clearfix;
+	margin: 0 auto;
+	width: 90vw;
+}
+
+.title-dashboard {
+	color: $secondary-color;
+	font-size: 5em;
+	font-weight: 100;
+	line-height: 1.3;
+	margin: .2em .1em 0em .1em;
+	text-align: left;
+
+	&.border {
+		border-bottom: .03em solid $secondary-color;
+		margin: .2em .1em .4em .1em;
+	}
+}
+
+.vertical-align {
+	position: relative;
+	top: 50%;
+	@include transform(translateY(-50%));
+}
+
+.pull-right {
+	float: right;
+}
+
+.pull-left {
+	float: left;
+}
+
+a {
+	text-decoration: none;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+//Nav style
+
+.admin-nav {
+	max-height: 3.5em;
+	width: 100%;
+	border-bottom: .1em solid rgba(0,0,0,0.2);
+	padding: 0;
+
+	li {
+		list-style: none;
+		display: inline-block;
+	}
+
+	.admin-icon {
+		height: 2em;
+		float: right;
+		margin: 0;
+
+		&.first {
+		padding-right: .3em
+		}
+	}
+	.logo-admin {
+	height: 3em;
+	padding: .5em 0 .5em 0;
+	}
+}
+
+.with-dropdown {
+	cursor: pointer;
+	position: relative;
+
+	&.menu {
+		border-right: .1em solid rgba(0,0,0,0.2);
+	}
+
+	.dropdown {
+		background: #FFF;
+		color: $light-gray;
+		border: .1em solid rgba(0,0,0,0.2);
+		border-top: none;
+		box-shadow: .2em .2em .5em rgba(0,0,0,0.2);
+		position: absolute;
+		width: 10em;
+		padding: .5em;
+		top: 3.2em;
+		right: 0;
+		display: none;
+		transition: all 0.5s ease-in-out;
+		text-align: center;
+
+		a {
+			color: $light-gray;
+			text-decoration: none;
+		}
+
+		li {
+			display: block;
+			padding: .3em;
+
+
+			a:hover {
+				color: $admin-primary-color;
+				text-decoration: none;
+			}
+		}
+
+		&.user {
+			li:first-child {
+				border-bottom: .1em solid rgba(0,0,0,0.2);
+			}
+		}
+	}
+}
+
+.pad {
+	padding: .8em 0;
+}

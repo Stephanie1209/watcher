@@ -1,0 +1,51 @@
+.commits-header {
+	align-items: center;
+	color: $admin-primary-color;
+	display: inline-block;
+	display: flex;
+  justify-content: space-between;
+  padding: 0 0 2em 0;
+  width: 90vw;
+
+	p {
+		display: inline-block;
+	}
+
+	img {
+		width: 2em;
+	}
+
+	.table-tabs-admin {
+		margin: 0;
+	}
+}
+
+.calendar {
+	position: relative;
+
+	align-items: center;
+	justify-content: center;
+	display: flex;
+
+		.calendar-circle {
+		background: $admin-primary-color;
+		border-radius: 50%;
+		color: #FFF;
+		display: flex;
+		height: 3.5em;
+		line-height: 1em;
+		padding: 2em;
+		width: 3.5em;
+
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+	}
+
+	.calendar-line {
+		border-bottom: 2px solid $admin-primary-color;
+		display: inline-block;
+		margin: 0;
+		width: 25em;
+	}
+}

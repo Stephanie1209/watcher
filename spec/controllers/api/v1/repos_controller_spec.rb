@@ -12,7 +12,7 @@ RSpec.describe Api::V1::ReposController, vcr: true do
 
   describe "GET#all_issues", type: :controller do
     before(:each) do
-      get :all_issues, id: 'icalialabs', repository_id: 'watcher', format: :json
+      get :all_issues, organization_id: 'icalialabs', repository_id: 'watcher', format: :json
     end
 
     it "returns the correct number of open and closed issues" do
@@ -26,7 +26,7 @@ RSpec.describe Api::V1::ReposController, vcr: true do
 
   describe "GET#open_issues", type: :controller do
     before(:each) do
-      get :open_issues, id: 'icalialabs', repository_id: 'watcher', format: :json
+      get :open_issues, organization_id: 'icalialabs', repository_id: 'watcher', format: :json
     end
 
     it "returns the correct number of open issues" do
@@ -40,7 +40,7 @@ RSpec.describe Api::V1::ReposController, vcr: true do
 
   describe "GET#closed_issues", type: :controller do
     before(:each) do
-      get :closed_issues, id: 'icalialabs', repository_id: 'watcher', format: :json
+      get :closed_issues, organization_id: 'icalialabs', repository_id: 'watcher', format: :json
     end
 
     it "returns the correct number of closed issues" do
@@ -54,7 +54,7 @@ RSpec.describe Api::V1::ReposController, vcr: true do
 
   describe "GET#all_pull_requests", type: :controller do
     before(:each) do
-      get :all_pull_requests, id: 'icalialabs', repository_id: 'watcher', format: :json
+      get :all_pull_requests, organization_id: 'icalialabs', repository_id: 'watcher', format: :json
     end
 
     it "returns the correct number of open and closed pull requests" do
@@ -68,7 +68,7 @@ RSpec.describe Api::V1::ReposController, vcr: true do
 
   describe "GET#open_pull_requests", type: :controller do
     before(:each) do
-      get :open_pull_requests, id: 'icalialabs', repository_id: 'watcher', format: :json
+      get :open_pull_requests, organization_id: 'icalialabs', repository_id: 'watcher', format: :json
     end
 
     it "returns the correct number of open pull requests" do
@@ -82,7 +82,7 @@ RSpec.describe Api::V1::ReposController, vcr: true do
 
   describe "GET#closed_pull_requests", type: :controller do
     before(:each) do
-      get :closed_pull_requests, id: 'icalialabs', repository_id: 'watcher', format: :json
+      get :closed_pull_requests, organization_id: 'icalialabs', repository_id: 'watcher', format: :json
     end
 
     it "returns the correct number of closed pull requests" do
@@ -96,7 +96,7 @@ RSpec.describe Api::V1::ReposController, vcr: true do
 
   describe "GET#branches", type: :controller do
     before(:each) do
-      get :branches, id: 'icalialabs', repository_id: 'watcher', format: :json
+      get :branches, organization_id: 'icalialabs', repository_id: 'watcher', format: :json
     end
 
     it "returns the correct number of branches" do

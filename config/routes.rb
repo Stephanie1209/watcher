@@ -31,13 +31,13 @@ Rails.application.routes.draw do
     namespace :v1 do
       get 'commits/:organization_id/:repo_id/:sha', to: 'commits#show'
       get 'commits/:organization_id/:repo_id', to: 'commits#index'
-      get "/repos/:id/:repository_id/issues" => "repos#all_issues"
-      get "/repos/:id/:repository_id/open_issues" => "repos#open_issues"
-      get "/repos/:id/:repository_id/closed_issues" => "repos#closed_issues"
-      get "/repos/:id/:repository_id/pull_requests" => "repos#all_pull_requests"
-      get "/repos/:id/:repository_id/open_pull_requests" => "repos#open_pull_requests"
-      get "/repos/:id/:repository_id/closed_pull_requests" => "repos#closed_pull_requests"
-      get "/repos/:id/:repository_id/branches" => "repos#branches"
+      get "/repos/:organization_id/:repository_id/issues" => "repos#all_issues"
+      get "/repos/:organization_id/:repository_id/open_issues" => "repos#open_issues"
+      get "/repos/:organization_id/:repository_id/closed_issues" => "repos#closed_issues"
+      get "/repos/:organization_id/:repository_id/pull_requests" => "repos#all_pull_requests"
+      get "/repos/:organization_id/:repository_id/open_pull_requests" => "repos#open_pull_requests"
+      get "/repos/:organization_id/:repository_id/closed_pull_requests" => "repos#closed_pull_requests"
+      get "/repos/:organization_id/:repository_id/branches" => "repos#branches"
       resources :organizations, only: [:show, :issues_info] do
         get :issues_info, on: :member
         get :pull_requests_info, on: :member

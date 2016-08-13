@@ -1,20 +1,25 @@
-<%= link_to "Abiertos", admin_repository_issues_path(@repository.name, status: "open"), remote: true, class: "open" %>
-<%= link_to "Todos", admin_repository_issues_path(@repository.name), remote: true, class: "all" %>
-<%= link_to "Cerrados", admin_repository_issues_path(@repository.name, status: "closed"), remote: true, class: "closed" %>
-
-<%= button_to "Actualizar", update_all_admin_repository_issues_path(@repository.name), method: :put %>
-
-<table>
-  <tr>
-    <th>ID</th>
-    <th>Título</th>
-    <th>Autor</th>
-    <th>Asignados</th>
-    <th>Creado en</th>
-    <th>Etiquetas</th>
-    <th>Status</th>
-  </tr>
-  <tbody class="issues_section">
-    <%= render 'issues_section', issues: @issues %>
-  </tbody>
-</table>
+<div class="container">
+  <h1 class="title-admin-table">Issues Watcher</h1>
+    <section class="header">
+      <%= link_to image_tag("refresh-icon.png"), update_all_admin_repository_issues_path(@repository.name), class: "refresh-icon pull-right", method: :put %>
+      <button class="table-tabs-admin"><%= link_to "Todos", admin_repository_issues_path(@repository.name), remote: true %></button>
+      <button class="table-tabs-admin"><%= link_to "Abiertos", admin_repository_issues_path(@repository.name, status: "open"), remote: true %></button>
+      <button class="table-tabs-admin"><%= link_to "Cerrados", admin_repository_issues_path(@repository.name, status: "closed"), remote: true %></button>
+    </section>
+  <div class="table-admin issues">
+      <div class="table-header row">
+        <p class="table-admin-title col-1">ID</p>
+        <p class="table-admin-title col-3">Título</p>
+        <p class="table-admin-title col-2">Autor</p>
+        <p class="table-admin-title col-2">Asignados</p>
+        <p class="table-admin-title col-2">Creado en</p>
+        <p class="table-admin-title col-1">Etiquetas</p>
+        <p class="table-admin-title col-1">Status</p>
+      </div>
+    <table>
+      <tbody class="issues_section">
+        <%= render 'issues_section', issues: @issues %>
+      </tbody>
+    </table>
+  </div>
+</div>

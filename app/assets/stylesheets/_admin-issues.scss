@@ -12,16 +12,29 @@
 	text-align: center;
 	transition-duration: 0.4s;
 
-		&:active {
-			border: .1em solid rgba(0,0,0,0.4);
-			color: rgba(0,0,0,0.4);
-			outline: 0;
-		}
-
 		&:hover {
 			background: $admin-primary-color;
 			border: .1em solid $admin-primary-color;
 			color: #FFF;
+		}
+
+		a {
+			color: $admin-primary-color;
+			font-size: 1em;
+			text-decoration: none;
+
+			&:hover {
+				color: #FFF;
+				font-size: 1em;
+				text-decoration: none;
+			}
+
+			&:active {
+			border: .1em solid rgba(0,0,0,0.4);
+			color: rgba(0,0,0,0.4);
+			outline: 0;
+			text-decoration: none;
+			}	
 		}
 }
 
@@ -35,6 +48,25 @@
 		&:last-child{
 		border-right: 0;
 		}
+}
+
+.issues {
+	.list-admin {
+	text-align: center;
+		&:first-child {
+			text-align: center;
+				a {
+					color: $admin-primary-color;
+					cursor: pointer;
+					text-decoration: none;
+					 	
+					 	&:hover {
+					 		color: $light-gray;
+					 		text-decoration: none;
+					 	}
+				}
+		}
+	}
 }
 
 .title-admin-table {

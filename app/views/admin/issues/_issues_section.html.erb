@@ -1,11 +1,11 @@
 <% issues.each do |issue| %>
-  <tr>
-    <td><%= link_to "#{issue.github_id}", admin_repository_issue_path(@repository.name, issue) %></td>
-    <td><%= issue.title %></td>
-    <td><%= issue.github_account %></td>
-    <td><%= issue.assignee %></td>
-    <td><%= issue.started_at %></td>
-    <td><%= issue.labels %></td>
-    <td><%= issue.status %></td>
-  </tr>
+  <div class="row">
+    <ul class="col-1 list-admin"><%= link_to "#{issue.github_id}", admin_repository_issue_path(@repository.name, issue) %></ul>
+    <ul class="col-3 list-admin"><%= issue.title %></ul>
+    <ul class="col-2 list-admin"><%= issue.github_account %></ul>
+    <ul class="col-2 list-admin"><%= issue.assignee %></ul>
+    <ul class="col-2 list-admin"><%= issue.started_at %></ul>
+    <ul class="col-1 list-admin"><%= issue.labels %></ul>
+    <ul class="col-1 list-admin"><%= issue.status %></ul>
+  </div>
 <% end %>

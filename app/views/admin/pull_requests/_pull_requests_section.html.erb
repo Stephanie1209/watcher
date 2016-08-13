@@ -1,11 +1,11 @@
 <% pull_requests.each do |pull_request| %>
-  <tr>
-    <td><%= link_to "#{pull_request.github_id}", admin_repository_pull_request_path(@repository.name, pull_request) %></td>
-    <td><%= pull_request.title %></td>
-    <td><%= pull_request.github_account %></td>
-    <td><%= pull_request.assignee %></td>
-    <td><%= pull_request.started_at %></td>
-    <td><%= pull_request.labels %></td>
-    <td><%= pull_request.status %></td>
-  </tr>
+  <div class="row">
+    <ul class="col-1 list-admin"><%= link_to "#{pull_request.github_id}", admin_repository_pull_request_path(@repository.name, pull_request) %></ul>
+    <ul class="col-3 list-admin"><%= pull_request.title %></ul>
+    <ul class="col-2 list-admin"><%= pull_request.github_account %></ul>
+    <ul class="col-2 list-admin"><%= pull_request.assignee %></ul>
+    <ul class="col-2 list-admin"><%= pull_request.started_at %></ul>
+    <ul class="col-1 list-admin"><%= pull_request.labels %></ul>
+    <ul class="col-1 list-admin"><%= pull_request.status %></ul>
+  </div>
 <% end %>

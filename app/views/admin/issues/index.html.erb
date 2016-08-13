@@ -1,12 +1,12 @@
 <div class="container">
-  <h1 class="title-admin-table">Issues Watcher</h1>
+  <h1 class="title-admin-table">Issues</h1>
     <section class="header">
       <%= link_to image_tag("refresh-icon.png"), update_all_admin_repository_issues_path(@repository.name), class: "refresh-icon pull-right", method: :put %>
       <button class="table-tabs-admin"><%= link_to "Todos", admin_repository_issues_path(@repository.name), remote: true %></button>
       <button class="table-tabs-admin"><%= link_to "Abiertos", admin_repository_issues_path(@repository.name, status: "open"), remote: true %></button>
       <button class="table-tabs-admin"><%= link_to "Cerrados", admin_repository_issues_path(@repository.name, status: "closed"), remote: true %></button>
     </section>
-  <div class="table-admin issues">
+  <div class="table-admin align">
       <div class="table-header row">
         <p class="table-admin-title col-1">ID</p>
         <p class="table-admin-title col-3">Título</p>

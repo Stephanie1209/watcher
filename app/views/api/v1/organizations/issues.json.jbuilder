@@ -1,4 +1,4 @@
-json.issues issues do |issue|
+json.issues @issues do |issue|
   json.id issue.id
   json.github_id issue.github_id
   json.number issue.github_number

@@ -19,6 +19,14 @@ class Api::V1::OrganizationsController < Api::V1::ApiController
     @closed_pull_requests_count = @organization.pull_requests.closed.count
   end
 
+  def issues
+    @issues = @organization.issues.all
+  end
+
+  def pull_requests
+    @pull_requests = @organization.pull_requests.all
+  end
+
   private
 
   def find_organization

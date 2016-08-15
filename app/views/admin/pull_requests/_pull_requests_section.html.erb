@@ -1,4 +1,4 @@
-<% pull_requests.each do |pull_request| %>
+<% pull_requests.order_by_newest.each do |pull_request| %>
   <tr>
     <td><%= link_to "#{pull_request.github_number}", admin_repository_pull_request_path(@repository.name, pull_request) %></td>
     <td><%= pull_request.title %></td>

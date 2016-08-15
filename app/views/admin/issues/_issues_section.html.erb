@@ -1,4 +1,4 @@
-<% issues.each do |issue| %>
+<% issues.order_by_newest.each do |issue| %>
   <tr>
     <td><%= link_to "#{issue.github_number}", admin_repository_issue_path(@repository.name, issue) %></td>
     <td><%= issue.title %></td>

@@ -5,7 +5,7 @@ class Admin::RepositoriesController < AdminController
   end
 
   def show
-    @repository = Repository.find(params[:id])
+    @repository = Repository.find_by_name(params[:id])
   end
 
   def update_all

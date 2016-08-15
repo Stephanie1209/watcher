@@ -1,6 +1,6 @@
 <% pull_requests.each do |pull_request| %>
   <tr>
-    <td><%= link_to "#{pull_request.github_id}", admin_repository_pull_request_path(@repository.name, pull_request) %></td>
+    <td><%= link_to "#{pull_request.github_number}", admin_repository_pull_request_path(@repository.name, pull_request) %></td>
     <td><%= pull_request.title %></td>
     <td><%= pull_request.github_account %></td>
     <td><%= pull_request.assignee %></td>

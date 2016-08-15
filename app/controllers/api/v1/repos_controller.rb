@@ -32,7 +32,7 @@ class Api::V1::ReposController < Api::V1::ApiController
   private
 
   def find_repository
-    organization = Organization.where("github_name ilike ?", params[:id]).first
+    organization = Organization.where("github_name ilike ?", params[:organization_id]).first
     @repository = organization.repositories.where("name ilike ?", params[:repository_id]).first
   end
 end

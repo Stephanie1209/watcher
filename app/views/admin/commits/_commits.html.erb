@@ -6,6 +6,7 @@
     <th>Date</th>
     <th>Added Lines</th>
     <th>Deleted Lines</th>
+    <th>Total Lines</th>
   </tr>
   <% @commits.order_by_newest.each do |commit| %>
   <tr>
@@ -15,6 +16,7 @@
     <td><%= commit.committed_at.strftime("%d/%B/%Y") %></td>
     <td><%= commit.additions.to_i %></td>
     <td><%= commit.deletions.to_i %></td>
+    <td><%= commit.total.to_i %></td>
   </tr>
   <% end %>
 </table>

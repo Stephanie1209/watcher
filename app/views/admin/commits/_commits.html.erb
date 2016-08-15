@@ -7,7 +7,7 @@
     <th>Added Lines</th>
     <th>Deleted Lines</th>
   </tr>
-  <% @commits.each do |commit| %>
+  <% @commits.order_by_newest.each do |commit| %>
   <tr>
     <td><%= link_to commit.sha, "https://github.com/#{ENV["github_organization"]}/#{@repository.name}/commit/#{commit.sha}", :target => "_blank" %></td>
     <td><%= commit.author %></td>

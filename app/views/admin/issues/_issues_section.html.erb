@@ -4,7 +4,7 @@
     <td><%= issue.title %></td>
     <td><%= issue.github_account %></td>
     <td><%= issue.assignee %></td>
-    <td><%= issue.started_at %></td>
+    <td><%= issue.started_at.strftime("%d/%B/%Y") %></td>
     <td><%= issue.labels %></td>
     <td><%= issue.status %></td>
   </tr>

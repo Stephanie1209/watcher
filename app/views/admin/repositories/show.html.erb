@@ -1,4 +1,4 @@
-<%= link_to 'Actualizar', admin_repository_path(@repository), method: :put %>
+<%= link_to 'Actualizar', admin_repository_path(@repository.name), method: :put %>
 
 <h1> <%= @repository.name %> </h1>
 <p> <b> stars: </b> <%= @repository.stars %> </p>

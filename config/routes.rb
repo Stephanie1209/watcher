@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get "repositories/:name" => "repositories#show", as: :repository, constraints: { name: /[^\/]+/ }
   namespace :admin do
     resources :users
-    resources :repositories, only: [:index, :show, :update] do
+    resources :repositories, only: [:index, :show, :update], :constraints => { :id => /[^\/]+/ } do
       put 'update_all', on: :collection
       get 'commits/by_branch' => 'commits#find_by_branch'
       resources :issues, only: [:index, :show, :update] do

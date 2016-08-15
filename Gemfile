@@ -25,7 +25,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'httparty'
 gem "haml"
 gem 'compass-rails', '~> 2.0.0'
-gem 'furatto', '~> 1.3.7'
 gem "octokit", "~> 4.0"
 gem "active_model_serializers"
 # Use ActiveModel has_secure_password

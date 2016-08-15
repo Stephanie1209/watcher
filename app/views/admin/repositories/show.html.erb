@@ -1,6 +1,6 @@
-<%= link_to 'Update', admin_repository_path(@repository), method: :put %>
+<%= link_to 'Actualizar', admin_repository_path(@repository), method: :put %>
 
 <h1> <%= @repository.name %> </h1>
 <p> <b> stars: </b> <%= @repository.stars %> </p>
 <p> <b> forks_count: </b><%= @repository.forks_count %> </p>
-<p> <b> started at: </b><%= @repository.started_at %> </p>
+<p> <b> started at: </b><%= @repository.started_at.strftime("%d/%B/%Y") %> </p>

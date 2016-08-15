@@ -13,15 +13,15 @@
     <% @repositories.each do |repo|%>
       <div class="row">
         <ul class="col-6 list-admin">
-          <li class="data-first"><%= link_to repo.name, admin_repository_path(repo) %></li>
+          <li class="data-first"><%= link_to repo.name, admin_repository_path(repo.name) %></li>
         </ul>
-        <ul class="col-2 list-admin"> 
+        <ul class="col-2 list-admin">
           <li class="data-admin"><%= repo.issues.count %></li>
         </ul>
-        <ul class="col-2 list-admin"> 
+        <ul class="col-2 list-admin">
           <li class="data-admin"><%= repo.pull_requests.count %></li>
         </ul>
-        <ul class="col-2 list-admin">  
+        <ul class="col-2 list-admin">
           <li class="data-admin"><%= link_to repo.commits.count, admin_repository_commits_path(repo) %></li>
         </ul>
       </div>

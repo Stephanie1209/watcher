@@ -16,13 +16,13 @@
           <li class="data-first"><%= link_to repo.name, admin_repository_path(repo.name) %></li>
         </ul>
         <ul class="col-2 list-admin">
-          <li class="data-admin"><%= repo.issues.count %></li>
+          <li class="data-admin"><%= link_to repo.issues.count, admin_repository_issues_path(repo.name) %></li>
         </ul>
         <ul class="col-2 list-admin">
-          <li class="data-admin"><%= repo.pull_requests.count %></li>
+          <li class="data-admin"><%= link_to repo.pull_requests.count, admin_repository_pull_requests_path(repo.name) %></li>
         </ul>
         <ul class="col-2 list-admin">
-          <li class="data-admin"><%= link_to repo.commits.count, admin_repository_commits_path(repo) %></li>
+          <li class="data-admin"><%= link_to repo.commits.count, admin_repository_commits_path(repo.name) %></li>
         </ul>
       </div>
     <%end%>

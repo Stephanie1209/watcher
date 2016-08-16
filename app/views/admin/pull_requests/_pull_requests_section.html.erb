@@ -1,11 +1,19 @@
 <% pull_requests.order_by_newest.each do |pull_request| %>
-  <tr>
-    <td><%= link_to "#{pull_request.github_number}", admin_repository_pull_request_path(@repository.name, pull_request) %></td>
-    <td><%= pull_request.title %></td>
-    <td><%= pull_request.github_account %></td>
-    <td><%= pull_request.assignee %></td>
-    <td><%= pull_request.started_at.strftime("%d/%B/%Y") %></td>
-    <td><%= pull_request.labels %></td>
-    <td><%= pull_request.status %></td>
-  </tr>
+  <div class="row">
+    <ul class="col-1 list-admin"><%= link_to "#{pull_request.github_number}", admin_repository_pull_request_path(@repository.name, pull_request) %></ul>
+    <ul class="col-3 list-admin"><%= pull_request.title.truncate(30) %></ul>
+    <ul class="col-2 list-admin"><%= pull_request.github_account %></ul>
+    <% if pull_request.assignee %>
+    		<ul class="col-2 list-admin"><%= pull_request.assignee %></ul>
+			<% else %>
+	      <ul class="col-2 list-admin">null</ul>
+    <% end %>
+    <ul class="col-2 list-admin"><%= pull_request.started_at.strftime("%d/%B/%Y")  %></ul>
+    <% if pull_request.labels %>
+    		<ul class="col-1 list-admin"><%= pull_request.labels %></ul>
+    	<% else %>
+    		<ul class="col-1 list-admin">null</ul>
+    <% end %>
+    <ul class="col-1 list-admin"><%= pull_request.status %></ul>
+  </div>
 <% end %>

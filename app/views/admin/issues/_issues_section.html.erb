@@ -1,11 +1,19 @@
 <% issues.order_by_newest.each do |issue| %>
-  <tr>
-    <td><%= link_to "#{issue.github_number}", admin_repository_issue_path(@repository.name, issue) %></td>
-    <td><%= issue.title %></td>
-    <td><%= issue.github_account %></td>
-    <td><%= issue.assignee %></td>
-    <td><%= issue.started_at.strftime("%d/%B/%Y") %></td>
-    <td><%= issue.labels %></td>
-    <td><%= issue.status %></td>
-  </tr>
+  <div class="row">
+    <ul class="col-1 list-admin"><%= link_to "#{issue.github_number}", admin_repository_issue_path(@repository.name, issue) %></ul>
+    <ul class="col-3 list-admin"><%= issue.title.truncate(30) %></ul>
+    <ul class="col-2 list-admin"><%= issue.github_account %></ul>
+    <% if issue.assignee %>
+        <ul class="col-2 list-admin"><%= issue.assignee %></ul>
+      <% else %>
+        <ul class="col-2 list-admin">null</ul>
+      <% end %>
+    <ul class="col-2 list-admin"><%= issue.started_at.strftime("%d/%B/%Y")  %></ul>
+    <% if issue.labels %>
+        <ul class="col-1 list-admin"><%= issue.labels.truncate(10) %></ul>
+      <% else %>
+         <ul class="col-1 list-admin">null</ul>
+      <% end %>
+    <ul class="col-1 list-admin"><%= issue.status %></ul>
+  </div>
 <% end %>

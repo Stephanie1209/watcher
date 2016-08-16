@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require furatto
 //= require turbolinks
 //= require dropdown
 //= require_tree .

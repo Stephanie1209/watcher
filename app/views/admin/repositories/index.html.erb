@@ -1,8 +1,8 @@
 <div class="container">
-  <h1 class="title-admin">Repositories</h1>
-  <div class="refresh-icon">
-  <%= link_to image_tag("refresh-icon.png"), update_all_admin_repositories_path, class: "pull-right", method: :put %>
-  </div>
+  <section class="repo-header">
+    <%= link_to image_tag("refresh-icon.png"), update_all_admin_repositories_path, class: "refresh-icon pull-right", method: :put %>
+    <h1 class="title-admin">Repositories</h1>
+  </section>
   <div class="table-admin">
     <div class="table-header row">
       <p class="table-admin-title col-6">Repositories</p>

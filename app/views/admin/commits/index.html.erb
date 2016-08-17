@@ -3,23 +3,22 @@
   <h1 class="title-admin-table">Commits</h1>
   <section class="commits-header">
     <div class="branch-section">
-<%= form_tag(admin_repository_commits_path, method: "GET") do %>
-  <p>Branch: </p>
-  <%= select_tag :branch_id, options_for_select(branches_combo(@repository.branches), "master"), id: "find_by_branch" %>
+      <%= form_tag(admin_repository_commits_path, method: "GET") do %>
+      <p>Branch: </p>
+      <%= select_tag :branch_id, options_for_select(branches_combo(@repository.branches), "master"), id: "find_by_branch" %>
   	</div>
   	<div class="calendar">
       <div class="calendar-circle">
-  <%= date_field_tag :since, params[:since], as: :date_picker %>
-  </div>
+        <%= date_field_tag :since, params[:since], as: :date_picker %>
+      </div>
       <div class="calendar-line"></div>
       <div class="calendar-circle">
-  <%= date_field_tag :until, params[:until], as: :date_picker %>
-  <%= submit_tag 'search' %>
-<% end %>
- </div>
+        <%= date_field_tag :until, params[:until], as: :date_picker %>
+        <%= submit_tag 'search' %>
+        <% end %>
+      </div>
     </div>
-    <%= link_to image_tag("refresh-icon.png"), update_all_admin_repository_issues_path(@repository.name), class: "refresh-icon pull-right", method: :put %>
-</section>
+  </section>
   <div class="table-admin align">
 <div id="commits">
   <%= render 'commits' %>

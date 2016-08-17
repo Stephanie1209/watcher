@@ -1,13 +1,18 @@
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Link</th>
-  </tr>
-  <% @users.each do |user| %>
-    <tr>
-      <td><%= user.name %></td>
-      <td><%= link_to "Edit", edit_admin_user_path(user) %></td>
-    </tr>
-  <% end %>
-</table>
+<div class= "container">
+  <h1 class="title-admin-table">Users</h1>
+  <div class="table-admin align">
+    <div class="table-header row">
+      <p class="table-admin-title col-5">Name</p>
+      <p class="table-admin-title col-5">Email</p>
+      <p class="table-admin-title col-2">Link</p>
+    </div>
+    <% @users.each do |user| %>
+      <div class="row">
+        <ul class="col-5 list-admin"><%= user.name %></ul>
+        <ul class="col-5 list-admin"><%= user.email %></ul>
+        <ul class="col-2 list-admin"><%= link_to image_tag("edit-icon.png", class: "edit-icon"), edit_admin_user_path(user) %></ul>  
+      </div>
+    <% end %>
+  </div>
+</div>
 

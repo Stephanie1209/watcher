@@ -1,20 +1,23 @@
-<table>
-  <tr>
-    <th>SHA</th>
-    <th>Author</th>
-    <th>Message</th>
-    <th>Date</th>
-    <th>Added Lines</th>
-    <th>Deleted Lines</th>
-  </tr>
+<div class="table-header row">
+    <p class="table-admin-title col-2">SHA</p>
+    <p class="table-admin-title col-3">Message</p>
+    <p class="table-admin-title col-1">Author</p>
+    <p class="table-admin-title col-2">Date</p>
+    <p class="table-admin-title col-2">Added Lines</p>
+    <p class="table-admin-title col-2">Deleted Lines</p>
+</div>
   <% @commits.each do |commit| %>
-  <tr>
-    <td><%= link_to commit.sha, "https://github.com/#{ENV["github_organization"]}/#{@repository.name}/commit/#{commit.sha}", :target => "_blank" %></td>
-    <td><%= commit.author %></td>
-    <td><%= commit.message %></td>
-    <td><%= commit.committed_at.strftime("%d/%B/%Y") %></td>
-    <td><%= commit.additions.to_i %></td>
-    <td><%= commit.deletions.to_i %></td>
-  </tr>
+   <div class="row">
+    <ul class="col-2 list-admin"><%= link_to commit.sha.truncate(20), "https://github.com/#{ENV["github_organization"]}/#{@repository.name}/commit/#{commit.sha}", :target => "_blank" %></ul>
+    <ul class="col-3 list-admin"><%= commit.message.truncate(30) %></ul>
+    <% if commit.author %>
+      <ul class="col-1 list-admin"><%= commit.author %></ul>
+    <% else %>
+       <ul class="col-1 list-admin">null</ul>
+    <% end %>
+    <ul class="col-2 list-admin"><%= commit.committed_at.strftime("%d/%B/%Y") %></ul>
+    <ul class="col-2 list-admin"><%= commit.additions.to_i %></ul>
+    <ul class="col-2 list-admin"><%= commit.deletions.to_i %></ul>
+  </div>
   <% end %>
-</table>
+  

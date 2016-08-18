@@ -39,6 +39,12 @@ class Api::V1::OrganizationsController < Api::V1::ApiController
     end
   end
 
+  def stats
+    @total = Commit.sum(:total)
+    @additions = Commit.sum(:additions)
+    @deletions = Commit.sum(:deletions)
+  end
+
   private
 
   def find_organization

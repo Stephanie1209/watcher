@@ -45,6 +45,7 @@ Rails.application.routes.draw do
         get :issues_info, on: :member
         get :pull_requests_info, on: :member
         get :repositories_info, on: :member
+        get :stats, on: :member
         resources :repositories, only: [:index, :show] do
           get :commits
         end

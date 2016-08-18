@@ -27,6 +27,18 @@ class Api::V1::OrganizationsController < Api::V1::ApiController
     @pull_requests = @organization.pull_requests.all
   end
 
+  def commits
+    if params[:since] && params[:to]
+      @commits = Commit.between_dates(params[:since], params[:to]).group(:author).order('count_all desc').count
+    elsif params[:since]
+      @commits = Commit.since(params[:since]).group(:author).order('count_all desc').count
+    elsif params[:to]
+      @commits = Commit.to(params[:to]).group(:author).order('count_all desc').count
+    else
+      @commits = Commit.group(:author).order('count_all desc').count
+    end
+  end
+
   private
 
   def find_organization

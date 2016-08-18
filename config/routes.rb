@@ -39,12 +39,15 @@ Rails.application.routes.draw do
       get "/repos/:organization_id/:repository_id/closed_pull_requests" => "repos#closed_pull_requests"
       get "/repos/:organization_id/:repository_id/branches" => "repos#branches"
       resources :organizations, only: [:show, :issues_info] do
+        get :commits, on: :member
         get :issues, on: :member
         get :pull_requests, on: :member
         get :issues_info, on: :member
         get :pull_requests_info, on: :member
         get :repositories_info, on: :member
-        resources :repositories, only: [:index, :show]
+        resources :repositories, only: [:index, :show] do
+          get :commits
+        end
       end
     end
   end

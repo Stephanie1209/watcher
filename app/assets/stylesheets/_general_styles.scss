@@ -107,7 +107,7 @@ ul {
 		position: absolute;
 		width: 10em;
 		padding: .5em;
-		top: 3.2em;
+		top: 2.7em;
 		right: 0;
 		display: none;
 		transition: all 0.5s ease-in-out;
@@ -140,3 +140,23 @@ ul {
 .pad {
 	padding: .8em 0;
 }
+
+.edit-icon {
+	height: 2em;
+	width: 2em;
+}
+
+.info-icon {
+	height: 3em;
+	width: 3em;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active,
+input:-webkit-autofill:focus {
+  background-color: #FFFFFF !important;
+  color: #555 !important;
+  -webkit-box-shadow: 0 0 0 1000px white inset !important;
+  -webkit-text-fill-color: #555555 !important;
+ }

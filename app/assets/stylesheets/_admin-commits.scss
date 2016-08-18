@@ -4,7 +4,7 @@
 	display: inline-block;
 	display: flex;
   justify-content: space-between;
-  padding: 0 0 2em 0;
+  padding: 0 18em 2em 0;
   width: 90vw;
 
 	p {
@@ -47,5 +47,28 @@
 		display: inline-block;
 		margin: 0;
 		width: 25em;
+	}
+}
+
+.branch-section {
+	select {
+	background: #FFF;
+	border: .1em solid $admin-primary-color;
+	border-radius: 1em;
+	color: $admin-primary-color;
+	cursor: pointer;
+	display: inline-block;
+	font-weight: 300;
+	margin: 0 .5em 1em 0;
+	min-width: 5.5em;
+	padding: 0 1em;
+	text-align: center;
+	transition-duration: 0.4s;
+
+		&:hover {
+		background: $admin-primary-color;
+		border: .1em solid $admin-primary-color;
+		color: #FFF;
+		}
 	}
 }

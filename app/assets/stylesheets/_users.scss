@@ -1,0 +1,77 @@
+.settings {
+	font-size: .7em;
+ 	margin: .5em 0 4em 0;
+
+ 		label {
+ 			color: $admin-primary-color;
+ 			font-size: 2em;
+ 			font-weight: 100;
+ 			margin: 1em;
+ 		}
+
+ 		input {
+ 			border: 1px solid #BBB;
+ 			color: $light-gray;
+ 			font-size: 1.5em;
+ 			height: 2em;
+ 			width: 87%;
+ 		}
+
+ 		&.box-size {
+			input {
+				width: 73%;
+			}
+
+			label {
+				margin-right: .3em;
+			}
+
+			em {
+				margin-right: 1em;
+			}
+ 		}
+
+ 		&.box-size-second {
+ 			input {
+ 				width: 72%;
+ 			}
+ 		}
+ }
+
+ .actions {
+ 		button {
+ 			margin-right: .5em;
+ 		}
+ }
+
+.user-name {
+	color: $admin-primary-color;
+	font-size: 2em;
+	font-weight: 100;
+}
+
+.login-button {
+		float: right;
+
+		a {
+		background: #FFF;
+    border: 0.1em solid #006f8b;
+    border-radius: 1em;
+    color: #006f8b;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 300;
+    margin: 0 .5em 1em 0;
+    min-width: 5.5em;
+    padding: 0 1em;
+    text-align: center;
+    transition-duration: 0.4s;
+
+    	&:hover {
+				background-color: $admin-primary-color;
+				color: #FFF;
+				border: 0.1em solid $admin-primary-color;
+    	}
+		}
+	
+}

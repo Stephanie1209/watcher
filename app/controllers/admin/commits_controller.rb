@@ -1,7 +1,7 @@
 class Admin::CommitsController < AdminController
   def index
     @commits = []
-    @repository = Repository.find(params[:repository_id])
+    @repository = Repository.find_by_name(params[:repository_id])
     commits_for params[:branch_id], params[:since], params[:until]
   end
 

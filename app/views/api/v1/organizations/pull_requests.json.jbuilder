@@ -1,4 +1,4 @@
-json.pull_requests pull_requests do |pull_request|
+json.pull_requests @pull_requests do |pull_request|
   json.id pull_request.id
   json.github_id pull_request.github_id
   json.number pull_request.github_number
@@ -10,3 +10,4 @@ json.pull_requests pull_requests do |pull_request|
   json.created_at pull_request.started_at
   json.status pull_request.status
 end
+

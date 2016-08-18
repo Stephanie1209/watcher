@@ -1,6 +1,6 @@
-<% pull_requests.each do |pull_request| %>
+<% pull_requests.order_by_newest.each do |pull_request| %>
   <div class="row">
-    <ul class="col-1 list-admin"><%= link_to "#{pull_request.github_id}", admin_repository_pull_request_path(@repository.name, pull_request) %></ul>
+    <ul class="col-1 list-admin"><%= link_to "#{pull_request.github_number}", admin_repository_pull_request_path(@repository.name, pull_request) %></ul>
     <ul class="col-3 list-admin"><%= pull_request.title.truncate(30) %></ul>
     <ul class="col-2 list-admin"><%= pull_request.github_account %></ul>
     <% if pull_request.assignee %>
@@ -8,7 +8,7 @@
 			<% else %>
 	      <ul class="col-2 list-admin">null</ul>
     <% end %>
-    <ul class="col-2 list-admin"><%= pull_request.started_at.truncate(20) %></ul>
+    <ul class="col-2 list-admin"><%= pull_request.started_at.strftime("%d/%B/%Y")  %></ul>
     <% if pull_request.labels %>
     		<ul class="col-1 list-admin"><%= pull_request.labels %></ul>
     	<% else %>

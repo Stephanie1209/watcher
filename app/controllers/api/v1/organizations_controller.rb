@@ -20,11 +20,11 @@ class Api::V1::OrganizationsController < Api::V1::ApiController
   end
 
   def issues
-    @issues = @organization.issues.all
+    @issues = @organization.issues.open
   end
 
   def pull_requests
-    @pull_requests = @organization.pull_requests.all
+    @pull_requests = @organization.pull_requests.open
   end
 
   def commits

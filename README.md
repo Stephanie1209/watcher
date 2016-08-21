@@ -41,13 +41,17 @@ Watcher has multiple endpoints for each of the following:
 
 Please see the [wiki](https://github.com/IcaliaLabs/watcher/wiki/API-Documentation) for more details
 
+## Whats new?
 
-### Contributing
+See [changelog](https://github.com/IcaliaLabs/watcher/blob/master/CHANGELOG.md) file for more details. 
+
+
+## Contributing
 
 Everyone is freely to collaborate and submit pull request if needed.
 
 
-### Credits
+## Credits
 
 Thank you [contributors](https://github.com/icalialabs/icalia_guides/graphs/contributors)!
 

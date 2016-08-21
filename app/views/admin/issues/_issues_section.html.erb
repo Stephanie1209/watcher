@@ -8,7 +8,7 @@
     <% else %>
         <ul class="col-2 list-admin">null</ul>
       <% end %>
-    <ul class="col-2 list-admin"><%= issue.started_at %></ul>
+    <ul class="col-2 list-admin"><%= issue.started_at.strftime("%d/%B/%Y") %></ul>
     <% if issue.labels %>
         <ul class="col-1 list-admin"><%= issue.labels.truncate(10) %></ul>
       <% else %>

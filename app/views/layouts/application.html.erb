@@ -1,61 +1,63 @@
 <html lang="en">
 
-<head>
-  <!--includes meta tags, title and more header definitions-->
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
-  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Heebo:100,300,400,500,700" rel="stylesheet">
+  <head>
+    <!--includes meta tags, title and more header definitions-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Heebo:100,300,400,500,700" rel="stylesheet">
 
-  <title>Watcher</title>
+    <title>Watcher</title>
 
-  <!-- Furatto core CSS -->
-  <%= stylesheet_link_tag "application", :cache => true %>
-  <%= csrf_meta_tag %>
+    <!-- Furatto core CSS -->
+    <%= stylesheet_link_tag "application", :cache => true %>
+    <%= csrf_meta_tag %>
 
-  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-  <![endif]-->
-</head>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
 
-<body>
-  <%= javascript_include_tag "application" %>
-  <nav class="admin-nav">
-    <div class="container">
-      <%= link_to root_path do %>
-        <%= image_tag("logo-admin.png", class: "logo-admin") %>
-      <% end %>
-      <ul class="pull-right pad">
-      <% if current_user %>
-        <li class="with-dropdown menu" id= "with-dropdown">
-            <%= image_tag "menu-icon.png", class: "admin-icon first" %>
-            <ul class="dropdown">
-              <li><a href="">Dashboard</a></li>
-              <li><%= link_to "Repositorios", admin_repositories_path %></li>
-              <li><%= link_to "Usuarios", admin_users_path %></li>
-              <li><%= link_to "Settings", edit_admin_user_path(current_user) %></li>
-            </ul>
-      </li>
-      <% end %>
-      <% if current_user %>
-        <li class="with-dropdown user">
-          <%= image_tag "user-icon.png", class: "admin-icon" %>
-            <ul class="dropdown user">
-              <li><%= current_user.name.titleize %></li>
-              <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
-              <% else %>
-              <li><%= link_to "Log in", new_user_session_path %></li>
+  <body>
+    <%= javascript_include_tag "application" %>
+    <% unless params[:controller] == "devise/sessions" %>
+      <nav class="admin-nav">
+        <div class="container">
+          <%= link_to root_path do %>
+            <%= image_tag("logo-admin.png", class: "logo-admin") %>
+          <% end %>
+          <ul class="pull-right pad">
+            <% if current_user %>
+              <li class="with-dropdown menu" id= "with-dropdown">
+                <%= image_tag "menu-icon.png", class: "admin-icon first" %>
+                <ul class="dropdown">
+                  <li><a href="">Dashboard</a></li>
+                  <li><%= link_to "Repositorios", admin_repositories_path %></li>
+                  <li><%= link_to "Usuarios", admin_users_path %></li>
+                  <li><%= link_to "Settings", edit_admin_user_path(current_user) %></li>
+                </ul>
+              </li>
             <% end %>
-            </ul>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <%= yield %>
-  <%= javascript_include_tag :application %>
+            <% if current_user %>
+              <li class="with-dropdown user">
+                <%= image_tag "user-icon.png", class: "admin-icon" %>
+                <ul class="dropdown user">
+                  <li><%= current_user.name.titleize %></li>
+                  <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
+                <% else %>
+                  <li><%= link_to "Log in", new_user_session_path %></li>
+                <% end %>
+                </ul>
+              </li>
+          </ul>
+        </div>
+      </nav>
+    <% end %>
+    <%= yield %>
+    <%= javascript_include_tag :application %>
 
   </body>
 </html>

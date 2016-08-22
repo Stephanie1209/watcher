@@ -1,0 +1,84 @@
+/*!
+ * jQuery UI Datepicker 1.11.4
+ * http://jqueryui.com
+ *
+ * Copyright jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://api.jqueryui.com/datepicker/#theming
+ */
+/*
+
+
+ */
+
+.ui-datepicker {
+	width: 14em !important;
+	margin: .2em !important;
+}
+
+.ui-datepicker .ui-datepicker-header {
+	position: relative;
+	padding: 0 !important;
+}
+.ui-datepicker .ui-datepicker-prev,
+.ui-datepicker .ui-datepicker-next {
+	width: 1em !important;
+	height: 1em !important;
+	top: 0 !important;
+}
+
+
+.ui-datepicker .ui-datepicker-prev span,
+.ui-datepicker .ui-datepicker-next span {
+	top: 70% !important;
+}
+
+.ui-datepicker .ui-datepicker-title {
+	margin: 0 1em !important;
+	line-height: 1em !important;
+	padding: .2em !important;
+	color: $admin-primary-color;
+}
+
+.ui-datepicker .ui-datepicker-title select {
+	font-size: .5em !important;
+}
+
+.ui-datepicker select.ui-datepicker-month,
+.ui-datepicker select.ui-datepicker-year {
+	width: 20% !important;
+}
+.ui-datepicker table {
+	font-size: .7em !important;
+	border-collapse: none !important;
+	background-color: white;
+	box-shadow: .2em .2em 2em rgba(0,0,0,0.2);
+	color: $admin-primary-color;
+	padding: 1em !important;
+}
+
+.ui-datepicker th {
+	padding: .3em !important;
+}
+
+.ui-datepicker td span,
+.ui-datepicker td a {
+	text-align: center !important;
+}
+
+.ui-datepicker .ui-datepicker-buttonpane button {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+.ui-widget-header {
+	border: 0 !important;
+	background: #fff !important;
+}
+
+.ui-widget-content {
+	border: 0 !important;
+	background: #fff !important;
+}	

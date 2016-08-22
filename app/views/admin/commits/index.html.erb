@@ -8,15 +8,19 @@
       <%= select_tag :branch_id, options_for_select(branches_combo(@repository.branches), "master"), id: "find_by_branch" %>
   	</div>
   	<div class="calendar">
-      <div class="calendar-circle">
-        <%= date_field_tag :since, params[:since], as: :date_picker %>
+      <div class="calendar-circle since-date-picker">
+        <span class="calendar-day">Since</span>
+        <span class="calendar-month">Date</span>
+        <%= hidden_field_tag :since, params[:since], as: :date_picker, class: "since_field" %>
       </div>
       <div class="calendar-line"></div>
-      <div class="calendar-circle">
-        <%= date_field_tag :until, params[:until], as: :date_picker %>
-        <%= submit_tag 'search' %>
-        <% end %>
+      <div class="calendar-circle until-date-picker">
+        <span class="calendar-day">Until</span>
+        <span class="calendar-month">Date</span>
+        <%= hidden_field_tag :until, params[:until], as: :date_picker, class: "until_field" %>
       </div>
+      <%= submit_tag 'search' %>
+      <% end %>
     </div>
   </section>
   <div class="table-admin align">

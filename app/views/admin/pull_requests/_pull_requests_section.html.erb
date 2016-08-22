@@ -6,13 +6,13 @@
     <% if pull_request.assignee %>
     		<ul class="col-2 list-admin"><%= pull_request.assignee %></ul>
 			<% else %>
-	      <ul class="col-2 list-admin">null</ul>
+	      <ul class="col-2 list-admin">&nbsp;</ul>
     <% end %>
     <ul class="col-2 list-admin"><%= pull_request.started_at.strftime("%d/%B/%Y")  %></ul>
     <% if pull_request.labels %>
     		<ul class="col-1 list-admin"><%= pull_request.labels %></ul>
     	<% else %>
-    		<ul class="col-1 list-admin">null</ul>
+    		<ul class="col-1 list-admin">&nbsp;</ul>
     <% end %>
     <ul class="col-1 list-admin"><%= pull_request.status %></ul>
   </div>

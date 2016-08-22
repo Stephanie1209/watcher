@@ -1,4 +1,7 @@
 <section class="login-container">
+  <% if flash[:notice] %>
+    <div class=""><%= flash[:notice] %></div>
+  <% end %>
   <div class="login-container--block">
     <%= image_tag("logo-watcher.png", class:"logo") %>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>

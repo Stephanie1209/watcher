@@ -6,14 +6,14 @@
     <% if issue.assignee %>
       <ul class="col-2 list-admin"><%= issue.assignee %></ul>
     <% else %>
-        <ul class="col-2 list-admin">null</ul>
-      <% end %>
+      <ul class="col-2 list-admin">&nbsp;</ul>
+    <% end %>
     <ul class="col-2 list-admin"><%= issue.started_at.strftime("%d/%B/%Y") %></ul>
     <% if issue.labels %>
-        <ul class="col-1 list-admin"><%= issue.labels.truncate(10) %></ul>
-      <% else %>
-         <ul class="col-1 list-admin">null</ul>
-      <% end %>
+      <ul class="col-1 list-admin"><%= issue.labels.truncate(10) %></ul>
+    <% else %>
+      <ul class="col-1 list-admin">&nbsp;</ul>
+    <% end %>
     <ul class="col-1 list-admin"><%= issue.status %></ul>
   </div>
 <% end %>

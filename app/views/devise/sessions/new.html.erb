@@ -1,3 +1,6 @@
+<% if flash[:notice] %>
+  <div class=""><%= flash[:notice] %></div>
+<% end %>
 <section class="login-container">
   <div class="login-container--block">
     <%= image_tag("logo-watcher.png", class:"logo") %>

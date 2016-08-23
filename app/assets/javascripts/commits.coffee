@@ -5,6 +5,7 @@ $(".since-date-picker").on "click", (e) ->
 		dateFormat: "d M y"
 		altFormat: "yy-mm-dd"
 		altField: ".since_field"
+		autoclose: true
 		onSelect: (dateText, inst) ->
 			date = $(this).val()
 			calendarDay = $(this).find(".calendar-day")

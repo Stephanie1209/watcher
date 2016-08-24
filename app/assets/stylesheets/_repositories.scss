@@ -114,6 +114,14 @@
 				margin: 2em 1em 0 0;
 		}
 	}
+
+	p {
+		a{
+			color: $light-gray;
+			cursor: pointer;
+			text-decoration: none;
+		}
+	}
 }
 
 .notice {

@@ -28,9 +28,15 @@ class CommitService
     obtains_commit_data
     @data.each do |commit_data|
       commit = @branch.commits.find_by_sha(commit_data[:sha]) || @branch.commits.new
+      if commit_data["committer"] == nil
+        name = commit_data["commit"]["author"]["name"]
+      else
+        name =  commit_data["committer"]["login"]
+      end
+
       commit.update(
                       sha: commit_data["sha"],
-                      author: commit_data["commit"]["author"]["name"],
+                      author: name,
                       message: commit_data["commit"]["message"],
                       committed_at: commit_data["commit"]["committer"]["date"]
                       )

@@ -1,11 +1,16 @@
 <div class="container">
-	<div class= "info-container">
-		<div class= "container-header">
-			<h1 class= "title-admin"> <%= @repository.name %> </h1>
-			<%= link_to image_tag("refresh-icon.png"), admin_repository_path(@repository), class: "refresh-icon pull-right", method: :put %>
-		</div>
-		<p> <b> stars: </b> <%= @repository.stars %> </p>
-		<p> <b> forks_count: </b><%= @repository.forks_count %> </p>
-		<p> <b> started at: </b><%= @repository.started_at %> </p>
-	</div>
+  <div class= "info-container">
+    <div class= "container-header">
+      <h1 class= "title-admin"> <%= @repository.name %> </h1>
+      <%= link_to image_tag("refresh-icon.png"), admin_repository_path(@repository.name), class: "refresh-icon pull-right", method: :put %>
+    </div>
+    <div>
+      <%= link_to "Issues",  admin_repository_issues_path(@repository.name), class: "table-tabs-admin"%>
+      <%= link_to "Pull Requests",  admin_repository_pull_requests_path(@repository.name), class: "table-tabs-admin"%>
+      <%= link_to "Commits",  admin_repository_commits_path(@repository.name), class: "table-tabs-admin"%>
+    </div>
+    <p> <b> stars: </b> <%= @repository.stars %> </p>
+    <p> <b> forks_count: </b><%= @repository.forks_count %> </p>
+    <p> <b> started at: </b><%= @repository.started_at.strftime("%d/%B/%Y") %> </p>
+  </div>
 </div>

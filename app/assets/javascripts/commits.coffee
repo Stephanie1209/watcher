@@ -1,7 +1,6 @@
 ready = ->
 
   $('.container').on 'click', ".since-date-picker", (e) ->
-    console.log("click")
     $(this).find(".ui-datepicker").show()
     $(this).datepicker({
       dateFormat: "d M y"

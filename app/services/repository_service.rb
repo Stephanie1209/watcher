@@ -7,7 +7,7 @@ class RepositoryService
     @repo_id = repository_id
     @repositories = []
     @client = Octokit::Client.new(access_token: ENV["GITHUB_ACCESS_TOKEN"])
-    @organization = Organization.find_by_github_name(ENV["github_organization"])
+    @organization = Organization.find_by_github_name(Rails.application.secrets.github_organization)
   end
 
   def obtains_repository_data

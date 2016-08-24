@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get "repositories/:name" => "repositories#show", as: :repository, constraints: { name: /[^\/]+/ }
   namespace :admin do
     resources :users
-    resources :repositories, only: [:index, :show, :update] do
+    resources :repositories, only: [:index, :show, :update], :constraints => { :id => /[^\/]+/ } do
       put 'update_all', on: :collection
       get 'commits/by_branch' => 'commits#find_by_branch'
       resources :issues, only: [:index, :show, :update] do
@@ -38,11 +38,16 @@ Rails.application.routes.draw do
       get "/repos/:organization_id/:repository_id/open_pull_requests" => "repos#open_pull_requests"
       get "/repos/:organization_id/:repository_id/closed_pull_requests" => "repos#closed_pull_requests"
       get "/repos/:organization_id/:repository_id/branches" => "repos#branches"
+      get "/repos/:organization_id/:repository_id/commits" => "repos#commits"
       resources :organizations, only: [:show, :issues_info] do
+        get :commits, on: :member
+        get :issues, on: :member
+        get :pull_requests, on: :member
         get :issues_info, on: :member
         get :pull_requests_info, on: :member
         get :repositories_info, on: :member
-        resources :repositories, only: [:index, :show]
+        get :stats, on: :member
+        resources :repositories, only: [:index, :show] 
       end
     end
   end

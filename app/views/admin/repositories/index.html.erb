@@ -1,4 +1,7 @@
 <div class="container">
+  <% if flash[:notice] %>
+    <div class=""><%= flash[:notice] %></div>
+  <% end %>
   <section class="repo-header">
     <%= link_to image_tag("refresh-icon.png"), update_all_admin_repositories_path, class: "refresh-icon pull-right", method: :put %>
     <h1 class="title-admin">Repositories</h1>
@@ -13,16 +16,16 @@
     <% @repositories.each do |repo|%>
       <div class="row">
         <ul class="col-6 list-admin">
-          <li class="data-first"><%= link_to repo.name, admin_repository_path(repo) %></li>
+          <li class="data-first"><%= link_to repo.name, admin_repository_path(repo.name) %></li>
         </ul>
-        <ul class="col-2 list-admin"> 
-          <li class="data-admin"><%= repo.issues.count %></li>
+        <ul class="col-2 list-admin">
+          <li class="data-admin"><%= link_to repo.issues.count, admin_repository_issues_path(repo.name) %></li>
         </ul>
-        <ul class="col-2 list-admin"> 
-          <li class="data-admin"><%= repo.pull_requests.count %></li>
+        <ul class="col-2 list-admin">
+          <li class="data-admin"><%= link_to repo.pull_requests.count, admin_repository_pull_requests_path(repo.name) %></li>
         </ul>
-        <ul class="col-2 list-admin">  
-          <li class="data-admin"><%= link_to repo.commits.count, admin_repository_commits_path(repo) %></li>
+        <ul class="col-2 list-admin">
+          <li class="data-admin"><%= link_to repo.commits.count, admin_repository_commits_path(repo.name) %></li>
         </ul>
       </div>
     <%end%>

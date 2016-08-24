@@ -24,7 +24,7 @@ class BranchService
     obtains_branch_data
     @data.each do |branch_data|
       unless @repository.branches.find_by_name(branch_data["name"])
-       @branches << @repository.branches.create(name: branch_data["name"])
+        @branches << @repository.branches.create(name: branch_data["name"])
       end
     end
     deletes_non_existing_branches @data

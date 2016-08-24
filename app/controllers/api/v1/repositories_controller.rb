@@ -9,6 +9,7 @@ class Api::V1::RepositoriesController < Api::V1::ApiController
     @repository = @organization.repositories.where("name ilike ?", params[:id]).first
   end
 
+
   private
 
   def find_organization

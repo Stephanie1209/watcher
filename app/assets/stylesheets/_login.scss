@@ -1,118 +1,109 @@
 .login-container {
-	background: -webkit-linear-gradient(#1AC7CF, #1393A1);
-	background: linear-gradient(45deg, #1AC7CF, #1393A1);
-	display: flex;
-	height: 100vh;
+  background: -webkit-linear-gradient(#1AC7CF, #1393A1);
+  background: linear-gradient(45deg, #1AC7CF, #1393A1);
+  display: flex;
+  height: 100vh;
 
-	.login-container--block {
-		background: white;
-		box-shadow: .2em .2em 4em #5B5B5B;
-		height: 50vh;
-		margin: auto auto;
-		width: 50vw;
-	}
- 	
-	.logo {
-		display:block;
-		height: auto;
-		margin: 0 auto;
-		width: 50%;
-	}
+  .login-container--block {
+    background: white;
+    box-shadow: .2em .2em 4em #5B5B5B;
+    height: 50vh;
+    margin: auto auto;
+    width: 50vw;
+  }
 
-	.submit {
-		background: -webkit-linear-gradient(bottom left, #1AC7CF, #1DAECF);
-		background: -o-linear-gradient(bottom left, #1AC7CF, #1DAECF);
-		background: linear-gradient(to top right, #1AC7CF, #1DAECF);
+  .logo {
+    display:block;
+    height: auto;
+    margin: 0 auto;
+    width: 50%;
+  }
+
+  .submit {
+    background: -webkit-linear-gradient(bottom left, #1AC7CF, #1DAECF);
+    background: -o-linear-gradient(bottom left, #1AC7CF, #1DAECF);
+    background: linear-gradient(to top right, #1AC7CF, #1DAECF);
     border: 0;
     color: #fff;
     cursor: pointer;
     display: block;
-   	font-family: $font;
-		font-size: .8em;
-		font-weight: 300;
+    font-family: $font;
+    font-size: .8em;
+    font-weight: 300;
     margin: 1em auto;
     padding: 1em 6.7em;
 
     &:hover {
-    	background: $light-gray;
-	    border: none;
-	    color: white;
-    	padding: 1em 6.7em;
+      background: $light-gray;
+      border: none;
+      color: white;
+      padding: 1em 6.7em;
     }
-	}
+  }
 }
 
 .login-form {
-	text-align: center;
+  text-align: center;
 }
 
 .input-alfa {
-	border-bottom: .08em solid $light-gray;
-	display:flex;
-	justify-content:flex-start;
-	max-width: 15em;
-	padding: 0.2em;
+  border-bottom: .08em solid $light-gray;
+  display:flex;
+  justify-content:flex-start;
+  max-width: 15em;
+  padding: 0.2em;
 
-	&.center {
-		margin: 0 auto;
-	}
-	
-	input {
-		border: none;
-		background: transparent;
-		color: $light-gray;
-		display: inline-block;
-		font-family: $font;
-		font-size: 1em;
-		font-weight: 300;
-		text-align: center;
-		outline: 0;
-		vertical-align: middle;
-		width: 12.5em;
-	}
+  &.center {
+    margin: 0 auto;
+  }
 
-	.icon {
-		height: 1.5em;
-		vertical-align: middle;
-		width: auto;
-	}
+  input {
+    border: none;
+    background: transparent;
+    color: $light-gray;
+    display: inline-block;
+    font-family: $font;
+    font-size: 1em;
+    font-weight: 300;
+    text-align: center;
+    outline: 0;
+    vertical-align: middle;
+    width: 12.5em;
+  }
 
-	&:hover {
-		border-bottom: .08em solid rgba($primary-color, 1);
-	}
+  .icon {
+    height: 1.5em;
+    vertical-align: middle;
+    width: auto;
+  }
+
+  &:hover {
+    border-bottom: .08em solid rgba($primary-color, 1);
+  }
 }
 
- .field {
- 	font-size: .7em;
- 	margin: .5em 0 2em 0;
- 	text-align: center;
- }
+.field {
+  font-size: .7em;
+  margin: .5em 0 2em 0;
+  text-align: center;
+}
 
- .links {
- 		font-size: .7em;
- 		text-align: center;
- 		margin-bottom: 1em;
+.links {
+  font-size: .7em;
+  text-align: center;
+  margin-bottom: 1em;
 
- 		a {
- 			color: #BBB;
- 			display: inline-block;
- 			text-decoration: none;
+  a {
+    color: #BBB;
+    display: inline-block;
+    text-decoration: none;
 
- 			&:first-child {
- 				border-right: 1px solid #BBB;
- 				padding-right: .5em;
+    &:hover {
+      color: #000;
+    }
+  }
+}
 
- 			}
- 			&:last-child {
- 				padding-left: .5em;
- 			}
-
- 			&:hover {
- 				color: #000;
- 			}
- 		}
- }
-
- form {
- 	margin: 0;
- }
+form {
+  margin: 0;
+}

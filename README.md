@@ -53,7 +53,7 @@ Everyone is freely to collaborate and submit pull request if needed.
 
 ## Credits
 
-Thank you [contributors](https://github.com/icalialabs/icalia_guides/graphs/contributors)!
+Thank you [contributors](https://github.com/IcaliaLabs/watcher/graphs/contributors)!
 
 ![Icalia Labs](https://raw.githubusercontent.com/IcaliaLabs/kaishi/master/logo.png)
 

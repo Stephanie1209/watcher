@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 class="title-admin-table">Pull Requests</h1>
+  <h1 class="title-admin-table">Pull Requests - <%= link_to @repository.name, admin_repository_path(@repository.name) %></h1>
   <section class="header">
     <%= link_to image_tag("refresh-icon.png"), update_all_admin_repository_pull_requests_path(@repository.name), class: "refresh-icon pull-right", method: :put %>
     <button class="table-tabs-admin"><%= link_to "Todos", admin_repository_pull_requests_path(@repository.name), remote: true %></button>

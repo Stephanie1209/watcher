@@ -1,6 +1,5 @@
-
 <div class="container">
-  <h1 class="title-admin-table">Commits</h1>
+  <h1 class="title-admin-table">Commits - <%= link_to @repository.name, admin_repository_path(@repository.name) %></h1>
   <section class="commits-header">
     <div class="branch-section">
       <%= form_tag(admin_repository_commits_path, method: "GET") do %>

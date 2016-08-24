@@ -4,6 +4,7 @@
 			<h1 class= "title-admin"><%= @issue.github_id %></h1>
 			<%= link_to image_tag("refresh-icon.png"), admin_repository_issue_path(@repository.name, @issue.id), class: "refresh-icon pull-right", method: :put %>
 		</div>
+		<p><strong>Repository: </strong><%= link_to @repository.name, admin_repository_path(@repository.name) %></p>
 		<p><strong>Title: </strong><%= @issue.title %></p>
 		<p><strong>Account: </strong> <%= @issue.github_account %></p>
 		<p><strong>Description: </strong> <%= @issue.description.truncate(100) %></p>

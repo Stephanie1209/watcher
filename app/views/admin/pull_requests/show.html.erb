@@ -4,7 +4,7 @@
 			<h1 class= "title-admin"><%= @pull_request.github_id %></h1>
 			<%= link_to image_tag("refresh-icon.png"), admin_repository_pull_request_path(@repository.name, @pull_request.id), class: "refresh-icon pull-right", method: :put %>
 		</div>
-		<p><strong>Repository: </strong><%= @pull_request.repository.name %></p>
+		<p><strong>Repository: </strong><%= link_to @repository.name, admin_repository_path(@repository.name) %></p>
 		<p><strong>Title: </strong><%= @pull_request.title %></p>
 		<p><strong>Account: </strong> <%= @pull_request.github_account %></p>
 		<p><strong>Description: </strong> <%= @pull_request.description %></p>

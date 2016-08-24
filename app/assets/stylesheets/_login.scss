@@ -6,9 +6,10 @@
 
   .login-container--block {
     background: white;
-    box-shadow: .2em .2em 4em #5B5B5B;
+    box-shadow: .2em .2em 2em rgba(0,0,0,0.3);
     height: 50vh;
     margin: auto auto;
+    min-height: 21em;
     width: 50vw;
   }
 

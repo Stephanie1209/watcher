@@ -5,6 +5,13 @@ class Repository < ActiveRecord::Base
   has_many :pull_requests
   has_many :commits, through: :branches
 
+  scope :order_by_most_commits, -> {
+    select("repositories.*, count(commits.id) AS commits_count").
+    joins(:commits).
+    group("repositories.id").
+    order("commits_count DESC")
+  }
+
   scope :is_private, -> { where(is_private: true) }
   scope :is_public, -> { where(is_private: false) }
 end

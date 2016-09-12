@@ -8,7 +8,7 @@ describe "how to get commits from db", :type => :feature, vcr: true do
     visit "/users/sign_in"
     fill_in "user_email", with: @user.email
     fill_in "user_password", with: "12345678"
-    click_button "Log in"
+    click_button "Login"
   end
 
   it 'creates repositories succesfully' do

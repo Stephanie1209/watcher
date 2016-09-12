@@ -4,6 +4,7 @@ RSpec.describe Admin::UsersController, type: :controller do
   before(:each) do
     @user = FactoryGirl.create :user
     @user2 = FactoryGirl.create :user
+    sign_in @user
   end
 
   describe "GET #index" do

@@ -39,7 +39,7 @@ RSpec.describe Admin::PullRequestsController, type: :controller, vcr: true do
 
     it "has 36 pull requests after updating" do
       put :update_all, :repository_id => @repository.name
-      expect(@repository.pull_requests.all.count).to eq(36)
+      expect(@repository.pull_requests.all.count).to eq(47)
     end
   end
 
@@ -54,7 +54,7 @@ RSpec.describe Admin::PullRequestsController, type: :controller, vcr: true do
 
     it "is equal to the online issue after updating" do
       put :update, :repository_id => @repository.name, :id => @pull_request.id
-      expect(@pull_request.reload.title).to eq("WIP Issues/PullRequest Dashboard")
+      expect(@pull_request.reload.title).to eq("Issues/PullRequest Dashboard")
     end
   end
 end

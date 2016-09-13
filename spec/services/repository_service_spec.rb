@@ -41,7 +41,7 @@ RSpec.describe RepositoryService, vcr: true do
         expect  {
           service = RepositoryService.new
           service.creates_or_updates_repositories
-        }.to change(Repository, :count).by(72)
+        }.to change(Repository, :count).by(79)
       end
     end
   end

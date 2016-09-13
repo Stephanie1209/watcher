@@ -10,7 +10,7 @@ describe "how to get organization repos", :type => :feature, vcr: true do
     visit "/users/sign_in"
     fill_in "user_email", with: @user.email
     fill_in "user_password", with: "12345678"
-    click_button "Log in"
+    click_button "Login"
     visit '/admin/repositories'
     click_link "Update"
     expect(Repository.count).to be(72)
@@ -28,7 +28,7 @@ describe "how to update organization repos", :type => :feature, vcr: true do
     visit "/users/sign_in"
     fill_in "user_email", with: @user.email
     fill_in "user_password", with: "12345678"
-    click_button "Log in"
+    click_button "Login"
     visit '/admin/repositories'
     click_link "furatto"
     click_link "Update"

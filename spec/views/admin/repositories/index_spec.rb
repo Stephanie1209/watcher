@@ -12,8 +12,8 @@ describe "how to get organization repos", :type => :feature, vcr: true do
     fill_in "user_password", with: "12345678"
     click_button "Login"
     visit '/admin/repositories'
-    click_link "Update"
-    expect(Repository.count).to be(72)
+    click_link "Refresh icon"
+    expect(Repository.count).to be(79)
   end
 end
 
@@ -31,7 +31,7 @@ describe "how to update organization repos", :type => :feature, vcr: true do
     click_button "Login"
     visit '/admin/repositories'
     click_link "furatto"
-    click_link "Update"
+    click_link "Refresh icon"
     expect(Repository.count).to be(1)
   end
 end

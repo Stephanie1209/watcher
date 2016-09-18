@@ -10,28 +10,11 @@ describe "how to get organization repos", :type => :feature, vcr: true do
     visit "/users/sign_in"
     fill_in "user_email", with: @user.email
     fill_in "user_password", with: "12345678"
-    click_button "Log in"
+    click_button "Login"
     visit '/admin/repositories'
-    click_link "Update"
-    expect(Repository.count).to be(72)
+    click_link "Refresh icon"
+    expect(Repository.count).to be(79)
   end
 end
 
-describe "how to update organization repos", :type => :feature, vcr: true do
-  before(:each) do
-    @user = FactoryGirl.create :user
-    organization = FactoryGirl.create :icalialabs
-    FactoryGirl.create :furatto, name: 'furatto', organization: organization
-  end
 
-  it 'succesfully updates a single repo' do
-    visit "/users/sign_in"
-    fill_in "user_email", with: @user.email
-    fill_in "user_password", with: "12345678"
-    click_button "Log in"
-    visit '/admin/repositories'
-    click_link "furatto"
-    click_link "Update"
-    expect(Repository.count).to be(1)
-  end
-end

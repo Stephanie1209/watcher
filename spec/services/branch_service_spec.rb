@@ -13,7 +13,7 @@ RSpec.describe BranchService, vcr: true do
         expect  {
             service = BranchService.new "watcher"
             service.creates_or_updates_branches
-        }.to change(Branch, :count).by(4)
+        }.to change(Branch, :count).by(1)
       end
     end
   end

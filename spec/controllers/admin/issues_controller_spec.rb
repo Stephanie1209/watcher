@@ -39,7 +39,7 @@ RSpec.describe Admin::IssuesController, type: :controller, vcr: true do
 
     it "has all issues created after updating" do
       put :update_all, :repository_id => @repository.name
-      expect(@repository.issues.all.count).to eq(36)
+      expect(@repository.issues.all.count).to eq(53)
     end
   end
 

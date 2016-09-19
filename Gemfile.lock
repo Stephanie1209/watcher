@@ -52,7 +52,6 @@ GEM
     addressable (2.4.0)
     arel (6.0.3)
     awesome_print (1.7.0)
-    bcrypt (3.1.11)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -86,12 +85,6 @@ GEM
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     debug_inspector (0.0.2)
-    devise (4.2.0)
-      bcrypt (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 4.1.0, < 5.1)
-      responders
-      warden (~> 1.2.3)
     diff-lcs (1.2.5)
     docile (1.1.5)
     erubis (2.7.0)
@@ -149,7 +142,6 @@ GEM
       pkg-config (~> 1.1.7)
     octokit (4.3.0)
       sawyer (~> 0.7.0, >= 0.5.3)
-    orm_adapter (0.5.0)
     pg (0.18.4)
     pkg-config (1.1.7)
     pry (0.10.4)
@@ -187,8 +179,6 @@ GEM
     rdoc (4.2.2)
       json (~> 1.4)
     ref (2.0.0)
-    responders (2.2.0)
-      railties (>= 4.2.0, < 5.1)
     rspec-collection_matchers (1.1.2)
       rspec-expectations (>= 2.99.0.beta1)
     rspec-core (3.5.1)
@@ -255,8 +245,6 @@ GEM
     uglifier (3.0.0)
       execjs (>= 0.3.0, < 3)
     vcr (3.0.3)
-    warden (1.2.6)
-      rack (>= 1.0)
     web-console (2.3.0)
       activemodel (>= 4.0)
       binding_of_caller (>= 0.7.2)
@@ -281,7 +269,6 @@ DEPENDENCIES
   codeclimate-test-reporter!
   coffee-rails (~> 4.1.0)
   compass-rails (~> 2.0.0)
-  devise
   factory_girl_rails
   faker
   figaro

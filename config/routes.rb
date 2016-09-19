@@ -1,31 +1,4 @@
 Rails.application.routes.draw do
-  get 'dashboard/index'
-  devise_scope :user do
-    root to: "devise/sessions#new"
-  end
-  resources :organizations, only: [:index]
-  devise_for :users
-
-  resources :code, only: :index
-  resources :issues, only: :index
-  resources :pull_requests, only: :index
-  get "repositories/:name" => "repositories#show", as: :repository, constraints: { name: /[^\/]+/ }
-  namespace :admin do
-    resources :users
-    resources :repositories, only: [:index, :show, :update], :constraints => { :id => /[^\/]+/ } do
-      put 'update_all', on: :collection
-      get 'commits/by_branch' => 'commits#find_by_branch'
-      resources :issues, only: [:index, :show, :update] do
-        put :update_all, on: :collection
-      end
-      resources :pull_requests, only: [:index, :show, :update] do
-        put :update_all, on: :collection
-      end
-      resources :commits, only: :index
-      resources :branches, only: :index
-    end
-    resources :organizations, only: :index
-  end
 
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do

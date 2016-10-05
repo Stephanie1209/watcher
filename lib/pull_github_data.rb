@@ -8,11 +8,16 @@ class PullGithubData
     @organization = Organization.find_by_github_name(Rails.application.secrets.github_organization)
     # En el arreglo pongo los nombres de los repos que quiera, hago el arreglo de repositories por updatear y en get_repository_data
     # ese arreglo solo tiene los repos que necesito
-    @names = ["nombre1", "nombre2", "nombre3"]
+    @names = ["datoz", "watcher", "tvDashboard"]
     @repositories = []
+    puts "AAA"
     @names.each do |name|
-      @repositories << @client.org_repositories.find_by_name(name)
+      puts "BBBB"
+      puts name
+      @repositories << @client.org_repositories(@organization.github_name).select{|repo| repo.name == name}.first
+      puts "CCCC"
     end
+    @repositories
   end
 
   def get_repository_data

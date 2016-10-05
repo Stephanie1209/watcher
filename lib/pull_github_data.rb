@@ -6,7 +6,13 @@ class PullGithubData
     service = OrganizationService.new(Rails.application.secrets.github_organization)
     service.creates_or_updates_organization
     @organization = Organization.find_by_github_name(Rails.application.secrets.github_organization)
-    @repositories = @client.org_repositories(@organization.github_name)
+    # En el arreglo pongo los nombres de los repos que quiera, hago el arreglo de repositories por updatear y en get_repository_data
+    # ese arreglo solo tiene los repos que necesito
+    @names = ["nombre1", "nombre2", "nombre3"]
+    @repositories = []
+    @names.each do |name|
+      @repositories << @client.org_repositories.find_by_name(name)
+    end
   end
 
   def get_repository_data

@@ -1,7 +1,7 @@
 require 'octokit'
 
 class RepositoryService
-  attr_reader :repositories
+  attr_reader :repositories, :repo_id
 
   def initialize repository_id = nil
     @repo_id = repository_id

@@ -10,12 +10,8 @@ class PullGithubData
     # ese arreglo solo tiene los repos que necesito
     @names = ["datoz", "watcher", "tvOSDashboard"]
     @repositories = []
-    puts "AAA"
     @names.each do |name|
-      puts "BBBB"
-      puts name
-      @repositories << @client.org_repositories(@organization.github_name).select{|repo| repo.name == name}.first
-      puts "CCCC"
+      @repositories << RepositoryService.new name
     end
     @repositories
   end

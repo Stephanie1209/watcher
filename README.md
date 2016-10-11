@@ -52,12 +52,6 @@ Once you see this you can navigate to `localhost:3000` and Watcher should be up 
 
 ## Usage
 
-Watcher can be used in two modes: Web and API
-
-### Web
-
-For the web version you just need to set your Github token, start your rails server and you're ready to go!
-
 ### API
 
 Watcher has multiple endpoints for each of the following:
@@ -87,5 +81,3 @@ Thank you [contributors](https://github.com/IcaliaLabs/watcher/graphs/contributo
 ![Icalia Labs](https://raw.githubusercontent.com/IcaliaLabs/kaishi/master/logo.png)
 
 Watcher is maintained by [Icalia Labs](http://www.icalialabs.com/team).
-
-

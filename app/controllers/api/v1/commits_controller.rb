@@ -16,14 +16,12 @@ class Api::V1::CommitsController < Api::V1::ApiController
   private
 
   def obtain_branch_commits
+    branch = @repository.branches.find_by_name(params[:branch])
+    @commits = branch.commits
     if params[:since] && params[:until]
       since = Date.parse(params[:since])
       to = Date.parse(params[:until])
-      branch = @repository.branches.find_by_name(params[:branch])
-      @commits = branch.commits.between_dates(since, to)
-    else
-      branch = @repository.branches.find_by_name(params[:branch])
-      @commits = branch.commits
+      @commits = @commits.between_dates(since, to)
     end
   end
 

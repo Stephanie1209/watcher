@@ -30,7 +30,8 @@ class Api::V1::ReposController < Api::V1::ApiController
   end
 
   def commits
-    repository = Repository.find_by_name(params[:repository_id])
+    repository = Repository.find_by_name(params[:name])
+    #En vez de los ifs llamas a la función count_commits, mandandole el repo que buscas arriba
     if params[:since] && params[:to]
       @commits = repository.commits.between_dates(params[:since], params[:to]).group(:author).order('count_all desc').count
     elsif params[:since]

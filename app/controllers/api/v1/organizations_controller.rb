@@ -28,6 +28,7 @@ class Api::V1::OrganizationsController < Api::V1::ApiController
   end
 
   def commits
+    #Aqui no estoy cien porciento seguro de que funcione asi, pero para contar llamarías a count_commits y le mandas Commit como parametro
     if params[:since] && params[:to]
       @commits = Commit.between_dates(params[:since], params[:to]).group(:author).order('count_all desc').count
     elsif params[:since]

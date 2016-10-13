@@ -6,8 +6,7 @@ class Api::V1::CommitsController < Api::V1::ApiController
   end
 
   def index
-
-    if params[:since] && params[:until] && params[:branch]
+    if params[:branch]
       obtain_branch_commits
     elsif params[:since] && params[:until]
       find_all_commits_between(@repository)

@@ -6,16 +6,16 @@ class Commit < ActiveRecord::Base
   scope :since, -> (since) { where("committed_at >= ?", since) }
   scope :to, -> (to) { where("committed_at <= ?", to) }
 
-  def search repository = nil, since = nil, to = nil
+  def search since = nil, to = nil
     if since && to
-      @commits = repo.between_dates(since,to)
+      @commits = between_dates(since,to)
     elsif since
-      @commits = repo.since(since)
+      @commits = since(since)
     elsif to
-      @commits = repo.to(to)
+      @commits = to(to)
     else
-      @commits = repo
+      @commits = Commit.all
     end
-    @commits.group(:author).order('count_all_desc').count
+    @commits.all.count
   end
 end

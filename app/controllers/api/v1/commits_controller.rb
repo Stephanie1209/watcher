@@ -6,8 +6,11 @@ class Api::V1::CommitsController < Api::V1::ApiController
   end
 
   def index
-    if params[:since] && params[:until]
-      find_all_commits_between
+
+    if params[:since] && params[:until] && params[:branch]
+      obtain_branch_commits
+    elsif params[:since] && params[:until]
+      find_all_commits_between(@repository)
     else
       find_all_commits
     end
@@ -17,30 +20,19 @@ class Api::V1::CommitsController < Api::V1::ApiController
 
   def obtain_branch_commits
     branch = @repository.branches.find_by_name(params[:branch])
-    @commits = branch.commits
     if params[:since] && params[:until]
-      since = Date.parse(params[:since])
-      to = Date.parse(params[:until])
-      @commits = @commits.between_dates(since, to)
+      find_all_commits_between(branch)
     end
   end
 
   def find_all_commits
-    if params[:branch]
-      obtain_branch_commits
-    else
       @commits = @repository.commits.all
-    end
   end
 
-  def find_all_commits_between
-    if params[:branch]
-      obtain_branch_commits
-    else
+  def find_all_commits_between repo
       since = Date.parse(params[:since])
       to = Date.parse(params[:until])
-      @commits = @repository.commits.between_dates(since, to)
-    end
+      @commits = repo.commits.between_dates(since, to)
   end
 
   def find_repository
@@ -48,4 +40,3 @@ class Api::V1::CommitsController < Api::V1::ApiController
     @repository = @organization.repositories.where("name ilike ?", params[:repo_id]).first
   end
 end
-

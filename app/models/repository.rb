@@ -15,16 +15,17 @@ class Repository < ActiveRecord::Base
   scope :is_private, -> { where(is_private: true) }
   scope :is_public, -> { where(is_private: false) }
 
-  def search repo = nil, since = nil, to = nil
+  def search since = nil, to = nil
     if since && to
-      @commits = repo.between_dates(since,to)
+      result = between_dates(since,to)
     elsif since
-      @commits = repo.since(since)
+      result = repo.since(since)
     elsif to
-      @commits = repo.to(to)
+      result = repo.to(to)
     else
-      @commits = repo.commits
+      result = repo.commits
     end
-    @commits.all.count
+      result = commits.all.count
   end
+    result.count
 end

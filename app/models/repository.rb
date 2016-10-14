@@ -19,13 +19,12 @@ class Repository < ActiveRecord::Base
     if since && to
       result = between_dates(since,to)
     elsif since
-      result = repo.since(since)
+      result = since(since)
     elsif to
-      result = repo.to(to)
+      result = to(to)
     else
-      result = repo.commits
+      result = commits
     end
-      result = commits.all.count
-  end
     result.count
+  end
 end

@@ -6,7 +6,7 @@ class Api::V1::CommitsController < Api::V1::ApiController
   end
 
   def index
-    Commit.search(params[:since], params[:until])
+    @commits = Commit.search(params[:since], params[:until])
   end
 
   private

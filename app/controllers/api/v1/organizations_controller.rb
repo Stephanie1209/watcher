@@ -28,7 +28,7 @@ class Api::V1::OrganizationsController < Api::V1::ApiController
   end
 
   def commits
-    @commits = Commit.search(params[since],params[to])
+    @commits = Commit.search(params[:since],params[:until])
   end
 
   def stats

@@ -6,13 +6,13 @@ class Commit < ActiveRecord::Base
   scope :since, -> (since) { where("committed_at >= ?", since) }
   scope :to, -> (to) { where("committed_at <= ?", to) }
 
-  def search from = nil, untill = nil
+  def self.search from = nil, untill = nil
     if from && untill
-      commits = between_dates(since,to)
+      return commits = between_dates(from,untill)
     elsif from
-      commits = since(since)
+      commits = since(from)
     elsif untill
-      commits = to(to)
+      commits = to(untill)
     else
       commits = Commit.all
     end

@@ -31,8 +31,7 @@ class Api::V1::ReposController < Api::V1::ApiController
 
   def commits
     repository = Repository.find_by_name(params[:name])
-    #En vez de los ifs llamas a la función count_commits, mandandole el repo que buscas arriba
-    Repository.search(repository,params[:since],params[:to])
+    repository.search(params[:since],params[:to])
   end
 
   private

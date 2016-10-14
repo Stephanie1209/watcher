@@ -8,7 +8,7 @@ class Commit < ActiveRecord::Base
 
   def self.search from = nil, untill = nil
     if from && untill
-      return commits = between_dates(from,untill)
+      commits = between_dates(from,untill)
     elsif from
       commits = since(from)
     elsif untill

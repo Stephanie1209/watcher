@@ -28,8 +28,7 @@ class Api::V1::OrganizationsController < Api::V1::ApiController
   end
 
   def commits
-    #Aqui no estoy cien porciento seguro de que funcione asi, pero para contar llamarías a count_commits y le mandas Commit como parametro
-    Commit.search(params[since],params[to])
+    @commits = Commit.search(params[since],params[to])
   end
 
   def stats

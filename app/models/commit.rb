@@ -5,4 +5,17 @@ class Commit < ActiveRecord::Base
   scope :between_dates, -> (since, to) { where("committed_at >= ? AND committed_at <= ?", since, to) }
   scope :since, -> (since) { where("committed_at >= ?", since) }
   scope :to, -> (to) { where("committed_at <= ?", to) }
+
+  def self.search from = nil, untill = nil
+    if from && untill
+      commits = between_dates(from,untill)
+    elsif from
+      commits = since(from)
+    elsif untill
+      commits = to(untill)
+    else
+      commits = Commit.all
+    end
+      commits.count
+  end
 end

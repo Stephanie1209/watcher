@@ -44,7 +44,7 @@ RSpec.describe Api::V1::CommitsController, :vcr do
 
     it "verifies that all commits are recieved for the specified repo" do
       get  'index', organization_id: 'icalialabs', repo_id: 'watcher', format: :json
-      expect(assigns(:commits).count).to eq(@branch.commits.count)
+      expect(assigns(:commits)).to eq(@branch.commits.count)
     end
 
     it "verifies that all commits are recieved for the specified repo in a range of time" do

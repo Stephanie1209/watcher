@@ -1,3 +1,4 @@
+require 'pry'
 class PullGithubData
 
   def initialize
@@ -6,16 +7,23 @@ class PullGithubData
     service = OrganizationService.new(Rails.application.secrets.github_organization)
     service.creates_or_updates_organization
     @organization = Organization.find_by_github_name(Rails.application.secrets.github_organization)
-    @repositories = @client.org_repositories(@organization.github_name)
+    # En el arreglo pongo los nombres de los repos que quiera, hago el arreglo de repositories por updatear y en get_repository_data
+    # ese arreglo solo tiene los repos que necesito
+    @names = ["datoz", "directum-site", "watcher", "TapToFund-iOS", "RTS-Inventory-System"]
+    @repositories = []
+    @names.each do |name|
+      @repositories << RepositoryService.new(name)
+    end
+    @repositories
   end
 
   def get_repository_data
     @repositories.each do |repository|
-      commits = @client.commits("#{@organization.github_name}/#{repository["name"]}", { branch: "master", query: { per_page:10000, page: 1 } })
+      commits = @client.commits("#{@organization.github_name}/#{repository.repo_id}", { branch: "master", query: { per_page:10000, page: 1 } })
 
-      unless Repository.find_by_name(repository["name"]) && commits.count == Repository.find_by_name(repository["name"]).commits.count
-        create_repository(repository["name"])
-        @repository = Repository.find_by_name(repository["name"])
+      unless Repository.find_by_name(repository.repo_id) && commits.count == Repository.find_by_name(repository.repo_id).commits.count
+        create_repository(repository.repo_id)
+        @repository = Repository.find_by_name(repository.repo_id)
         create_issues
         create_pull_requests
 

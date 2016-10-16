@@ -28,15 +28,7 @@ class Api::V1::OrganizationsController < Api::V1::ApiController
   end
 
   def commits
-    if params[:since] && params[:to]
-      @commits = Commit.between_dates(params[:since], params[:to]).group(:author).order('count_all desc').count
-    elsif params[:since]
-      @commits = Commit.since(params[:since]).group(:author).order('count_all desc').count
-    elsif params[:to]
-      @commits = Commit.to(params[:to]).group(:author).order('count_all desc').count
-    else
-      @commits = Commit.group(:author).order('count_all desc').count
-    end
+    @commits = Commit.search(params[:since],params[:until])
   end
 
   def stats
@@ -51,4 +43,3 @@ class Api::V1::OrganizationsController < Api::V1::ApiController
     @organization = Organization.where("github_name ilike ?", params[:id]).first
   end
 end
-

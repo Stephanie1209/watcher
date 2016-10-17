@@ -20,7 +20,8 @@ Rails.application.routes.draw do
         get :pull_requests_info, on: :member
         get :repositories_info, on: :member
         get :stats, on: :member
-        resources :repositories, only: [:index, :show] 
+        get :members, on: :member
+        resources :repositories, only: [:index, :show]
       end
     end
   end

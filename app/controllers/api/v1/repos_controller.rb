@@ -34,6 +34,18 @@ class Api::V1::ReposController < Api::V1::ApiController
     repository.search(params[:since],params[:to])
   end
 
+  def stats
+    repository = Repository.find_by_name(params[:repository_id])
+    @total = 0
+    @additions = 0
+    @deletions = 0
+    repository.commits.each do |commit|
+      @total = @total + commit.total
+      @additions = @additions + commit.additions
+      @deletions = @deletions + commit.deletions
+    end
+  end
+
   private
 
   def find_repository

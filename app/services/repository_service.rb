@@ -11,12 +11,12 @@ class RepositoryService
   end
 
   def obtains_repository_collaborators repository
-    @collaborators = []
+    collaborators = []
     @data = @client.contribs("#{@organization.github_name}/#{repository.name}")
     @data.each do |collaborator|
-      @collaborators << collaborator["login"]
+      collaborators << collaborator["login"]
     end
-    @collaborators
+    collaborators
   end
 
   def obtains_repository_data

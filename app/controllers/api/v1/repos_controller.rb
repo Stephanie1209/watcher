@@ -36,7 +36,7 @@ class Api::V1::ReposController < Api::V1::ApiController
 
   def contributors
     repository = Repository.find_by_name(params[:repository_id])
-    service = RepositoryService.new("icalialabs")
+    service = RepositoryService.new(params[:organization_id])
     @contributors = service.obtains_repository_collaborators repository
   end
 

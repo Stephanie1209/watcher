@@ -36,14 +36,9 @@ class Api::V1::ReposController < Api::V1::ApiController
 
   def stats
     repository = Repository.find_by_name(params[:repository_id])
-    @total = 0
-    @additions = 0
-    @deletions = 0
-    repository.commits.each do |commit|
-      @total = @total + commit.total
-      @additions = @additions + commit.additions
-      @deletions = @deletions + commit.deletions
-    end
+    @total = repository.commits.sum(:total)
+    @additions = repository.commits.sum(:additions)
+    @deletions = repository.commits.sum(:deletions)
   end
 
   private

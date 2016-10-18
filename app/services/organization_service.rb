@@ -15,11 +15,11 @@ class OrganizationService
 
   def obtains_organization_members
     @data = @client.organization_members @github_name
-    @members = []
+    members = []
     @data.each do |organization_data|
-      @members << organization_data["login"]
+      members << organization_data["login"]
     end
-    @members
+    members
   end
 
   def creates_or_updates_organization

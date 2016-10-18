@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       get "/repos/:organization_id/:repository_id/branches" => "repos#branches"
       get "/repos/:organization_id/:repository_id/commits" => "repos#commits"
       get "/repos/:organization_id/:repository_id/stats" => "repos#stats"
+      get "/repos/:organization_id/:repository_id/contributors" => "repos#contributors"
       resources :organizations, only: [:show, :issues_info] do
         get :commits, on: :member
         get :issues, on: :member

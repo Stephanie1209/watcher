@@ -52,7 +52,7 @@ RSpec.describe Api::V1::CommitsController, :vcr do
         since: "2016-01-30", until: "2016-06-30", format: :json
       since = Date.parse("2016-01-30")
       to = Date.parse("2016-06-30")
-      expect(assigns(:commits)).to eq(@watcher.commits.between_dates(since, to))
+      expect(assigns(:commits)).to eq(@watcher.commits.between_dates(since, to).count)
     end
 
     it "should be succesful" do

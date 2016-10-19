@@ -37,6 +37,12 @@ class Api::V1::OrganizationsController < Api::V1::ApiController
     @deletions = Commit.sum(:deletions)
   end
 
+  def members
+    service = OrganizationService.new("IcaliaLabs")
+    @members = service.obtains_organization_members
+  end
+
+
   private
 
   def find_organization

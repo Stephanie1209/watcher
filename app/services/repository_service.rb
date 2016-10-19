@@ -10,6 +10,15 @@ class RepositoryService
     @organization = Organization.find_by_github_name(Rails.application.secrets.github_organization)
   end
 
+  def obtains_repository_collaborators repository
+    collaborators = []
+    @data = @client.contribs("#{@organization.github_name}/#{repository.name}")
+    @data.each do |collaborator|
+      collaborators << collaborator["login"]
+    end
+    collaborators
+  end
+
   def obtains_repository_data
     @repo_data = []
     if @repo_id.nil?

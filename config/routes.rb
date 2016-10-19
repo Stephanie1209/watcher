@@ -12,6 +12,8 @@ Rails.application.routes.draw do
       get "/repos/:organization_id/:repository_id/closed_pull_requests" => "repos#closed_pull_requests"
       get "/repos/:organization_id/:repository_id/branches" => "repos#branches"
       get "/repos/:organization_id/:repository_id/commits" => "repos#commits"
+      get "/repos/:organization_id/:repository_id/stats" => "repos#stats"
+      get "/repos/:organization_id/:repository_id/contributors" => "repos#contributors"
       resources :organizations, only: [:show, :issues_info] do
         get :commits, on: :member
         get :issues, on: :member
@@ -20,7 +22,8 @@ Rails.application.routes.draw do
         get :pull_requests_info, on: :member
         get :repositories_info, on: :member
         get :stats, on: :member
-        resources :repositories, only: [:index, :show] 
+        get :members, on: :member
+        resources :repositories, only: [:index, :show]
       end
     end
   end

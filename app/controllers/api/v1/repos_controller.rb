@@ -34,6 +34,20 @@ class Api::V1::ReposController < Api::V1::ApiController
     repository.search(params[:since],params[:to])
   end
 
+  def contributors
+    repository = Repository.find_by_name(params[:repository_id])
+    service = RepositoryService.new(params[:organization_id])
+    @contributors = service.obtains_repository_collaborators repository
+  end
+
+  def stats
+    repository = Repository.find_by_name(params[:repository_id])
+    commits = repository.commits
+    @total = commits.sum(:total)
+    @additions = commits.sum(:additions)
+    @deletions = commits.sum(:deletions)
+  end
+
   private
 
   def find_repository
